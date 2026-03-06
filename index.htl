@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ASTRO SANJOG</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #2c3e50, #3498db);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 20px;
+      background: rgba(0,0,0,0.5);
+    }
+    h1 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+    nav {
+      margin: 20px 0;
+    }
+    nav a {
+      color: #f1c40f;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    section {
+      padding: 40px;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 60%;
+    }
+    footer {
+      background: rgba(0,0,0,0.5);
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>✨ ASTRO SANJOG ✨</h1>
+    <p>Discover your stars, planets, and destiny</p>
+  </header>
+
+  <nav>
+    <a href="#horoscope">Daily Horoscope</a>
+    <a href="#remedies">Spiritual Remedies</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="horoscope">
+    <div class="card">
+      <h2>🌙 Today's Horoscope</h2>
+      <p>Aries: Aaj aapke liye nayi opportunities khulengi. Positive energy banaye rakhiye.</p>
+      <p>Taurus: Financial stability ke liye patience rakhiye. Jaldi hi progress hoga.</p>
+      <!-- Add more zodiac signs here -->
+    </div>
+  </section>
+
+  <section id="remedies">
+    <div class="card">
+      <h2>🕉 Spiritual Remedies</h2>
+      <p>Shani ke prabhav ko kam karne ke liye Hanuman Chalisa ka path karein.</p>
+      <p>Positive vibes ke liye Tulsi plant ko daily jal chadhayein.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="card">
+      <h2>📩 Contact Me</h2>
+      <p>Email: abhishek.astrology@example.com</p>
+      <p>Instagram: @abhishek_astrology</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Astrology by Abhishek | Powered by GitHub Pages</p>
+  </footer>
+</body>
+</html>
