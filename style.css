@@ -1,185 +1,191 @@
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(to right, #2c3e50, #3498db);
-  color: white;
-}
-
-header {
-  background: rgba(0,0,0,0.7);
-  padding: 15px;
-  text-align: center;
-}
-
-nav a {
-  color: #f1c40f;
-  margin: 0 10px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.hero {
-  text-align: center;
-  padding: 50px 20px;
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px;
-}
-
-.card {
-  background: rgba(255,255,255,0.1);
-  margin: 10px;
-  padding: 20px;
-  border-radius: 10px;
-  flex: 1 1 250px;
-  max-width: 300px;
-  text-align: center;
-}
-
-footer {
-  background: rgba(0,0,0,0.7);
-  text-align: center;
-  padding: 10px;
-  margin-top: 20px;
-}
-
-/* Mobile Friendly */
-@media (max-width: 600px) {
-  .cards {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-.glow-img {
-  width: 180px;
-  border-radius: 50%;
-  box-shadow: 0 0 20px gold;
-  transition: box-shadow 0.5s ease-in-out;
-}
-
-.glow-img:hover {
-  box-shadow: 0 0 30px #f1c40f, 0 0 40px #f39c12;
-}
-.glow-img {
-  width: 180px;
-  border-radius: 50%;
-  box-shadow: 0 0 20px gold;
-  transition: box-shadow 0.5s ease-in-out;
-}
-
-.glow-img:hover {
-  box-shadow: 0 0 30px #f1c40f, 0 0 40px #f39c12;
-}
-/* Main Body Style */
-
 body{
-    margin:0;
-    padding:0;
-    font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at top, #0d1b2a, #000814);
-    overflow-x:hidden;
-    color:white;
+margin:0;
+font-family:Poppins;
+background:radial-gradient(circle,#020617,#000);
+color:white;
+overflow-x:hidden;
 }
 
-/* Background Container */
+
+/* BACKGROUND */
 
 .space-background{
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    overflow:hidden;
-    z-index:-1;
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+overflow:hidden;
 }
 
-/* Planet Base Style */
+
+.space-background::after{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background-image:radial-gradient(white 1px, transparent 1px);
+background-size:50px 50px;
+opacity:0.15;
+}
+
+
+/* FLOATING PLANETS */
 
 .planet{
-    position:absolute;
-    width:120px;
-    height:120px;
-    background-size:cover;
-    background-position:center;
-    animation: floatPlanet 20s infinite ease-in-out;
-    opacity:0.9;
+position:absolute;
+width:120px;
+height:120px;
+background-size:cover;
+animation:float 30s infinite ease-in-out;
 }
 
-/* Individual Planets */
-
 .sun{
-    background-image:url("images/sun.svg");
-    top:10%;
-    left:5%;
-    animation-duration:25s;
+background-image:url("../images/sun.svg");
+top:10%;
+left:10%;
 }
 
 .moon{
-    background-image:url("images/moon.svg");
-    top:60%;
-    left:80%;
-    animation-duration:30s;
+background-image:url("../images/moon.svg");
+top:70%;
+left:80%;
 }
 
 .jupiter{
-    background-image:url("images/jupiter.svg");
-    top:30%;
-    left:60%;
-    animation-duration:35s;
+background-image:url("../images/jupiter.svg");
+top:30%;
+left:70%;
 }
 
 .saturn{
-    background-image:url("images/saturn.svg");
-    top:75%;
-    left:20%;
-    animation-duration:40s;
+background-image:url("../images/saturn.svg");
+top:80%;
+left:20%;
 }
 
 .mars{
-    background-image:url("images/mars.svg");
-    top:45%;
-    left:35%;
-    animation-duration:28s;
+background-image:url("../images/mars.svg");
+top:40%;
+left:40%;
 }
 
-/* Floating Animation */
 
-@keyframes floatPlanet{
+@keyframes float{
 
-    0%{
-        transform: translateY(0px) translateX(0px) rotate(0deg);
-    }
-
-    25%{
-        transform: translateY(-30px) translateX(20px) rotate(5deg);
-    }
-
-    50%{
-        transform: translateY(20px) translateX(-20px) rotate(-5deg);
-    }
-
-    75%{
-        transform: translateY(-15px) translateX(15px) rotate(3deg);
-    }
-
-    100%{
-        transform: translateY(0px) translateX(0px) rotate(0deg);
-    }
+0%{transform:translateY(0px)}
+50%{transform:translateY(-40px)}
+100%{transform:translateY(0px)}
 
 }
 
-/* Stars Effect */
 
-.space-background::after{
-    content:"";
-    position:absolute;
-    width:100%;
-    height:100%;
-    background-image: radial-gradient(white 1px, transparent 1px);
-    background-size:40px 40px;
-    opacity:0.15;
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:150px 20px;
+}
+
+.hero h1{
+font-size:60px;
+color:#ffd700;
+}
+
+.btn{
+background:#ffd700;
+padding:12px 25px;
+border-radius:30px;
+text-decoration:none;
+color:black;
+font-weight:600;
+}
+
+
+
+/* ORBIT SYSTEM */
+
+.orbit-section{
+text-align:center;
+padding:80px 20px;
+}
+
+.orbit-system{
+position:relative;
+width:400px;
+height:400px;
+margin:auto;
+}
+
+.center-sun{
+width:80px;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+}
+
+
+.orbit{
+position:absolute;
+width:100%;
+height:100%;
+border:1px dashed rgba(255,255,255,0.2);
+border-radius:50%;
+animation:rotate 20s linear infinite;
+}
+
+.orbit img{
+width:40px;
+position:absolute;
+top:-20px;
+left:50%;
+transform:translateX(-50%);
+}
+
+.orbit1{animation-duration:8s;}
+.orbit2{animation-duration:10s;}
+.orbit3{animation-duration:12s;}
+.orbit4{animation-duration:14s;}
+.orbit5{animation-duration:16s;}
+.orbit6{animation-duration:18s;}
+.orbit7{animation-duration:20s;}
+.orbit8{animation-duration:22s;}
+
+@keyframes rotate{
+
+from{transform:rotate(0deg)}
+to{transform:rotate(360deg)}
+
+}
+
+
+
+/* KUNDLI FORM */
+
+.kundli-section{
+text-align:center;
+padding:80px 20px;
+}
+
+form{
+display:flex;
+flex-direction:column;
+gap:15px;
+width:300px;
+margin:auto;
+}
+
+input{
+padding:10px;
+border:none;
+border-radius:5px;
+}
+
+button{
+background:#ffd700;
+border:none;
+padding:12px;
+border-radius:20px;
+font-weight:600;
 }
