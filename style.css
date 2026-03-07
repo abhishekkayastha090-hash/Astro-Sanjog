@@ -1,3 +1,4 @@
+```css
 /* GLOBAL */
 
 body{
@@ -22,9 +23,10 @@ top:0;
 z-index:1000;
 }
 
-header h1{
+.logo{
+font-size:26px;
+font-weight:600;
 color:#FFD700;
-letter-spacing:2px;
 }
 
 nav a{
@@ -44,14 +46,14 @@ text-shadow:0 0 10px #FFD700;
 
 .hero{
 text-align:center;
-padding:140px 20px;
+padding:150px 20px;
 background-image:url("../images/mandal-bg.jpg");
 background-size:cover;
 background-position:center;
 }
 
-.hero h2{
-font-size:45px;
+.hero h1{
+font-size:50px;
 color:#FFD700;
 text-shadow:0 0 15px #FFD700;
 }
@@ -59,6 +61,11 @@ text-shadow:0 0 15px #FFD700;
 .hero p{
 font-size:20px;
 color:#ffcc66;
+}
+
+.phone{
+font-size:22px;
+margin-top:15px;
 }
 
 /* BUTTON */
@@ -88,8 +95,8 @@ padding:80px 20px;
 }
 
 .services h2{
-color:#FFD700;
 font-size:35px;
+color:#FFD700;
 }
 
 .service-grid{
@@ -167,6 +174,26 @@ background:black;
 border-top:2px solid #FFD700;
 }
 
+/* COSMIC BACKGROUND */
+
+.space-background{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+overflow:hidden;
+}
+
+.space-background::after{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background-image:radial-gradient(white 1px,transparent 1px);
+background-size:50px 50px;
+opacity:0.2;
+}
+
 /* FLOATING PLANETS */
 
 .planet{
@@ -175,7 +202,36 @@ width:120px;
 height:120px;
 background-size:cover;
 animation:float 20s infinite ease-in-out;
-opacity:0.9;
+}
+
+.sun{
+background-image:url("../images/sun.svg");
+top:10%;
+left:10%;
+}
+
+.moon{
+background-image:url("../images/moon.svg");
+top:70%;
+left:80%;
+}
+
+.mars{
+background-image:url("../images/mars.svg");
+top:40%;
+left:40%;
+}
+
+.jupiter{
+background-image:url("../images/jupiter.svg");
+top:30%;
+left:70%;
+}
+
+.saturn{
+background-image:url("../images/saturn.svg");
+top:80%;
+left:20%;
 }
 
 @keyframes float{
@@ -194,8 +250,9 @@ header{
 flex-direction:column;
 }
 
-.hero h2{
+.hero h1{
 font-size:30px;
 }
 
 }
+```
