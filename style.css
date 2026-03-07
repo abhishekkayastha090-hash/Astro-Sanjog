@@ -1,3 +1,4 @@
+```css
 body{
 margin:0;
 font-family:Poppins;
@@ -6,162 +7,78 @@ color:white;
 overflow-x:hidden;
 }
 
+/* HEADER */
 
-/* BACKGROUND */
-
-.space-background{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
-overflow:hidden;
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:rgba(0,0,0,0.6);
 }
 
-
-.space-background::after{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-background-image:radial-gradient(white 1px, transparent 1px);
-background-size:50px 50px;
-opacity:0.15;
+nav a{
+margin-left:20px;
+text-decoration:none;
+color:white;
+font-weight:500;
 }
 
-
-/* FLOATING PLANETS */
-
-.planet{
-position:absolute;
-width:120px;
-height:120px;
-background-size:cover;
-animation:float 30s infinite ease-in-out;
+nav a:hover{
+color:#ffd700;
 }
-
-.sun{
-background-image:url("../images/sun.svg");
-top:10%;
-left:10%;
-}
-
-.moon{
-background-image:url("../images/moon.svg");
-top:70%;
-left:80%;
-}
-
-.jupiter{
-background-image:url("../images/jupiter.svg");
-top:30%;
-left:70%;
-}
-
-.saturn{
-background-image:url("../images/saturn.svg");
-top:80%;
-left:20%;
-}
-
-.mars{
-background-image:url("../images/mars.svg");
-top:40%;
-left:40%;
-}
-
-
-@keyframes float{
-
-0%{transform:translateY(0px)}
-50%{transform:translateY(-40px)}
-100%{transform:translateY(0px)}
-
-}
-
-
 
 /* HERO */
 
 .hero{
 text-align:center;
-padding:150px 20px;
+padding:120px 20px;
 }
 
-.hero h1{
-font-size:60px;
+.hero h2{
+font-size:40px;
 color:#ffd700;
+}
+
+.phone{
+font-size:20px;
+margin-top:10px;
 }
 
 .btn{
 background:#ffd700;
-padding:12px 25px;
-border-radius:30px;
-text-decoration:none;
 color:black;
+padding:12px 25px;
+border-radius:25px;
+text-decoration:none;
 font-weight:600;
+display:inline-block;
+margin-top:20px;
 }
 
+/* SERVICES */
 
-
-/* ORBIT SYSTEM */
-
-.orbit-section{
+.services{
 text-align:center;
 padding:80px 20px;
 }
 
-.orbit-system{
-position:relative;
-width:400px;
-height:400px;
+.service-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+max-width:900px;
 margin:auto;
 }
 
-.center-sun{
-width:80px;
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
+.card{
+background:rgba(255,255,255,0.1);
+padding:25px;
+border-radius:10px;
+border:1px solid rgba(255,255,255,0.2);
 }
 
-
-.orbit{
-position:absolute;
-width:100%;
-height:100%;
-border:1px dashed rgba(255,255,255,0.2);
-border-radius:50%;
-animation:rotate 20s linear infinite;
-}
-
-.orbit img{
-width:40px;
-position:absolute;
-top:-20px;
-left:50%;
-transform:translateX(-50%);
-}
-
-.orbit1{animation-duration:8s;}
-.orbit2{animation-duration:10s;}
-.orbit3{animation-duration:12s;}
-.orbit4{animation-duration:14s;}
-.orbit5{animation-duration:16s;}
-.orbit6{animation-duration:18s;}
-.orbit7{animation-duration:20s;}
-.orbit8{animation-duration:22s;}
-
-@keyframes rotate{
-
-from{transform:rotate(0deg)}
-to{transform:rotate(360deg)}
-
-}
-
-
-
-/* KUNDLI FORM */
+/* KUNDLI */
 
 .kundli-section{
 text-align:center;
@@ -188,4 +105,105 @@ border:none;
 padding:12px;
 border-radius:20px;
 font-weight:600;
+cursor:pointer;
 }
+
+/* CONTACT */
+
+.contact{
+text-align:center;
+padding:80px 20px;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:20px;
+background:black;
+}
+
+/* COSMIC BACKGROUND */
+
+.space-background{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+overflow:hidden;
+}
+
+.space-background::after{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background-image:radial-gradient(white 1px,transparent 1px);
+background-size:50px 50px;
+opacity:0.2;
+}
+
+/* FLOATING PLANETS */
+
+.planet{
+position:absolute;
+width:120px;
+height:120px;
+background-size:cover;
+animation:float 20s infinite ease-in-out;
+}
+
+.sun{
+background-image:url(/images/sun.svg");
+top:10%;
+left:10%;
+}
+
+.moon{
+background-image:url(/images/moon.svg");
+top:70%;
+left:80%;
+}
+
+.mars{
+background-image:url(/images/mars.svg");
+top:40%;
+left:40%;
+}
+
+.jupiter{
+background-image:url(/images/jupiter.svg");
+top:30%;
+left:70%;
+}
+
+.saturn{
+background-image:url(/images/saturn.svg");
+top:80%;
+left:20%;
+}
+
+/* ANIMATION */
+
+@keyframes float{
+
+0%{transform:translateY(0)}
+50%{transform:translateY(-40px)}
+100%{transform:translateY(0)}
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+header{
+flex-direction:column;
+}
+
+.hero h2{
+font-size:28px;
+}
+
+}
+```
