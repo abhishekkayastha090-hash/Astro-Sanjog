@@ -1,257 +1,414 @@
 ```css
-/* GLOBAL */
+/* ===== GLOBAL ===== */
 
-body{
+*{
 margin:0;
-font-family:Poppins;
-background:linear-gradient(135deg,#0b0f2b,#1a103d);
-color:white;
-overflow-x:hidden;
+padding:0;
+box-sizing:border-box;
 }
 
-/* HEADER */
+body{
+
+font-family:'Poppins',sans-serif;
+
+background:linear-gradient(
+135deg,
+#0b0f2b,
+#1b1645,
+#0b0f2b
+);
+
+color:white;
+
+min-height:100vh;
+
+overflow-x:hidden;
+
+}
+
+
+/* ===== HEADER ===== */
 
 header{
+
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
+
 padding:20px 60px;
+
 background:rgba(0,0,0,0.7);
+
+backdrop-filter:blur(8px);
+
 border-bottom:2px solid #FFD700;
+
 position:sticky;
+
 top:0;
-z-index:1000;
+
+z-index:999;
+
 }
 
 .logo{
-font-size:26px;
+
+font-size:28px;
+
 font-weight:600;
+
 color:#FFD700;
+
+letter-spacing:2px;
+
 }
 
 nav a{
+
 margin-left:25px;
+
 text-decoration:none;
+
 color:white;
+
 font-weight:500;
+
 transition:0.3s;
+
 }
 
 nav a:hover{
+
 color:#FFD700;
-text-shadow:0 0 10px #FFD700;
+
+text-shadow:0 0 12px #FFD700;
+
 }
 
-/* HERO */
+
+/* ===== HERO ===== */
 
 .hero{
+
 text-align:center;
-padding:150px 20px;
-background-image:url("../images/mandal-bg.jpg");
-background-size:cover;
-background-position:center;
+
+padding:140px 20px;
+
+background:
+
+radial-gradient(circle at top,#1a164d,#0b0f2b);
+
 }
 
 .hero h1{
-font-size:50px;
+
+font-size:48px;
+
 color:#FFD700;
+
+margin-bottom:10px;
+
 text-shadow:0 0 15px #FFD700;
+
 }
 
 .hero p{
+
 font-size:20px;
+
 color:#ffcc66;
+
+margin-top:5px;
+
 }
 
 .phone{
+
 font-size:22px;
+
 margin-top:15px;
+
 }
 
-/* BUTTON */
+
+/* ===== BUTTON ===== */
 
 .btn{
-background:#FFD700;
-color:black;
-padding:14px 30px;
-border-radius:30px;
-text-decoration:none;
-font-weight:600;
-margin-top:20px;
+
 display:inline-block;
+
+margin-top:25px;
+
+padding:14px 32px;
+
+border-radius:30px;
+
+background:#FFD700;
+
+color:black;
+
+font-weight:600;
+
+text-decoration:none;
+
 transition:0.3s;
+
 }
 
 .btn:hover{
+
 background:#ff9933;
+
 transform:scale(1.05);
+
 }
 
-/* SERVICES */
+
+/* ===== SERVICES ===== */
 
 .services{
+
 text-align:center;
+
 padding:80px 20px;
+
 }
 
 .services h2{
-font-size:35px;
+
+font-size:36px;
+
 color:#FFD700;
+
+margin-bottom:40px;
+
 }
 
 .service-grid{
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
 gap:25px;
-max-width:1000px;
+
+max-width:1100px;
+
 margin:auto;
+
 }
 
 .card{
+
 background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,215,0,0.3);
+
 padding:30px;
+
 border-radius:15px;
+
+border:1px solid rgba(255,215,0,0.3);
+
 transition:0.3s;
+
 }
 
 .card:hover{
+
 transform:translateY(-8px);
-box-shadow:0 0 20px rgba(255,215,0,0.6);
+
+box-shadow:0 0 20px rgba(255,215,0,0.5);
+
 }
 
-/* KUNDLI */
+
+/* ===== KUNDLI ===== */
 
 .kundli-section{
+
 text-align:center;
+
 padding:80px 20px;
+
 }
 
 .kundli-section h2{
+
 color:#FFD700;
+
+margin-bottom:30px;
+
 }
 
 form{
+
 display:flex;
+
 flex-direction:column;
+
 gap:15px;
+
 width:320px;
+
 margin:auto;
+
 }
 
 input{
+
 padding:12px;
-border-radius:6px;
+
 border:none;
+
+border-radius:6px;
+
 }
 
 button{
+
 background:#FFD700;
+
 border:none;
+
 padding:12px;
+
 border-radius:25px;
+
 font-weight:600;
+
 cursor:pointer;
+
 }
 
-/* CONTACT */
+
+/* ===== CONTACT ===== */
 
 .contact{
+
 text-align:center;
+
 padding:80px 20px;
+
 }
 
 .contact h2{
+
 color:#FFD700;
+
+margin-bottom:15px;
+
 }
 
-/* FOOTER */
+
+/* ===== FOOTER ===== */
 
 footer{
+
 text-align:center;
+
 padding:20px;
+
 background:black;
+
 border-top:2px solid #FFD700;
+
 }
 
-/* COSMIC BACKGROUND */
 
-.space-background{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
-overflow:hidden;
-}
-
-.space-background::after{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-background-image:radial-gradient(white 1px,transparent 1px);
-background-size:50px 50px;
-opacity:0.2;
-}
-
-/* FLOATING PLANETS */
+/* ===== FLOATING PLANETS ===== */
 
 .planet{
+
 position:absolute;
+
 width:120px;
+
 height:120px;
+
 background-size:cover;
-animation:float 20s infinite ease-in-out;
+
+animation:float 18s infinite ease-in-out;
+
+opacity:0.9;
+
 }
 
 .sun{
+
 background-image:url("../images/sun.svg");
-top:10%;
-left:10%;
+
+top:8%;
+
+left:6%;
+
 }
 
 .moon{
+
 background-image:url("../images/moon.svg");
+
 top:70%;
-left:80%;
+
+left:82%;
+
 }
 
 .mars{
+
 background-image:url("../images/mars.svg");
-top:40%;
+
+top:45%;
+
 left:40%;
+
 }
 
 .jupiter{
+
 background-image:url("../images/jupiter.svg");
+
 top:30%;
+
 left:70%;
+
 }
 
 .saturn{
+
 background-image:url("../images/saturn.svg");
+
 top:80%;
+
 left:20%;
+
 }
 
 @keyframes float{
 
 0%{transform:translateY(0)}
+
 50%{transform:translateY(-40px)}
+
 100%{transform:translateY(0)}
 
 }
 
-/* MOBILE */
+
+/* ===== MOBILE ===== */
 
 @media(max-width:768px){
 
 header{
+
 flex-direction:column;
+
 }
 
 .hero h1{
-font-size:30px;
+
+font-size:32px;
+
 }
 
 }
