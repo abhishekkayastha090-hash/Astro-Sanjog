@@ -1,8 +1,9 @@
-```css
+/* GLOBAL */
+
 body{
 margin:0;
 font-family:Poppins;
-background:radial-gradient(circle,#020617,#000);
+background:linear-gradient(135deg,#0b0f2b,#1a103d);
 color:white;
 overflow-x:hidden;
 }
@@ -13,47 +14,70 @@ header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 40px;
-background:rgba(0,0,0,0.6);
+padding:20px 60px;
+background:rgba(0,0,0,0.7);
+border-bottom:2px solid #FFD700;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+header h1{
+color:#FFD700;
+letter-spacing:2px;
 }
 
 nav a{
-margin-left:20px;
+margin-left:25px;
 text-decoration:none;
 color:white;
 font-weight:500;
+transition:0.3s;
 }
 
 nav a:hover{
-color:#ffd700;
+color:#FFD700;
+text-shadow:0 0 10px #FFD700;
 }
 
 /* HERO */
 
 .hero{
 text-align:center;
-padding:120px 20px;
+padding:140px 20px;
+background-image:url("../images/mandal-bg.jpg");
+background-size:cover;
+background-position:center;
 }
 
 .hero h2{
-font-size:40px;
-color:#ffd700;
+font-size:45px;
+color:#FFD700;
+text-shadow:0 0 15px #FFD700;
 }
 
-.phone{
+.hero p{
 font-size:20px;
-margin-top:10px;
+color:#ffcc66;
 }
+
+/* BUTTON */
 
 .btn{
-background:#ffd700;
+background:#FFD700;
 color:black;
-padding:12px 25px;
-border-radius:25px;
+padding:14px 30px;
+border-radius:30px;
 text-decoration:none;
 font-weight:600;
-display:inline-block;
 margin-top:20px;
+display:inline-block;
+transition:0.3s;
+}
+
+.btn:hover{
+background:#ff9933;
+transform:scale(1.05);
 }
 
 /* SERVICES */
@@ -63,19 +87,30 @@ text-align:center;
 padding:80px 20px;
 }
 
+.services h2{
+color:#FFD700;
+font-size:35px;
+}
+
 .service-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-max-width:900px;
+gap:25px;
+max-width:1000px;
 margin:auto;
 }
 
 .card{
-background:rgba(255,255,255,0.1);
-padding:25px;
-border-radius:10px;
-border:1px solid rgba(255,255,255,0.2);
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,215,0,0.3);
+padding:30px;
+border-radius:15px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 20px rgba(255,215,0,0.6);
 }
 
 /* KUNDLI */
@@ -85,25 +120,29 @@ text-align:center;
 padding:80px 20px;
 }
 
+.kundli-section h2{
+color:#FFD700;
+}
+
 form{
 display:flex;
 flex-direction:column;
 gap:15px;
-width:300px;
+width:320px;
 margin:auto;
 }
 
 input{
-padding:10px;
+padding:12px;
+border-radius:6px;
 border:none;
-border-radius:5px;
 }
 
 button{
-background:#ffd700;
+background:#FFD700;
 border:none;
 padding:12px;
-border-radius:20px;
+border-radius:25px;
 font-weight:600;
 cursor:pointer;
 }
@@ -115,32 +154,17 @@ text-align:center;
 padding:80px 20px;
 }
 
+.contact h2{
+color:#FFD700;
+}
+
 /* FOOTER */
 
 footer{
 text-align:center;
 padding:20px;
 background:black;
-}
-
-/* COSMIC BACKGROUND */
-
-.space-background{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
-overflow:hidden;
-}
-
-.space-background::after{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-background-image:radial-gradient(white 1px,transparent 1px);
-background-size:50px 50px;
-opacity:0.2;
+border-top:2px solid #FFD700;
 }
 
 /* FLOATING PLANETS */
@@ -151,39 +175,8 @@ width:120px;
 height:120px;
 background-size:cover;
 animation:float 20s infinite ease-in-out;
+opacity:0.9;
 }
-
-.sun{
-background-image:url(/images/sun.svg");
-top:10%;
-left:10%;
-}
-
-.moon{
-background-image:url(/images/moon.svg");
-top:70%;
-left:80%;
-}
-
-.mars{
-background-image:url(/images/mars.svg");
-top:40%;
-left:40%;
-}
-
-.jupiter{
-background-image:url(/images/jupiter.svg");
-top:30%;
-left:70%;
-}
-
-.saturn{
-background-image:url(/images/saturn.svg");
-top:80%;
-left:20%;
-}
-
-/* ANIMATION */
 
 @keyframes float{
 
@@ -202,8 +195,7 @@ flex-direction:column;
 }
 
 .hero h2{
-font-size:28px;
+font-size:30px;
 }
 
 }
-```
