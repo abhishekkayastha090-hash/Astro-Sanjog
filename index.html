@@ -1,12 +1,15 @@
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Astro Sanjog | Astrology Guidance by Acharya Pandit Sanjay ji </title>
+<title>Astro Sanjog | Acharya Pandit Sanjay Ji</title>
+
+<meta name="description" content="Astro Sanjog - Acharya Pandit Sanjay Ji. Hast Rekha, Face Reading, Janm Kundli, Vedic Astrology Remedies.">
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -16,73 +19,78 @@
 
 <body>
 
-
-<!-- COSMIC BACKGROUND -->
-
 <div class="space-background">
 
 <div class="planet sun"></div>
 <div class="planet moon"></div>
+<div class="planet mars"></div>
 <div class="planet jupiter"></div>
 <div class="planet saturn"></div>
-<div class="planet mars"></div>
 
 </div>
 
 
-<!-- HERO SECTION -->
-
-<section class="hero">
+<header>
 
 <h1>Astro Sanjog</h1>
 
-<p>Accurate Astrology | Kundli | Remedies | Guidance</p>
+<nav>
+
+<a href="#">Home</a>
+<a href="#services">Services</a>
+<a href="#kundli">Kundli</a>
+<a href="#contact">Contact</a>
+
+</nav>
+
+</header>
+
+
+
+<section class="hero">
+
+<h2>आचार्य पंडित संजय जी</h2>
+
+<p>हस्त रेखा • मस्तक रेखा • फेस रीडिंग • जन्म कुंडली</p>
+
+<p class="phone">
+📞 9929806534 | 9950502961
+</p>
 
 <a href="#kundli" class="btn">Generate Kundli</a>
 
 </section>
 
 
-<!-- ORBIT SECTION -->
 
-<section class="orbit-section">
+<section id="services" class="services">
 
-<h2>Navgrah Energy</h2>
+<h2>Astrology Services</h2>
 
-<div class="orbit-system">
+<div class="service-grid">
 
-<img src="images/sun.svg" class="center-sun">
-
-<div class="orbit orbit1">
-<img src="images/moon.svg">
+<div class="card">
+नजर दोष / बुरी नजर का उपाय
 </div>
 
-<div class="orbit orbit2">
-<img src="images/mars.svg">
+<div class="card">
+व्यापार में रुकावट / घाटा समाधान
 </div>
 
-<div class="orbit orbit3">
-<img src="images/mercury.svg">
+<div class="card">
+प्रेम / विवाह में देरी का उपाय
 </div>
 
-<div class="orbit orbit4">
-<img src="images/jupiter.svg">
+<div class="card">
+बार-बार डर लगना / बेचैनी
 </div>
 
-<div class="orbit orbit5">
-<img src="images/venus.svg">
+<div class="card">
+पितर दोष / टोना टोटका समाधान
 </div>
 
-<div class="orbit orbit6">
-<img src="images/saturn.svg">
-</div>
-
-<div class="orbit orbit7">
-<img src="images/rahu.svg">
-</div>
-
-<div class="orbit orbit8">
-<img src="images/ketu.svg">
+<div class="card">
+नौकरी / विदेश यात्रा में रुकावट
 </div>
 
 </div>
@@ -90,8 +98,6 @@
 </section>
 
 
-
-<!-- KUNDLI SECTION -->
 
 <section id="kundli" class="kundli-section">
 
@@ -99,13 +105,13 @@
 
 <form>
 
-<input type="text" placeholder="Full Name">
+<input type="text" placeholder="Full Name" required>
 
-<input type="date">
+<input type="date" required>
 
-<input type="time">
+<input type="time" required>
 
-<input type="text" placeholder="Birth Place">
+<input type="text" placeholder="Birth Place" required>
 
 <button type="submit">Generate Kundli</button>
 
@@ -114,5 +120,30 @@
 </section>
 
 
+
+<section id="contact" class="contact">
+
+<h2>Contact</h2>
+
+<p>Acharya Pandit Sanjay Ji</p>
+
+<p>📞 9929806534</p>
+
+<p>📞 9950502961</p>
+
+<p>📍 Jaipur Rajasthan</p>
+
+</section>
+
+
+
+<footer>
+
+<p>© 2004 Astro Sanjog</p>
+
+</footer>
+
 </body>
+
 </html>
+```
