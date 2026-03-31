@@ -18,8 +18,7 @@
 </head>
 
 <body>
-
-
+  
 <!-- Cosmic Background -->
 
 <div class="space-background">
@@ -162,7 +161,34 @@
 
 </footer>
 
+  
+<script>
+function generateKundli() {
+    let dob = document.getElementById("dob").value;
+    let tob = document.getElementById("tob").value;
+    let place = document.getElementById("place").value;
 
+    if(!dob || !tob || !place){
+        alert("Please fill all details");
+        return;
+    }
+
+    let rashiList = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
+                     "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
+
+    let randomRashi = rashiList[Math.floor(Math.random() * 12)];
+
+    document.getElementById("result").innerHTML = `
+        <h3>Kundli Result</h3>
+        <p><b>Date:</b> ${dob}</p>
+        <p><b>Time:</b> ${tob}</p>
+        <p><b>Place:</b> ${place}</p>
+        <p><b>Rashi:</b> ${randomRashi}</p>
+        <p><b>Lagna:</b> Simulated Lagna</p>
+    `;
+}
+</script>
+  
 </body>
 
 </html>
