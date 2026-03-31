@@ -1,1 +1,212 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>दैनिक राशिफल | Astro Sanjog</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+    <style>
+        /* राशिफल पेज के लिए विशेष डिज़ाइन */
+        .horoscope-header {
+            text-align: center;
+            padding: 60px 10%;
+            background: linear-gradient(to bottom, #0a192f, #050a14);
+        }
+
+        .horoscope-header h1 {
+            color: var(--gold);
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .zodiac-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 40px 10%;
+        }
+
+        .zodiac-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 30px 15px;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+
+        .zodiac-card:hover {
+            background: linear-gradient(145deg, rgba(212, 175, 55, 0.2), transparent);
+            border-color: var(--gold);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .zodiac-card img {
+            width: 60px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 5px var(--gold));
+        }
+
+        .zodiac-card h3 {
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .zodiac-card p {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        /* Reading Modal (Pop-up) Style */
+        #horoscope-result {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%; max-width: 600px;
+            background: #0f172a;
+            border: 2px solid var(--gold);
+            padding: 40px;
+            border-radius: 20px;
+            z-index: 1001;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            color: var(--gold);
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .premium-btn {
+            background: var(--gold);
+            color: #000;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">🔮 ASTRO SANJOG</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="horoscope.html">Horoscope</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="horoscope-header">
+        <h1 class="hindi">दैनिक राशिफल</h1>
+        <p class="hindi" style="color: #ccc;">अपनी राशि चुनें और जानें आज के ग्रहों की चाल</p>
+    </div>
+
+    <div class="zodiac-grid">
+        <div class="zodiac-card" onclick="showHoroscope('मेष (Aries)', 'आज व्यापार में वृद्धि होगी और परिवार में खुशी का माहौल रहेगा।')">
+            <img src="images/sun.svg" alt="Aries">
+            <h3 class="hindi">मेष</h3>
+            <p>Aries</p>
+        </div>
+
+        <div class="zodiac-card" onclick="showHoroscope('वृषभ (Taurus)', 'रुके हुए काम पूरे होंगे, धन लाभ के प्रबल योग हैं।')">
+            <img src="images/moon.svg" alt="Taurus">
+            <h3 class="hindi">वृषभ</h3>
+            <p>Taurus</p>
+        </div>
+
+        <div class="zodiac-card" onclick="showHoroscope('मिथुन (Gemini)', 'आज वाणी पर संयम रखें, सेहत का ध्यान रखें।')">
+            <img src="images/mercury.svg" alt="Gemini">
+            <h3 class="hindi">मिथुन</h3>
+            <p>Gemini</p>
+        </div>
+
+        <div class="zodiac-card" onclick="showHoroscope('कर्क (Cancer)', 'करियर में नई दिशा मिलेगी, मित्रों का सहयोग प्राप्त होगा।')">
+            <img src="images/venus.svg" alt="Cancer">
+            <h3 class="hindi">कर्क</h3>
+            <p>Cancer</p>
+        </div>
+
+        <div class="zodiac-card" onclick="showHoroscope('सिंह (Leo)', 'आत्मविश्वास बढ़ेगा, समाज में मान-सम्मान की प्राप्ति होगी।')">
+            <img src="images/mars.svg" alt="Leo">
+            <h3 class="hindi">सिंह</h3>
+            <p>Leo</p>
+        </div>
+
+        <div class="zodiac-card" onclick="showHoroscope('कन्या (Virgo)', 'निवेश के लिए अच्छा समय है, खुशखबरी मिल सकती है।')">
+            <img src="images/jupiter.svg" alt="Virgo">
+            <h3 class="hindi">कन्या</h3>
+            <p>Virgo</p>
+        </div>
+
+        <div class="zodiac-card" onclick="showHoroscope('तुला (Libra)', 'पुराने विवाद सुलझेंगे, जीवनसाथी के साथ समय बिताएं।')">
+            <img src="images/saturn.svg" alt="Libra">
+            <h3 class="hindi">तुला</h3>
+            <p>Libra</p>
+        </div>
+
+        <div class="zodiac-card" onclick="showHoroscope('वृश्चिक (Scorpio)', 'कार्यक्षेत्र में चुनौतियां आ सकती हैं, धैर्य रखें।')">
+            <img src="images/rahu.svg" alt="Scorpio">
+            <h3 class="hindi">वृश्चिक</h3>
+            <p>Scorpio</p>
+        </div>
+
+        <div class="zodiac-card" onclick="showHoroscope('धनु (Sagittarius)', 'धार्मिक कार्यों में रुचि बढ़ेगी, यात्रा के योग हैं।')">
+            <img src="images/ketu.svg" alt="Sagittarius">
+            <h3 class="hindi">धनु</h3>
+            <p>Sagittarius</p>
+        </div>
+        
+        </div>
+
+    <div class="overlay" id="overlay" onclick="closeModal()"></div>
+    <div id="horoscope-result">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 id="rashi-name" style="color:var(--gold); margin-bottom: 20px;"></h2>
+        <p id="prediction" class="hindi" style="font-size: 1.2rem; line-height: 1.8; color: #fff;"></p>
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid rgba(212, 175, 55, 0.3);">
+        <p class="hindi" style="color: #ccc;">विस्तृत कुंडली विश्लेषण और सटीक उपायों के लिए आज ही पंडित जी से जुड़ें।</p>
+        <a href="https://wa.me/919929806534" class="premium-btn">📲 WhatsApp पर सलाह लें</a>
+    </div>
+
+    <script>
+        function showHoroscope(name, prediction) {
+            document.getElementById('rashi-name').innerText = name;
+            document.getElementById('prediction').innerText = prediction;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('horoscope-result').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('horoscope-result').style.display = 'none';
+        }
+    </script>
+
+    <footer style="text-align: center; padding: 40px; color: #777;">
+        <p>© 2026 Astro Sanjog | आचार्य पंडित संजय जी</p>
+    </footer>
+
+</body>
+</html>
