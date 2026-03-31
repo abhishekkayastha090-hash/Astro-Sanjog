@@ -99,3 +99,76 @@ footer{
   padding:20px;
   background:#111;
 }
+/* Premium Astrology Theme */
+:root {
+    --primary: #0a192f;
+    --gold: #d4af37;
+    --gold-light: #f4d03f;
+    --white: #ffffff;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    background-color: #050a14;
+    color: var(--white);
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 5%;
+    background: rgba(10, 25, 47, 0.9);
+    border-bottom: 2px solid var(--gold);
+    backdrop-filter: blur(10px);
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    padding: 100px 5%;
+    background: radial-gradient(circle, #112240, #0a192f);
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    color: var(--gold);
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+.hero-img img {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    border: 4px solid var(--gold);
+    box-shadow: 0 0 40px var(--gold);
+    object-fit: cover;
+}
+
+/* Service Cards */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 50px 5%;
+}
+
+.service-card {
+    background: var(--glass);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    text-align: center;
+    transition: 0.3s ease-in-out;
+}
+
+.service-card:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-10px);
+    border-color: var(--gold);
+}
