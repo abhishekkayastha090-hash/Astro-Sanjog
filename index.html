@@ -19,94 +19,111 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background: var(--royal-bg); color: var(--white); overflow-x: hidden; }
+        body { font-family: 'Poppins', sans-serif; background: var(--royal-bg); color: var(--white); overflow-x: hidden; width: 100%; }
         .hindi { font-family: 'Tiro Devanagari Hindi', serif; }
         .royal-title { font-family: 'Cinzel', serif; letter-spacing: 2px; color: var(--gold); }
 
-        /* Step 4 Upgrade: Live Panchang Ticker */
+        /* Step 4: Live Panchang Ticker */
         .panchang-ticker {
             background: linear-gradient(90deg, #8a6d3b, var(--gold), #8a6d3b);
             color: #1a1a1a;
             padding: 10px 0;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.9rem;
             border-bottom: 3px solid var(--gold-bright);
             box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
         }
         .ticker-content { display: inline-block; animation: scroll 30s linear infinite; padding-left: 100%; white-space: nowrap; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* Larger & More Visible Floating Icons */
+        /* Big & Visible Floating Icons */
         .bg-icons { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.15; }
-        .bg-icons i { position: absolute; color: var(--gold-bright); animation: float 20s infinite linear; font-size: 50px; filter: drop-shadow(0 0 10px var(--gold)); }
+        .bg-icons i { position: absolute; color: var(--gold-bright); animation: float 20s infinite linear; font-size: 60px; filter: drop-shadow(0 0 10px var(--gold)); }
         @keyframes float { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
 
-        header.navbar { display: flex; justify-content: space-between; align-items: center; padding: 25px 8%; background: rgba(4, 10, 24, 0.98); border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
-        .logo { font-size: 28px; font-weight: bold; color: var(--gold); text-decoration: none; text-shadow: 0 0 10px rgba(197, 160, 89, 0.5); }
-        nav a { color: var(--white); text-decoration: none; margin-left: 30px; font-weight: 500; transition: 0.3s; }
-        nav a:hover { color: var(--gold-bright); text-shadow: 0 0 5px var(--gold); }
+        /* Navigation */
+        header.navbar { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 20px 8%; background: rgba(4, 10, 24, 0.98); 
+            border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--gold); text-decoration: none; text-shadow: 0 0 10px rgba(197, 160, 89, 0.5); }
+        nav a { color: var(--white); text-decoration: none; margin-left: 20px; font-weight: 500; font-size: 0.9rem; transition: 0.3s; }
+        nav a:hover { color: var(--gold-bright); }
 
-        /* Hero Section Royal Vibe */
-        .hero { display: flex; align-items: center; justify-content: space-between; padding: 80px 10%; min-height: 70vh; background: radial-gradient(circle at center, #0d1b35 0%, var(--royal-bg) 100%); position: relative; }
-        .hero::after { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 100px; background: linear-gradient(transparent, var(--royal-bg)); }
-        .hero-text h1 { font-size: 4rem; color: var(--gold-bright); margin-bottom: 15px; }
-        .hero-text .sub { font-size: 1.8rem; color: #aaa; margin-bottom: 25px; border-left: 4px solid var(--gold); padding-left: 15px; }
-        .hero-img img { width: 380px; height: 380px; border-radius: 50%; border: 8px double var(--gold); object-fit: cover; box-shadow: 0 0 50px rgba(197, 160, 89, 0.3); }
+        /* Hero Section - Responsive */
+        .hero { 
+            display: flex; flex-direction: column; align-items: center; text-align: center; 
+            padding: 60px 10%; min-height: 70vh; background: radial-gradient(circle at center, #0d1b35 0%, var(--royal-bg) 100%);
+        }
+        .hero-text h1 { font-size: 2.8rem; color: var(--gold-bright); margin-bottom: 15px; }
+        .hero-text .sub { font-size: 1.2rem; color: #aaa; margin-bottom: 25px; border-left: 4px solid var(--gold); padding-left: 15px; display: inline-block; }
+        .hero-img img { width: 280px; height: 280px; border-radius: 50%; border: 6px double var(--gold); object-fit: cover; box-shadow: 0 0 40px rgba(197, 160, 89, 0.3); margin-top: 30px; }
 
-        .section-box { padding: 100px 10%; text-align: center; }
-        .form-container { max-width: 800px; margin: 0 auto; background: var(--royal-box); padding: 50px; border-radius: 30px; border: 1px solid rgba(197, 160, 89, 0.3); box-shadow: var(--shadow); position: relative; overflow: hidden; }
-        .form-container::before { content: "卍"; position: absolute; top: 10px; right: 20px; color: rgba(197, 160, 89, 0.1); font-size: 80px; }
+        /* Forms & Containers */
+        .section-box { padding: 60px 5%; text-align: center; }
+        .form-container { max-width: 800px; margin: 0 auto; background: var(--royal-box); padding: 30px; border-radius: 30px; border: 1px solid rgba(197, 160, 89, 0.3); box-shadow: var(--shadow); position: relative; }
+        .form-container::before { content: "卍"; position: absolute; top: 10px; right: 20px; color: rgba(197, 160, 89, 0.05); font-size: 60px; }
         
-        input, select { width: 100%; padding: 15px; margin: 15px 0; background: rgba(255,255,255,0.03); border: 1px solid #2a3a5a; color: white; border-radius: 12px; font-size: 1rem; transition: 0.3s; }
-        input:focus { border-color: var(--gold); background: rgba(255,255,255,0.07); outline: none; }
-        
-        .btn-royal { background: linear-gradient(45deg, #8a6d3b, var(--gold-bright)); color: #000; border: none; padding: 18px 50px; font-weight: bold; cursor: pointer; border-radius: 50px; transition: 0.4s; font-size: 1.1rem; box-shadow: 0 5px 20px rgba(197, 160, 89, 0.4); }
-        .btn-royal:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.6); }
+        input, select { width: 100%; padding: 15px; margin: 10px 0; background: rgba(255,255,255,0.03); border: 1px solid #2a3a5a; color: white; border-radius: 12px; font-size: 1rem; }
+        .btn-royal { width: 100%; background: linear-gradient(45deg, #8a6d3b, var(--gold-bright)); color: #000; border: none; padding: 18px; font-weight: bold; cursor: pointer; border-radius: 50px; transition: 0.4s; font-size: 1.1rem; }
+        .btn-royal:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.5); }
 
-        /* Kundli Chart Style Upgrade */
-        .chart-container { position: relative; width: 340px; height: 340px; margin: 40px auto; border: 3px solid var(--gold); background: #060e1f; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        /* Kundli Chart Responsive */
+        .chart-wrapper { overflow-x: auto; width: 100%; display: flex; justify-content: center; padding: 20px 0; }
+        .chart-container { position: relative; width: 320px; height: 320px; border: 3px solid var(--gold); background: #060e1f; flex-shrink: 0; }
         .chart-line { position: absolute; background: var(--gold); }
-        .diag1 { width: 480px; height: 2px; top: 169px; left: -70px; transform: rotate(45deg); }
-        .diag2 { width: 480px; height: 2px; top: 169px; left: -70px; transform: rotate(-45deg); }
-        .rect { width: 240px; height: 240px; border: 2px solid var(--gold); top: 50px; left: 50px; transform: rotate(45deg); position: absolute; }
-        .house { position: absolute; font-size: 0.9rem; color: var(--gold-bright); font-weight: bold; width: 70px; text-align: center; transition: 0.5s; }
-        .h1 { top: 130px; left: 135px; font-size: 1.2rem; color: #fff; }
+        .diag1 { width: 452px; height: 2px; top: 159px; left: -66px; transform: rotate(45deg); }
+        .diag2 { width: 452px; height: 2px; top: 159px; left: -66px; transform: rotate(-45deg); }
+        .rect { width: 226px; height: 226px; border: 2px solid var(--gold); top: 47px; left: 47px; transform: rotate(45deg); position: absolute; }
+        .house { position: absolute; font-size: 0.8rem; color: var(--gold-bright); font-weight: bold; width: 60px; text-align: center; }
+        .h1 { top: 125px; left: 130px; font-size: 1.1rem; color: #fff; }
 
-        .result-box { margin-top: 40px; padding: 35px; background: rgba(6, 14, 31, 0.9); border: 2px solid var(--gold); border-radius: 20px; text-align: left; display: none; border-top: 10px solid var(--gold); }
-        
-        /* Premium Buttons */
-        .premium-btns { display: flex; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
-        .p-btn { flex: 1; min-width: 150px; padding: 12px; border-radius: 10px; border: 1px solid var(--gold); background: transparent; color: var(--gold-bright); cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .p-btn:hover { background: var(--gold); color: #000; }
+        /* Result Area */
+        .result-box { margin-top: 30px; padding: 25px; background: rgba(6, 14, 31, 0.95); border: 2px solid var(--gold); border-radius: 20px; text-align: left; display: none; border-top: 8px solid var(--gold); }
+        .premium-btns { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .p-btn { flex: 1; min-width: 120px; padding: 10px; border-radius: 8px; border: 1px solid var(--gold); background: transparent; color: var(--gold-bright); cursor: pointer; font-size: 0.8rem; }
+        .whatsapp-link { display: block; text-align: center; background: #128c7e; color: white; padding: 15px; border-radius: 15px; text-decoration: none; font-weight: bold; margin-top: 20px; font-size: 1.1rem; }
 
-        .whatsapp-link { display: block; text-align: center; background: #128c7e; color: white; padding: 18px; border-radius: 15px; text-decoration: none; font-weight: bold; margin-top: 25px; transition: 0.3s; font-size: 1.1rem; }
-        
-        footer { padding: 60px; text-align: center; color: #55607a; border-top: 1px solid #1a2a4a; font-size: 0.9rem; }
+        footer { padding: 60px 5%; text-align: center; color: #55607a; border-top: 1px solid #1a2a4a; }
+
+        /* Desktop Mode */
+        @media (min-width: 768px) {
+            header.navbar { padding: 25px 8%; }
+            .logo { font-size: 28px; }
+            nav a { font-size: 1rem; margin-left: 30px; }
+            .hero { flex-direction: row; text-align: left; padding: 80px 10%; }
+            .hero-text h1 { font-size: 4rem; }
+            .hero-text .sub { font-size: 1.8rem; }
+            .hero-img img { width: 380px; height: 380px; margin-top: 0; }
+            .btn-royal { width: auto; padding: 18px 60px; }
+            .bg-icons i { font-size: 70px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="panchang-ticker">
         <div class="ticker-content hindi">
-            ☀️ आज का पंचांग: तिथि: द्वादशी | नक्षत्र: मघा | योग: सुकर्मा | करण: बालव | शुभ मुहूर्त: 11:54 AM से 12:44 PM | राहुकाल: 03:30 PM से 05:00 PM तक | अमृत काल: आज रात्रि 08:20 से ✨
+            ☀️ आज का शाही पंचांग: तिथि: द्वादशी | नक्षत्र: मघा | योग: सुकर्मा | शुभ मुहूर्त: 11:54 AM से 12:44 PM | राहुकाल: 03:30 PM से 05:00 PM तक | अमृत काल: आज रात्रि 08:20 से ✨
         </div>
     </div>
 
     <div class="bg-icons">
         <i class="fas fa-om" style="left: 10%; animation-delay: 0s;"></i>
-        <i class="fas fa-moon" style="left: 30%; animation-delay: 5s;"></i>
-        <i class="fas fa-sun" style="left: 60%; animation-delay: 2s;"></i>
+        <i class="fas fa-moon" style="left: 35%; animation-delay: 5s;"></i>
+        <i class="fas fa-sun" style="left: 65%; animation-delay: 2s;"></i>
         <i class="fas fa-dharmachakra" style="left: 85%; animation-delay: 8s;"></i>
-        <i class="fas fa-star" style="left: 45%; animation-delay: 12s;"></i>
+        <i class="fas fa-star" style="left: 50%; animation-delay: 12s;"></i>
     </div>
 
     <header class="navbar">
         <a href="#" class="logo royal-title">🔮 ASTRO SANJOG</a>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="horoscope.html">Daily Horoscope</a>
-            <a href="contact.html">Contact</a>
+            <a href="index.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="horoscope.html">HOROSCOPE</a>
+            <a href="contact.html">CONTACT</a>
         </nav>
     </header>
 
@@ -114,53 +131,53 @@
         <div class="hero-text">
             <h1 class="royal-title">आचार्य पंडित संजय जी</h1>
             <p class="sub hindi">प्राचीन वैदिक विद्या एवं आधुनिक सॉफ्टवेयर विश्लेषण</p>
-            <p class="hindi" style="font-size: 1.2rem; color: #8fa1c1;">कुंडली • महादशा चक्र • अष्टकूट मिलान • रत्न परामर्श</p>
+            <p class="hindi" style="color: #8fa1c1;">कुंडली • महादशा चक्र • अष्टकूट मिलान • रत्न परामर्श</p>
         </div>
         <div class="hero-img">
-            <img src="images/sanjay-ji.jpg" alt="Pandit Sanjay Ji">
+            <img src="images/sanjay-ji.jpg" alt="Acharya Pandit Sanjay Ji">
         </div>
     </section>
 
     <section class="section-box" id="kundli-engine">
-        <h2 class="hindi royal-title" style="margin-bottom: 40px; font-size: 2.8rem;"> लग्न कुंडली एवं विश्लेषण</h2>
+        <h2 class="hindi royal-title" style="margin-bottom: 30px;">लग्न कुंडली एवं महादशा विश्लेषण</h2>
         <div class="form-container">
-            <div class="input-group">
-                <input type="text" id="name" placeholder="जातक का पूरा नाम">
-            </div>
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+            <input type="text" id="name" placeholder="जातक का पूरा नाम">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                 <input type="date" id="dob">
                 <input type="text" id="place" placeholder="जन्म स्थान">
             </div>
             <button onclick="generateFullAstro()" class="btn-royal hindi">भविष्यफल प्राप्त करें</button>
 
             <div id="result" class="result-box">
-                <h2 id="res-name" class="hindi" style="color:var(--gold-bright); margin-bottom: 20px;"></h2>
+                <h2 id="res-name" class="hindi" style="color:var(--gold-bright); margin-bottom: 15px;"></h2>
                 
-                <div class="chart-container" id="kundli-chart">
-                    <div class="chart-line diag1"></div><div class="chart-line diag2"></div>
-                    <div class="rect"></div>
-                    <div class="house h1" id="house1"></div> <div class="house h2" id="house2"></div>
-                    <div class="house h3" id="house3"></div> <div class="house h4" id="house4"></div>
-                    <div class="house h5" id="house5"></div> <div class="house h6" id="house6"></div>
-                    <div class="house h7" id="house7"></div> <div class="house h8" id="house8"></div>
-                    <div class="house h9" id="house9"></div> <div class="house h10" id="house10"></div>
-                    <div class="house h11" id="house11"></div> <div class="house h12" id="house12"></div>
+                <div class="chart-wrapper">
+                    <div class="chart-container" id="kundli-chart">
+                        <div class="chart-line diag1"></div><div class="chart-line diag2"></div>
+                        <div class="rect"></div>
+                        <div class="house h1" id="house1"></div> <div class="house h2" id="house2"></div>
+                        <div class="house h3" id="house3"></div> <div class="house h4" id="house4"></div>
+                        <div class="house h5" id="house5"></div> <div class="house h6" id="house6"></div>
+                        <div class="house h7" id="house7"></div> <div class="house h8" id="house8"></div>
+                        <div class="house h9" id="house9"></div> <div class="house h10" id="house10"></div>
+                        <div class="house h11" id="house11"></div> <div class="house h12" id="house12"></div>
+                    </div>
                 </div>
 
-                <div style="display: flex; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid rgba(197,160,89,0.3);">
+                <div style="display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(197,160,89,0.2);">
                     <p class="hindi">🔱 <b>राशि:</b> <span id="res-rashi" style="color:var(--gold-bright)"></span></p>
                     <p class="hindi">🌙 <b>नक्षत्र:</b> <span id="res-nak" style="color:var(--gold-bright)"></span></p>
                 </div>
                 
-                <div class="faladesh-text hindi" id="res-faladesh" style="font-size: 1.1rem; line-height: 1.8;"></div>
+                <div class="hindi" id="res-faladesh" style="font-size: 1rem; line-height: 1.6; margin-top:15px; color:#cbd5e1;"></div>
                 
-                <h4 class="hindi" style="color:var(--gold); margin-top:25px;"><i class="fas fa-hourglass-half"></i> विंशोत्तरी महादशा चक्र:</h4>
-                <div id="dasha-output" style="font-size:0.95rem; color:#ccc; margin-top:10px; line-height: 2;"></div>
+                <h4 class="hindi" style="color:var(--gold); margin-top:20px;"><i class="fas fa-hourglass-half"></i> विंशोत्तरी महादशा चक्र:</h4>
+                <div id="dasha-output" style="font-size:0.9rem; color:#aaa; margin-top:10px; line-height: 1.8;"></div>
 
                 <div class="premium-btns">
-                    <button class="p-btn" onclick="alert('PDF जनरेट हो रही है... (Coming Soon)')"><i class="fas fa-download"></i> PDF रिपोर्ट</button>
-                    <button class="p-btn" onclick="window.location.href='#milan'"><i class="fas fa-heart"></i> गुण मिलान</button>
-                    <button class="p-btn" style="background:var(--gold); color:#000;" onclick="window.location.href='https://wa.me/919929806534'"><i class="fas fa-gem"></i> रत्न सलाह</button>
+                    <button class="p-btn" onclick="alert('PDF जनरेट हो रही है...')">PDF रिपोर्ट</button>
+                    <button class="p-btn" onclick="window.location.href='#milan'">गुण मिलान</button>
+                    <button class="p-btn" style="background:var(--gold); color:#000;" onclick="window.location.href='https://wa.me/919929806534'">रत्न सलाह</button>
                 </div>
 
                 <a id="wa-link" href="#" class="whatsapp-link">📲 पंडित जी से विस्तृत समाधान हेतु चर्चा करें</a>
@@ -169,18 +186,18 @@
     </section>
 
     <section class="section-box" id="milan" style="background: var(--royal-box);">
-        <h2 class="hindi royal-title" style="margin-bottom: 40px; font-size: 2.8rem;">अष्टकूट गुण मिलान</h2>
+        <h2 class="hindi royal-title" style="margin-bottom: 30px;">अष्टकूट गुण मिलान</h2>
         <div class="form-container" style="border-style: double;">
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                 <input type="text" id="b-name" placeholder="वर का नाम">
                 <input type="text" id="g-name" placeholder="वधू का नाम">
             </div>
             <button onclick="runMilan()" class="btn-royal hindi">मिलान गणना करें</button>
             
             <div id="m-res" class="result-box" style="text-align:center; border-color: #128c7e;">
-                <div style="font-size:4rem; font-weight:bold; color:var(--gold-light); text-shadow: 0 0 15px rgba(197,160,89,0.5);" id="m-score">0 / 36</div>
-                <p id="m-status" class="hindi" style="font-weight:bold; font-size: 1.5rem; color: #fff;"></p>
-                <p id="m-desc" class="hindi" style="margin-top:15px; color:#aaa;"></p>
+                <div style="font-size:3.5rem; font-weight:bold; color:var(--gold-light);" id="m-score">0 / 36</div>
+                <p id="m-status" class="hindi" style="font-weight:bold; font-size: 1.3rem; color: #fff;"></p>
+                <p id="m-desc" class="hindi" style="margin-top:10px; color:#aaa; font-size:0.9rem;"></p>
                 <a id="m-wa" href="#" class="whatsapp-link">📲 शुभ मुहूर्त एवं मिलान परामर्श</a>
             </div>
         </div>
@@ -188,70 +205,62 @@
 
     <footer>
         <p class="royal-title">ASTRO SANJOG | जयपुर, राजस्थान</p>
-        <p class="hindi" style="margin-top: 10px;">©  सर्वाधिकार सुरक्षित | आचार्य पंडित संजय जी द्वारा प्रमाणित सॉफ्टवेयर</p>
+        <p class="hindi" style="margin-top: 10px;">© 2026 सर्वाधिकार सुरक्षित | आचार्य पंडित संजय जी</p>
     </footer>
 
     <script>
         function generateFullAstro() {
             const name = document.getElementById("name").value;
             const dob = document.getElementById("dob").value;
-            if(!name || !dob) return alert("कृपया जातक का विवरण भरें");
+            if(!name || !dob) return alert("कृपया विवरण भरें");
 
             const date = new Date(dob);
             const d = date.getDate(); const m = date.getMonth() + 1; const y = date.getFullYear();
-
-            // Rashi Logic
             const rashis = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
             let rIdx = (d + m) % 12;
+
+            document.getElementById("res-name").innerText = "प्रणाम, " + name + " जी";
             document.getElementById("res-rashi").innerText = rashis[rIdx];
             document.getElementById("res-nak").innerText = "पुष्य (Pushya)";
-            document.getElementById("res-faladesh").innerText = "आपके जन्म समय के अनुसार लग्न में शुभ ग्रहों का प्रभाव है। बृहस्पति की स्थिति दर्शाती है कि आने वाले समय में आपको सामाजिक सम्मान और बौद्धिक कार्यों में सफलता मिलेगी। वर्तमान समय हनुमान जी की विशेष आराधना के लिए श्रेष्ठ है।";
+            document.getElementById("res-faladesh").innerText = "आपके जन्म समय के अनुसार लग्न में शुभ ग्रहों का प्रभाव है। आने वाला समय करियर के लिए अनुकूल है। शनिवार को शनि देव की आराधना करें।";
 
-            // Advanced Chart Randomizer (Looks Real)
             const planets = ["सू", "चं", "मं", "बु", "गु", "शु", "श", "रा", "के"];
             for(let i=1; i<=12; i++) {
                 let p = (i === (rIdx + 1)) ? planets[0]+" "+planets[1] : "";
-                let p2 = (i === (d % 12 + 1)) ? planets[4] : "";
-                document.getElementById("house"+i).innerText = (p + " " + p2).trim() || i;
+                document.getElementById("house"+i).innerText = p || i;
             }
 
-            // Dasha Engine
             let dashaHTML = "";
             const dNames = ["केतु", "शुक्र", "सूर्य", "चंद्र", "मंगल", "राहु", "गुरु", "शनि", "बुध"];
             const dYears = [7, 20, 6, 10, 7, 18, 16, 19, 17];
             let start = y; let currentYear = 2026;
-            let startIdx = (d + m) % 9;
+            let sIdx = (d + m) % 9;
 
             for(let i=0; i<6; i++) {
-                let idx = (startIdx + i) % 9;
+                let idx = (sIdx + i) % 9;
                 let end = start + dYears[idx];
-                let isActive = (currentYear >= start && currentYear <= end);
-                dashaHTML += `<div style="padding:8px; margin-bottom:5px; border-radius:8px; ${isActive ? 'background:rgba(197,160,89,0.15); border:1px solid var(--gold); color:#fff;' : 'color:#99a;'}">
-                    • ${dNames[idx]} की महादशा: ${start} से ${end} ${isActive ? '<b style="color:var(--gold-bright); margin-left:10px;">(सक्रिय काल)</b>' : ''}
+                let active = (currentYear >= start && currentYear <= end);
+                dashaHTML += `<div style="padding:5px; ${active ? 'color:var(--gold-bright); font-weight:bold; border-left:2px solid var(--gold); padding-left:10px;' : 'color:#99a;'}">
+                    • ${dNames[idx]} की महादशा: ${start} - ${end} ${active ? '(सक्रिय)' : ''}
                 </div>`;
                 start = end;
             }
             document.getElementById("dasha-output").innerHTML = dashaHTML;
-
             document.getElementById("result").style.display = "block";
-            document.getElementById("res-name").innerText = "प्रणाम, " + name + " जी";
-            document.getElementById("wa-link").href = "https://wa.me/919929806534?text=प्रणाम पंडित जी, मैंने पोर्टल पर अपनी कुंडली जांची है। नाम: " + name + ", राशि: " + rashis[rIdx] + "। मार्गदर्शन करें।";
+            document.getElementById("wa-link").href = "https://wa.me/919929806534?text=प्रणाम, नाम: " + name + ", राशि: " + rashis[rIdx];
             document.getElementById("result").scrollIntoView({behavior: 'smooth'});
         }
 
         function runMilan() {
             const bn = document.getElementById("b-name").value;
             const gn = document.getElementById("g-name").value;
-            if(!bn || !gn) return alert("कृपया दोनों पक्षों के नाम भरें");
-
+            if(!bn || !gn) return alert("नाम भरें");
             let s = 20 + Math.floor(Math.random() * 14);
             document.getElementById("m-res").style.display = "block";
             document.getElementById("m-score").innerText = s + " / 36";
-            
             document.getElementById("m-status").innerText = s > 25 ? "💎 उत्तम राजसी मिलान" : "⚖️ सामान्य मिलान";
-            document.getElementById("m-desc").innerText = s > 25 ? "यह एक अत्यंत शुभ मिलान है। दोनों के स्वभाव में सामंजस्य रहेगा।" : "मिलान मध्यम है, विवाह से पूर्व मांगलिक दोष और नक्षत्रों की शांति अनिवार्य है।";
-            
-            document.getElementById("m-wa").href = "https://wa.me/919929806534?text=प्रणाम, " + bn + " और " + gn + " का गुण मिलान स्कोर " + s + " है। कृपया परामर्श दें।";
+            document.getElementById("m-desc").innerText = s > 25 ? "यह अत्यंत शुभ मिलान है।" : "मिलान मध्यम है, परामर्श लें।";
+            document.getElementById("m-wa").href = "https://wa.me/919929806534?text=मिलान स्कोर: " + s;
             document.getElementById("m-res").scrollIntoView({behavior: 'smooth'});
         }
     </script>
