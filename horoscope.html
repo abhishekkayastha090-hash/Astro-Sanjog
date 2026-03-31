@@ -16,63 +16,62 @@
             --gold: #c5a059;
             --gold-bright: #f1d38e;
             --white: #f4f4f4;
+            --shadow: 0 15px 40px rgba(0,0,0,0.6);
         }
 
-        body {
-            background-color: var(--royal-bg);
-            color: var(--white);
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            overflow-x: hidden;
+        /* STEP 1: Premium Background Upgrade */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: radial-gradient(circle at top, #1a1a1a, #000); 
+            color: var(--white); 
+            overflow-x: hidden; 
+            width: 100%; 
         }
-
         .hindi { font-family: 'Tiro Devanagari Hindi', serif; }
-        .royal-title { font-family: 'Cinzel', serif; letter-spacing: 2px; color: var(--gold); }
+        .royal-title { font-family: 'Cinzel', serif; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
 
-        /* Floating Symbols - Big & Grand */
-        .bg-icons {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            pointer-events: none;
-            opacity: 0.15;
-        }
-        .bg-icons i {
-            position: absolute;
-            color: var(--gold-bright);
-            animation: float 20s infinite linear;
-            font-size: 60px;
-            filter: drop-shadow(0 0 10px var(--gold));
-        }
-        @keyframes float {
-            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
-        }
+        /* Floating Background Icons */
+        .bg-icons { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.15; }
+        .bg-icons i { position: absolute; color: var(--gold-bright); animation: float 22s infinite linear; font-size: 60px; filter: drop-shadow(0 0 10px var(--gold)); }
+        @keyframes float { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
 
         /* Header */
-        header.navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 8%;
-            background: rgba(4, 10, 24, 0.98);
-            border-bottom: 1px solid var(--gold);
-            position: sticky;
-            top: 0; z-index: 1000;
-            backdrop-filter: blur(10px);
+        header.navbar { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 20px 8%; background: rgba(0, 0, 0, 0.9); 
+            border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);
         }
-        .logo { font-size: 28px; font-weight: bold; color: var(--gold); text-decoration: none; }
-        nav a { color: var(--white); text-decoration: none; margin-left: 30px; font-weight: 500; transition: 0.3s; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--gold); text-decoration: none; text-shadow: 0 0 10px rgba(197, 160, 89, 0.5); }
+        nav a { color: var(--white); text-decoration: none; margin-left: 20px; font-weight: 500; font-size: 0.9rem; transition: 0.3s; }
         nav a:hover { color: var(--gold-bright); }
 
         /* Horoscope Header */
         .horoscope-header {
             text-align: center;
-            padding: 80px 10% 40px;
-            background: radial-gradient(circle at center, #0d1b35 0%, var(--royal-bg) 100%);
+            padding: 60px 10% 40px;
+            background: radial-gradient(circle at center, #0d1b35 0%, transparent 100%);
         }
         .horoscope-header h1 { font-size: 3.5rem; margin-bottom: 10px; }
-        .date-display { color: var(--gold-bright); font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; }
+        .date-display { color: var(--gold-bright); font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; border: 1px solid var(--gold); display: inline-block; padding: 5px 20px; border-radius: 50px; background: rgba(197, 160, 89, 0.1); }
+
+        /* Shining Sun Animation */
+        .shining-sun {
+            color: var(--gold-bright); font-size: 40px;
+            text-shadow: 0 0 20px var(--gold), 0 0 40px var(--gold-bright);
+            animation: sunPulse 3s ease-in-out infinite;
+        }
+        @keyframes sunPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+
+        /* Diya Animation */
+        .diya-wrapper { margin: 20px auto; width: 60px; position: relative; }
+        .flame {
+            width: 18px; height: 30px; background: linear-gradient(to bottom, #fff, #ff9d00, #ff5e00);
+            border-radius: 50% 50% 20% 20%; position: absolute; top: -25px; left: 21px;
+            animation: flicker 0.15s infinite alternate; box-shadow: 0 0 20px #ff9d00;
+        }
+        @keyframes flicker { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+        .diya-base { width: 60px; height: 28px; background: #8b4513; border-radius: 0 0 60px 60px; }
 
         /* Zodiac Grid */
         .zodiac-grid {
@@ -90,8 +89,11 @@
             text-align: center;
             cursor: pointer;
             transition: 0.4s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
         }
+        .zodiac-card::before { content: "ॐ"; position: absolute; top: -10px; right: -10px; font-size: 40px; color: rgba(197, 160, 89, 0.05); }
 
         .zodiac-card:hover {
             border-color: var(--gold);
@@ -147,9 +149,30 @@
             margin-top: 30px;
             text-transform: uppercase;
             box-shadow: 0 8px 20px rgba(197, 160, 89, 0.4);
+            transition: 0.3s;
         }
+        .premium-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
 
-        footer { padding: 60px; text-align: center; border-top: 1px solid #1a2a4a; color: #55607a; }
+        /* Trust Section */
+        .trust {
+            padding: 60px 10%; text-align: center; background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(197, 160, 89, 0.1); margin-top: 40px;
+        }
+        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .trust-card { background: var(--royal-box); padding: 30px; border-radius: 15px; border-left: 4px solid var(--gold); }
+
+        /* Floating WhatsApp Button */
+        .whatsapp {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #25d366; color: #fff; width: 60px; height: 60px;
+            border-radius: 50%; font-size: 30px; display: flex; align-items: center;
+            justify-content: center; text-decoration: none; z-index: 1001;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: 0.3s;
+            animation: pulseWa 2s infinite;
+        }
+        @keyframes pulseWa { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+        footer { padding: 60px 5%; text-align: center; color: #55607a; border-top: 1px solid #1a2a4a; background: #02060f; }
 
         @media (max-width: 768px) {
             .horoscope-header h1 { font-size: 2.5rem; }
@@ -179,13 +202,40 @@
     </header>
 
     <div class="horoscope-header">
+        <div class="shining-sun"><i class="fas fa-sun"></i></div>
         <h1 class="hindi royal-title">दैनिक राशिफल</h1>
         <div id="current-date" class="date-display"></div>
-        <p class="hindi" style="color: #8fa1c1; font-size: 1.1rem;">आज के ग्रहों की स्थिति के अनुसार अपनी राशि का भविष्यफल जानें</p>
+        <p class="hindi" style="color: #8fa1c1; font-size: 1.1rem; margin-top: 15px;">आज के ग्रहों की स्थिति के अनुसार अपनी राशि का भविष्यफल जानें</p>
+        
+        <div class="diya-wrapper">
+            <div class="flame"></div>
+            <div class="diya-base"></div>
+        </div>
     </div>
 
     <div class="zodiac-grid" id="zodiac-container">
         </div>
+
+    <section class="trust">
+        <h2 class="hindi royal-title" style="margin-bottom: 30px; font-size: 1.8rem;">सटीक गणना एवं समाधान</h2>
+        <div class="trust-grid">
+            <div class="trust-card">
+                <i class="fas fa-certificate" style="font-size: 2rem; color: var(--gold-bright); margin-bottom: 10px;"></i>
+                <h3 class="hindi">शुद्ध गणना</h3>
+                <p class="hindi" style="font-size: 0.9rem; color: #aaa;">वैदिक गणित पर आधारित सटीक फलित।</p>
+            </div>
+            <div class="trust-card">
+                <i class="fas fa-user-check" style="font-size: 2rem; color: var(--gold-bright); margin-bottom: 10px;"></i>
+                <h3 class="hindi">विद्वान मार्गदर्शन</h3>
+                <p class="hindi" style="font-size: 0.9rem; color: #aaa;">आचार्य जी का वर्षों का गहरा अनुभव।</p>
+            </div>
+            <div class="trust-card">
+                <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--gold-bright); margin-bottom: 10px;"></i>
+                <h3 class="hindi">पूर्ण गोपनीयता</h3>
+                <p class="hindi" style="font-size: 0.9rem; color: #aaa;">आपकी जानकारी सुरक्षित और गुप्त।</p>
+            </div>
+        </div>
+    </section>
 
     <div class="overlay" id="overlay" onclick="closeModal()"></div>
     <div id="horoscope-result">
@@ -193,33 +243,37 @@
         <h2 id="rashi-name" class="hindi royal-title" style="margin-bottom: 25px; border-bottom: 1px solid var(--gold); padding-bottom: 10px;"></h2>
         <p id="prediction" class="hindi" style="font-size: 1.25rem; line-height: 1.8; color: #cbd5e1;"></p>
         <div style="background: rgba(197, 160, 89, 0.1); padding: 20px; border-radius: 15px; margin-top: 25px; border-left: 4px solid var(--gold);">
-            <p class="hindi" style="font-size: 0.95rem; color: #fff;">💡 <b>आज का उपाय:</b> <span id="remedy"></span></p>
+            <p class="hindi" style="font-size: 0.95rem; color: #fff;">💡 <b>आज का विशेष उपाय:</b> <span id="remedy"></span></p>
         </div>
         <a id="wa-link" href="#" class="premium-btn">📲 पंडित जी से विस्तृत परामर्श लें</a>
     </div>
 
+    <a href="https://wa.me/919929806534" class="whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script>
         const zodiacs = [
-            { id: "Aries", name: "मेष", eng: "Aries", icon: "sun.svg", lucky: "आज व्यापार में अप्रत्याशित वृद्धि होगी। परिवार में खुशी का माहौल रहेगा और पुराने रुके हुए कार्य गति पकड़ेंगे।" },
-            { id: "Taurus", name: "वृषभ", eng: "Taurus", icon: "moon.svg", lucky: "धन लाभ के प्रबल योग हैं। संपत्ति से जुड़े विवाद सुलझेंगे। जीवनसाथी का भरपूर सहयोग प्राप्त होगा।" },
+            { id: "Aries", name: "मेष", eng: "Aries", icon: "sun.svg", lucky: "आज व्यापार में अप्रत्याशित वृद्धि होगी। परिवार में खुशी का माहौल रहेगा और पुराने रुके हुए कार्य गति पकड़ेंगे।" },
+            { id: "Taurus", name: "वृषभ", eng: "Taurus", icon: "moon.svg", lucky: "धन लाभ के प्रबल योग हैं। संपत्ति से जुड़े विवाद सुलझेंगे। जीवनसाथी का भरपूर सहयोग प्राप्त होगा।" },
             { id: "Gemini", name: "मिथुन", eng: "Gemini", icon: "mercury.svg", lucky: "आज वाणी पर संयम रखना अनिवार्य है। स्वास्थ्य के प्रति सचेत रहें। करियर में नए अवसर मिलने की संभावना है।" },
             { id: "Cancer", name: "कर्क", eng: "Cancer", icon: "venus.svg", lucky: "करियर में नई दिशा मिलेगी। मित्रों का सहयोग प्राप्त होगा। मानसिक शांति का अनुभव करेंगे।" },
-            { id: "Leo", name: "सिंह", eng: "Leo", icon: "mars.svg", lucky: "आत्मविश्वास चरम पर रहेगा। समाज में मान-सम्मान बढ़ेगा। महत्वपूर्ण निर्णयों के लिए आज का दिन श्रेष्ठ है।" },
+            { id: "Leo", name: "सिंह", eng: "Leo", icon: "mars.svg", lucky: "आत्मविश्वास चरम पर रहेगा। समाज में मान-सम्मान बढ़ेगा। महत्वपूर्ण निर्णयों के लिए आज का दिन श्रेष्ठ है।" },
             { id: "Virgo", name: "कन्या", eng: "Virgo", icon: "jupiter.svg", lucky: "निवेश के लिए उत्तम समय है। संतान पक्ष से शुभ समाचार मिलेगा। कार्यक्षेत्र में आपकी प्रशंसा होगी।" },
-            { id: "Libra", name: "तुला", eng: "Libra", icon: "saturn.svg", lucky: "पुराने विवाद सुलझेंगे। दांपत्य जीवन सुखमय रहेगा। कलात्मक कार्यों में रुचि बढ़ेगी।" },
+            { id: "Libra", name: "तुला", eng: "Libra", icon: "saturn.svg", lucky: "पुराने विवाद सुलझेंगे। दांपत्य जीवन सुखमय रहेगा। कलात्मक कार्यों में रुचि बढ़ेगी।" },
             { id: "Scorpio", name: "वृश्चिक", eng: "Scorpio", icon: "rahu.svg", lucky: "कार्यक्षेत्र में चुनौतियां आ सकती हैं, धैर्य रखें। गुप्त शत्रुओं से सावधान रहें। हनुमान चालीसा का पाठ करें।" },
-            { id: "Sagittarius", name: "धनु", eng: "Sagittarius", icon: "ketu.svg", lucky: "धार्मिक यात्रा के योग बन रहे हैं। पैतृक संपत्ति से लाभ होगा। शिक्षा के क्षेत्र में बड़ी सफलता मिलेगी।" },
-            { id: "Capricorn", name: "मकर", eng: "Capricorn", icon: "saturn.svg", lucky: "कठिन परिश्रम का मीठा फल मिलेगा। नया व्यापार शुरू करने के लिए समय अनुकूल है। मान-प्रतिष्ठा बढ़ेगी।" },
+            { id: "Sagittarius", name: "धनु", eng: "Sagittarius", icon: "ketu.svg", lucky: "धार्मिक यात्रा के योग बन रहे हैं। पैतृक संपत्ति से लाभ होगा। शिक्षा के क्षेत्र में बड़ी सफलता मिलेगी।" },
+            { id: "Capricorn", name: "मकर", eng: "Capricorn", icon: "saturn.svg", lucky: "कठिन परिश्रम का मीठा फल मिलेगा। नया व्यापार शुरू करने के लिए समय अनुकूल है। मान-प्रतिष्ठा बढ़ेगी।" },
             { id: "Aquarius", name: "कुंभ", eng: "Aquarius", icon: "rahu.svg", lucky: "आर्थिक स्थिति में सुधार होगा। किसी पुराने मित्र से मुलाकात मन को प्रसन्न करेगी। वाहन चलाते समय सावधानी बरतें।" },
             { id: "Pisces", name: "मीन", eng: "Pisces", icon: "jupiter.svg", lucky: "आध्यात्मिक उन्नति होगी। खर्चों पर नियंत्रण रखें। विदेश यात्रा की योजना सफल हो सकती है।" }
         ];
 
         const remedies = [
-            "भगवान शिव का जलाभिषेक करें।",
-            "हनुमान चालीसा का पाठ करें।",
-            "पक्षियों को दाना डालें।",
-            "किसी मंदिर में कपूर का दान करें।",
-            "गाय को रोटी खिलाएं।"
+            "भगवान शिव का जलाभिषेक करें और ॐ नमः शिवाय का जाप करें।",
+            "हनुमान चालीसा का नित्य पाठ करें और जरूरतमंदों को फल दान करें।",
+            "पक्षियों को सप्तधान्य (सात प्रकार का अनाज) खिलाएं।",
+            "किसी मंदिर में कपूर का दान करें और संध्या काल में घी का दीपक जलाएं।",
+            "गौ माता को पहली रोटी खिलाएं और उनका आशीर्वाद लें।"
         ];
 
         // Automatic Date Display
@@ -243,13 +297,12 @@
         function showHoroscope(name, prediction) {
             document.getElementById('rashi-name').innerText = name;
             document.getElementById('prediction').innerText = prediction;
-            // Select random remedy
             document.getElementById('remedy').innerText = remedies[Math.floor(Math.random() * remedies.length)];
             
             document.getElementById('overlay').style.display = 'block';
             document.getElementById('horoscope-result').style.display = 'block';
             
-            const msg = `प्रणाम पंडित जी, मैंने पोर्टल पर ${name} का दैनिक राशिफल देखा। कृपया मुझे विस्तार से मार्गदर्शन दें।`;
+            const msg = `प्रणाम पंडित जी, मैंने Astro Sanjog पर ${name} का दैनिक राशिफल देखा। कृपया मुझे विस्तार से मार्गदर्शन प्रदान करें।`;
             document.getElementById('wa-link').href = `https://wa.me/919929806534?text=${encodeURIComponent(msg)}`;
         }
 
@@ -260,8 +313,8 @@
     </script>
 
     <footer>
-        <p class="royal-title">ASTRO SANJOG | जयपुर, राजस्थान</p>
-        <p class="hindi" style="margin-top: 10px;"> सर्वाधिकार सुरक्षित | आचार्य पंडित संजय जी</p>
+        <p class="royal-title">ASTRO SANJOG | JAIPUR</p>
+        <p class="hindi" style="margin-top: 10px;">© सर्वाधिकार सुरक्षित | आचार्य पंडित संजय जी</p>
     </footer>
 
 </body>
