@@ -1,415 +1,101 @@
-```css
-/* ===== GLOBAL ===== */
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
 body{
-
-font-family:'Poppins',sans-serif;
-
-background:linear-gradient(
-135deg,
-#0b0f2b,
-#1b1645,
-#0b0f2b
-);
-
-color:white;
-
-min-height:100vh;
-
-overflow-x:hidden;
-
+  margin:0;
+  font-family: Arial;
+  background:#0b0b0b;
+  color:#fff;
 }
 
+/* NAVBAR */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  padding:15px 30px;
+  background:#111;
+}
 
-/* ===== HEADER ===== */
-
-header{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:20px 60px;
-
-background:rgba(0,0,0,0.7);
-
-backdrop-filter:blur(8px);
-
-border-bottom:2px solid #FFD700;
-
-position:sticky;
-
-top:0;
-
-z-index:999;
-
+.navbar a{
+  color:#fff;
+  margin:0 10px;
+  text-decoration:none;
 }
 
 .logo{
-
-font-size:28px;
-
-font-weight:600;
-
-color:#FFD700;
-
-letter-spacing:2px;
-
+  font-weight:bold;
 }
 
-nav a{
-
-margin-left:25px;
-
-text-decoration:none;
-
-color:white;
-
-font-weight:500;
-
-transition:0.3s;
-
-}
-
-nav a:hover{
-
-color:#FFD700;
-
-text-shadow:0 0 12px #FFD700;
-
-}
-
-
-/* ===== HERO ===== */
-
+/* HERO */
 .hero{
-
-text-align:center;
-
-padding:140px 20px;
-
-background:
-
-radial-gradient(circle at top,#1a164d,#0b0f2b);
-
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  padding:50px;
+  background:linear-gradient(#000,#111);
 }
 
-.hero h1{
-
-font-size:48px;
-
-color:#FFD700;
-
-margin-bottom:10px;
-
-text-shadow:0 0 15px #FFD700;
-
+.hero-text h1{
+  font-size:40px;
+  color:gold;
 }
 
-.hero p{
-
-font-size:20px;
-
-color:#ffcc66;
-
-margin-top:5px;
-
+.sub{
+  color:#ccc;
 }
 
-.phone{
-
-font-size:22px;
-
-margin-top:15px;
-
+.contact{
+  margin-top:10px;
+  color:gold;
 }
 
-
-/* ===== BUTTON ===== */
-
-.btn{
-
-display:inline-block;
-
-margin-top:25px;
-
-padding:14px 32px;
-
-border-radius:30px;
-
-background:#FFD700;
-
-color:black;
-
-font-weight:600;
-
-text-decoration:none;
-
-transition:0.3s;
-
+.hero-img img{
+  width:250px;
+  border-radius:10px;
 }
 
-.btn:hover{
-
-background:#ff9933;
-
-transform:scale(1.05);
-
-}
-
-
-/* ===== SERVICES ===== */
-
+/* SERVICES */
 .services{
-
-text-align:center;
-
-padding:80px 20px;
-
+  padding:40px;
+  text-align:center;
 }
 
-.services h2{
-
-font-size:36px;
-
-color:#FFD700;
-
-margin-bottom:40px;
-
+.service-box{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
 }
 
-.service-grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-
-gap:25px;
-
-max-width:1100px;
-
-margin:auto;
-
+.service-box div{
+  background:#111;
+  padding:15px;
+  border-left:4px solid gold;
 }
 
-.card{
-
-background:rgba(255,255,255,0.05);
-
-padding:30px;
-
-border-radius:15px;
-
-border:1px solid rgba(255,215,0,0.3);
-
-transition:0.3s;
-
+/* KUNDLI */
+.kundli{
+  padding:40px;
+  text-align:center;
 }
 
-.card:hover{
-
-transform:translateY(-8px);
-
-box-shadow:0 0 20px rgba(255,215,0,0.5);
-
-}
-
-
-/* ===== KUNDLI ===== */
-
-.kundli-section{
-
-text-align:center;
-
-padding:80px 20px;
-
-}
-
-.kundli-section h2{
-
-color:#FFD700;
-
-margin-bottom:30px;
-
-}
-
-form{
-
-display:flex;
-
-flex-direction:column;
-
-gap:15px;
-
-width:320px;
-
-margin:auto;
-
-}
-
-input{
-
-padding:12px;
-
-border:none;
-
-border-radius:6px;
-
+.kundli input{
+  display:block;
+  margin:10px auto;
+  padding:10px;
+  width:250px;
 }
 
 button{
-
-background:#FFD700;
-
-border:none;
-
-padding:12px;
-
-border-radius:25px;
-
-font-weight:600;
-
-cursor:pointer;
-
+  padding:10px 20px;
+  background:gold;
+  border:none;
+  cursor:pointer;
 }
 
-
-/* ===== CONTACT ===== */
-
-.contact{
-
-text-align:center;
-
-padding:80px 20px;
-
+#result{
+  margin-top:20px;
 }
 
-.contact h2{
-
-color:#FFD700;
-
-margin-bottom:15px;
-
-}
-
-
-/* ===== FOOTER ===== */
-
+/* FOOTER */
 footer{
-
-text-align:center;
-
-padding:20px;
-
-background:black;
-
-border-top:2px solid #FFD700;
-
+  text-align:center;
+  padding:20px;
+  background:#111;
 }
-
-
-/* ===== FLOATING PLANETS ===== */
-
-.planet{
-
-position:absolute;
-
-width:120px;
-
-height:120px;
-
-background-size:cover;
-
-animation:float 18s infinite ease-in-out;
-
-opacity:0.9;
-
-}
-
-.sun{
-
-background-image:url("../images/sun.svg");
-
-top:8%;
-
-left:6%;
-
-}
-
-.moon{
-
-background-image:url("../images/moon.svg");
-
-top:70%;
-
-left:82%;
-
-}
-
-.mars{
-
-background-image:url("../images/mars.svg");
-
-top:45%;
-
-left:40%;
-
-}
-
-.jupiter{
-
-background-image:url("../images/jupiter.svg");
-
-top:30%;
-
-left:70%;
-
-}
-
-.saturn{
-
-background-image:url("../images/saturn.svg");
-
-top:80%;
-
-left:20%;
-
-}
-
-@keyframes float{
-
-0%{transform:translateY(0)}
-
-50%{transform:translateY(-40px)}
-
-100%{transform:translateY(0)}
-
-}
-
-
-/* ===== MOBILE ===== */
-
-@media(max-width:768px){
-
-header{
-
-flex-direction:column;
-
-}
-
-.hero h1{
-
-font-size:32px;
-
-}
-
-}
-```
