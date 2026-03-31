@@ -1,645 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astro Sanjog | Kundli Generator</title>
-  <meta name="description" content="Free Kundli generator for birth details with a premium astrology-style interface." />
-  <style>
-    :root{
-      --bg:#050505;
-      --panel:#111111;
-      --panel2:#171717;
-      --text:#f4f4f4;
-      --muted:#b7b7b7;
-      --gold:#d7b46a;
-      --gold2:#f0d28a;
-      --line:rgba(255,255,255,.12);
-      --shadow: 0 18px 60px rgba(0,0,0,.45);
-      --radius: 24px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astro Sanjog | Acharya Pandit Sanjay Ji</title>
 
-    *{ box-sizing:border-box; }
-    html,body{ margin:0; padding:0; background:
-      radial-gradient(circle at top, rgba(215,180,106,.18), transparent 28%),
-      linear-gradient(180deg, #070707 0%, #020202 100%);
-      color:var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<style>
+body{
+  margin:0;
+  font-family: Arial;
+  background:#000;
+  color:#fff;
+}
 
-    body{
-      min-height:100vh;
-    }
+header{
+  background:yellow;
+  color:#000;
+  padding:20px;
+  text-align:center;
+}
 
-    .wrap{
-      width:min(1180px, 92vw);
-      margin:0 auto;
-      padding:28px 0 60px;
-    }
+header h1{
+  margin:0;
+  font-size:32px;
+}
 
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:14px 18px;
-      background:rgba(17,17,17,.72);
-      border:1px solid var(--line);
-      border-radius:999px;
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 14px;
-      z-index: 20;
-    }
+header p{
+  margin:5px 0;
+  font-weight:bold;
+}
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:700;
-      letter-spacing:.4px;
-    }
+.container{
+  padding:20px;
+}
 
-    .logo{
-      width:42px;
-      height:42px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background: linear-gradient(135deg, rgba(215,180,106,.25), rgba(255,255,255,.05));
-      border:1px solid rgba(215,180,106,.35);
-      box-shadow: 0 0 0 5px rgba(215,180,106,.05);
-      color:var(--gold2);
-      font-size:20px;
-    }
+.section{
+  margin:30px 0;
+  padding:20px;
+  background:#111;
+  border-radius:10px;
+}
 
-    .nav a{
-      color:var(--muted);
-      text-decoration:none;
-      margin-left:18px;
-      font-size:14px;
-    }
-    .nav a:hover{ color:var(--gold2); }
+input{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+}
 
-    .hero{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:24px;
-      align-items:stretch;
-      margin-top:26px;
-    }
+button{
+  padding:10px 20px;
+  background:gold;
+  border:none;
+  cursor:pointer;
+}
 
-    .card{
-      background: linear-gradient(180deg, rgba(24,24,24,.92), rgba(10,10,10,.92));
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
+.service{
+  background:#222;
+  padding:10px;
+  margin:10px 0;
+  border-left:5px solid gold;
+}
 
-    .hero-left{
-      padding:34px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero-left:before{
-      content:"";
-      position:absolute;
-      inset:auto -80px -120px auto;
-      width:260px;
-      height:260px;
-      background: radial-gradient(circle, rgba(215,180,106,.22), transparent 70%);
-      filter: blur(10px);
-      pointer-events:none;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 14px;
-      border-radius:999px;
-      border:1px solid rgba(215,180,106,.25);
-      background:rgba(215,180,106,.08);
-      color:var(--gold2);
-      font-size:13px;
-      margin-bottom:18px;
-    }
-
-    h1{
-      margin:0;
-      font-size: clamp(34px, 5vw, 58px);
-      line-height:1.02;
-      letter-spacing:-.02em;
-    }
-
-    .sub{
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.7;
-      max-width: 62ch;
-      margin:18px 0 0;
-    }
-
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:24px;
-    }
-
-    .chip{
-      padding:10px 14px;
-      border-radius:999px;
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
-      color:#ddd;
-      font-size:13px;
-    }
-
-    .hero-right{
-      padding:24px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      justify-content:space-between;
-    }
-
-    .mini{
-      padding:18px;
-      border-radius:20px;
-      background:rgba(255,255,255,.03);
-      border:1px solid var(--line);
-    }
-
-    .mini h3{
-      margin:0 0 8px;
-      font-size:18px;
-      color:var(--gold2);
-    }
-
-    .mini p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.6;
-      font-size:14px;
-    }
-
-    .section{
-      margin-top:24px;
-      padding:26px;
-    }
-
-    .section-title{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:18px;
-    }
-
-    .section-title h2{
-      margin:0;
-      font-size:26px;
-    }
-
-    .section-title span{
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .form-grid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap:16px;
-    }
-
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-
-    label{
-      font-size:14px;
-      color:#ddd;
-    }
-
-    input, select, textarea{
-      width:100%;
-      background:#0b0b0b;
-      color:var(--text);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:16px;
-      padding:14px 14px;
-      outline:none;
-      font-size:15px;
-      transition:.2s ease;
-    }
-
-    input:focus, select:focus, textarea:focus{
-      border-color: rgba(215,180,106,.65);
-      box-shadow: 0 0 0 4px rgba(215,180,106,.12);
-    }
-
-    .full{ grid-column: 1 / -1; }
-
-    .btn-row{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:18px;
-    }
-
-    .btn{
-      appearance:none;
-      border:none;
-      border-radius:14px;
-      padding:13px 18px;
-      font-weight:700;
-      cursor:pointer;
-      transition:.2s ease;
-      font-size:15px;
-    }
-
-    .btn-primary{
-      background: linear-gradient(135deg, var(--gold), var(--gold2));
-      color:#111;
-      box-shadow: 0 12px 28px rgba(215,180,106,.18);
-    }
-    .btn-primary:hover{ transform: translateY(-1px); }
-
-    .btn-ghost{
-      background: transparent;
-      color: var(--text);
-      border:1px solid var(--line);
-    }
-    .btn-ghost:hover{ border-color: rgba(215,180,106,.45); }
-
-    .result{
-      margin-top:22px;
-      display:none;
-      padding:24px;
-      border-radius:20px;
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-    }
-
-    .result-grid{
-      display:grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap:12px;
-      margin-top:16px;
-    }
-
-    .stat{
-      padding:16px;
-      border-radius:18px;
-      background:#0b0b0b;
-      border:1px solid rgba(255,255,255,.10);
-    }
-
-    .stat .k{
-      font-size:12px;
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      margin-bottom:6px;
-    }
-    .stat .v{
-      font-size:18px;
-      font-weight:700;
-      color:#fff;
-      word-break:break-word;
-    }
-
-    .chart-wrap{
-      margin-top:22px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:18px;
-    }
-
-    .chart{
-      padding:20px;
-      border-radius:20px;
-      background:#0a0a0a;
-      border:1px solid rgba(255,255,255,.10);
-    }
-
-    .diamond{
-      width:min(100%, 420px);
-      aspect-ratio: 1 / 1;
-      margin:0 auto;
-      position:relative;
-      transform: rotate(45deg);
-      border:2px solid rgba(215,180,106,.55);
-      background:
-        linear-gradient(135deg, transparent 49.4%, rgba(215,180,106,.25) 49.5%, rgba(215,180,106,.25) 50.5%, transparent 50.6%),
-        linear-gradient(45deg, transparent 49.4%, rgba(215,180,106,.25) 49.5%, rgba(215,180,106,.25) 50.5%, transparent 50.6%);
-      border-radius: 12px;
-      overflow:hidden;
-    }
-
-    .diamond .cell{
-      position:absolute;
-      transform: rotate(-45deg);
-      font-size:13px;
-      color:#f7e7bf;
-      text-align:center;
-      width:90px;
-      min-height:42px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:4px;
-    }
-
-    .c1{ top:10px; left:160px; }
-    .c2{ top:70px; left:290px; }
-    .c3{ top:160px; left:340px; }
-    .c4{ top:275px; left:290px; }
-    .c5{ top:340px; left:160px; }
-    .c6{ top:275px; left:30px; }
-    .c7{ top:160px; left:-10px; }
-    .c8{ top:70px; left:30px; }
-    .c9{ top:160px; left:160px; }
-
-    .footer{
-      padding:20px 0 0;
-      color:var(--muted);
-      text-align:center;
-      font-size:14px;
-    }
-
-    .note{
-      margin-top:14px;
-      color:#cfcfcf;
-      font-size:13px;
-      line-height:1.6;
-    }
-
-    @media (max-width: 900px){
-      .hero,
-      .chart-wrap,
-      .result-grid,
-      .form-grid{
-        grid-template-columns: 1fr;
-      }
-
-      .nav{
-        border-radius: 24px;
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .nav a{ margin-left:0; margin-right:14px; }
-      .hero-left{ padding:24px; }
-      .section{ padding:20px; }
-    }
-  </style>
+.result{
+  margin-top:20px;
+  background:#222;
+  padding:15px;
+}
+</style>
 </head>
+
 <body>
-  <div class="wrap">
 
-    <div class="nav">
-      <div class="brand">
-        <div class="logo">✦</div>
-        <div>
-          <div style="font-size:16px;">Astro Sanjog</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px;">Kundli • Astrology • Consultation</div>
-        </div>
-      </div>
-      <div>
-        <a href="#kundli">Generate Kundli</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
+<header>
+  <h1>आचार्य पंडित संजय जी</h1>
+  <p>Acharya Pandit Sanjay Ji</p>
+  <p>📞 9929806534 / 9950502961</p>
+</header>
 
-    <div class="hero">
-      <div class="card hero-left">
-        <div class="eyebrow">🔮 Premium Astrology Experience</div>
-        <h1>Generate Kundli instantly on your website</h1>
-        <p class="sub">
-          
-        </p>
+<div class="container">
 
-        <div class="chips">
-          <div class="chip">Lagna Kundli</div>
-          <div class="chip">Nakshatra</div>
-          <div class="chip">Rashi</div>
-          <div class="chip">Retrograde</div>
-          <div class="chip">PDF Ready Later</div>
-        </div>
-      </div>
+<!-- SERVICES -->
+<div class="section">
+  <h2>🔮 हमारी सेवाएं | Our Services</h2>
 
-      <div class="card hero-right">
-        <div class="mini">
-          
-        </div>
-        <div class="mini">
-         
-        </div>
-      </div>
-    </div>
+  <div class="service">नजर दोष / Evil Eye Solution</div>
+  <div class="service">व्यापार में रुकावट / Business Problems</div>
+  <div class="service">प्रेम / विवाह समस्या / Love & Marriage</div>
+  <div class="service">डर / घबराहट / Anxiety Problems</div>
+  <div class="service">पितृ दोष / टोटका / Pitra Dosh</div>
+  <div class="service">नौकरी / विदेश यात्रा / Job & विदेश</div>
 
-    <div class="card section" id="kundli">
-      <div class="section-title">
-        <h2>Generate Kundli</h2>
-        <span>Fill details and click generate</span>
-      </div>
+</div>
 
-      <div class="form-grid">
-        <div class="field">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Enter name" />
-        </div>
+<!-- KUNDLI -->
+<div class="section">
+  <h2>🔮 कुंडली बनाएं | Generate Kundli</h2>
 
-        <div class="field">
-          <label for="gender">Gender</label>
-          <select id="gender">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
+  <input type="text" id="name" placeholder="नाम / Name">
+  <input type="date" id="dob">
+  <input type="time" id="tob">
+  <input type="text" id="place" placeholder="जन्म स्थान / Birth Place">
 
-        <div class="field">
-          <label for="dob">Date of Birth</label>
-          <input type="date" id="dob" />
-        </div>
+  <button onclick="generateKundli()">Generate Kundli</button>
 
-        <div class="field">
-          <label for="tob">Time of Birth</label>
-          <input type="time" id="tob" />
-        </div>
+  <div id="result" class="result"></div>
+</div>
 
-        <div class="field full">
-          <label for="place">Place of Birth</label>
-          <input type="text" id="place" placeholder="Enter city / town / village" />
-        </div>
+</div>
 
-        <div class="field full">
-          <label for="note">Extra Notes (optional)</label>
-          <textarea id="note" rows="3" placeholder="Any special details..."></textarea>
-        </div>
-      </div>
+<script>
+function generateKundli(){
+  let name=document.getElementById("name").value;
+  let dob=document.getElementById("dob").value;
+  let tob=document.getElementById("tob").value;
+  let place=document.getElementById("place").value;
 
-      <div class="btn-row">
-        <button class="btn btn-primary" onclick="generateKundli()">Generate Kundli</button>
-        <button class="btn btn-ghost" onclick="resetForm()">Reset</button>
-      </div>
+  if(!dob||!tob||!place){
+    alert("Please fill all details");
+    return;
+  }
 
-      <div class="note">
-    
-      </div>
+  let rashi=["मेष (Aries)","वृषभ (Taurus)","मिथुन (Gemini)","कर्क (Cancer)","सिंह (Leo)","कन्या (Virgo)","तुला (Libra)","वृश्चिक (Scorpio)","धनु (Sagittarius)","मकर (Capricorn)","कुंभ (Aquarius)","मीन (Pisces)"];
 
-      <div class="result" id="resultBox">
-        <h3 style="margin:0;color:var(--gold2);">Your Kundli Result</h3>
+  let random=rashi[Math.floor(Math.random()*12)];
 
-        <div class="result-grid">
-          <div class="stat"><div class="k">Name</div><div class="v" id="rName">—</div></div>
-          <div class="stat"><div class="k">Rashi</div><div class="v" id="rRashi">—</div></div>
-          <div class="stat"><div class="k">Lagna</div><div class="v" id="rLagna">—</div></div>
-          <div class="stat"><div class="k">Nakshatra</div><div class="v" id="rNakshatra">—</div></div>
-        </div>
+  document.getElementById("result").innerHTML=`
+    <h3>🔮 आपकी कुंडली | Your Kundli</h3>
+    <p>नाम / Name: ${name}</p>
+    <p>जन्म तिथि / DOB: ${dob}</p>
+    <p>समय / Time: ${tob}</p>
+    <p>स्थान / Place: ${place}</p>
+    <p>राशि / Rashi: ${random}</p>
+    <p>👉 पूरी कुंडली के लिए कॉल करें / Contact for full report</p>
+  `;
+}
+</script>
 
-        <div class="chart-wrap">
-          <div class="chart">
-            <h3 style="margin-top:0;color:#fff;">Birth Details</h3>
-            <div id="detailList" style="color:#ddd;line-height:1.9;font-size:15px;"></div>
-          </div>
-
-          <div class="chart">
-            <h3 style="margin-top:0;color:#fff;">Kundli Chart</h3>
-            <div class="diamond">
-              <div class="cell c1">ASC</div>
-              <div class="cell c2" id="c2">Sun</div>
-              <div class="cell c3" id="c3">Moon</div>
-              <div class="cell c4" id="c4">Mars</div>
-              <div class="cell c5" id="c5">Mercury</div>
-              <div class="cell c6" id="c6">Jupiter</div>
-              <div class="cell c7" id="c7">Venus</div>
-              <div class="cell c8" id="c8">Saturn</div>
-              <div class="cell c9" id="c9">Rahu / Ketu</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="note" id="generatedNote"></div>
-      </div>
-    </div>
-
-    <div class="card section" id="about" style="margin-top:24px;">
-      <div class="section-title">
-        <h2>About</h2>
-        <span>For your astrology website</span>
-      </div>
-      <p style="margin:0;color:var(--muted);line-height:1.8;">
-      
-      </p>
-    </div>
-
-    <div class="card section" id="contact" style="margin-top:24px;">
-      <div class="section-title">
-        <h2>Contact</h2>
-        <span>Update this section later</span>
-      </div>
-      <p style="margin:0;color:var(--muted);line-height:1.8;">
-        Yahan aap WhatsApp, call button, ya consultation form add kar sakte ho.
-      </p>
-    </div>
-
-    <div class="footer">
-      © <span id="year"></span> Astro Sanjog
-    </div>
-  </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const rashis = [
-      "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
-      "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
-    ];
-
-    const nakshatras = [
-      "Ashwini", "Bharani", "Krittika", "Rohini", "Mrigashirsha",
-      "Ardra", "Punarvasu", "Pushya", "Ashlesha", "Magha",
-      "Purva Phalguni", "Uttara Phalguni", "Hasta", "Chitra",
-      "Swati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
-      "Purva Ashadha", "Uttara Ashadha", "Shravana", "Dhanishta",
-      "Shatabhisha", "Purva Bhadrapada", "Uttara Bhadrapada", "Revati"
-    ];
-
-    const lagnas = [
-      "Aries Lagna", "Taurus Lagna", "Gemini Lagna", "Cancer Lagna", "Leo Lagna", "Virgo Lagna",
-      "Libra Lagna", "Scorpio Lagna", "Sagittarius Lagna", "Capricorn Lagna", "Aquarius Lagna", "Pisces Lagna"
-    ];
-
-    function hashString(str){
-      let h = 0;
-      for(let i = 0; i < str.length; i++){
-        h = (h * 31 + str.charCodeAt(i)) >>> 0;
-      }
-      return h;
-    }
-
-    function pick(arr, seed){
-      return arr[seed % arr.length];
-    }
-
-    function generateKundli(){
-      const name = document.getElementById("name").value.trim();
-      const gender = document.getElementById("gender").value;
-      const dob = document.getElementById("dob").value;
-      const tob = document.getElementById("tob").value;
-      const place = document.getElementById("place").value.trim();
-      const note = document.getElementById("note").value.trim();
-
-      if(!dob || !tob || !place){
-        alert("Please fill Date of Birth, Time of Birth and Place of Birth.");
-        return;
-      }
-
-      const seed = hashString(`${name}|${gender}|${dob}|${tob}|${place}`);
-      const rashi = pick(rashis, seed);
-      const lagna = pick(lagnas, seed >> 1);
-      const nakshatra = pick(nakshatras, seed >> 2);
-
-      document.getElementById("rName").textContent = name || "Guest";
-      document.getElementById("rRashi").textContent = rashi;
-      document.getElementById("rLagna").textContent = lagna;
-      document.getElementById("rNakshatra").textContent = nakshatra;
-
-      document.getElementById("detailList").innerHTML = `
-        <div><b>Name:</b> ${name || "Guest"}</div>
-        <div><b>Gender:</b> ${gender}</div>
-        <div><b>Date of Birth:</b> ${dob}</div>
-        <div><b>Time of Birth:</b> ${tob}</div>
-        <div><b>Place of Birth:</b> ${place}</div>
-        <div><b>Note:</b> ${note || "—"}</div>
-      `;
-
-      document.getElementById("generatedNote").innerHTML = `
-        Kundli successfully generated. Yeh demo-based output hai. Real planetary calculation add karne ke liye next version me ephemeris/API connect ki ja sakti hai.
-      `;
-
-      document.getElementById("resultBox").style.display = "block";
-      document.getElementById("resultBox").scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-
-    function resetForm(){
-      document.getElementById("name").value = "";
-      document.getElementById("gender").value = "Male";
-      document.getElementById("dob").value = "";
-      document.getElementById("tob").value = "";
-      document.getElementById("place").value = "";
-      document.getElementById("note").value = "";
-      document.getElementById("resultBox").style.display = "none";
-    }
-  </script>
 </body>
 </html>
