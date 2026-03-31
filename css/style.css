@@ -1,81 +1,49 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astro Sanjog | Real Kundli</title>
+
+<style>
 body{
   margin:0;
   font-family: Arial;
-  background:#0b0b0b;
+  background:#050505;
   color:#fff;
 }
 
-/* NAVBAR */
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  padding:15px 30px;
+/* HEADER */
+header{
   background:#111;
+  padding:20px;
+  text-align:center;
 }
 
-.navbar a{
-  color:#fff;
-  margin:0 10px;
-  text-decoration:none;
-}
-
-.logo{
-  font-weight:bold;
+header h1{
+  color:gold;
 }
 
 /* HERO */
 .hero{
   display:flex;
-  align-items:center;
   justify-content:space-around;
-  padding:50px;
-  background:linear-gradient(#000,#111);
+  align-items:center;
+  padding:40px;
 }
 
-.hero-text h1{
-  font-size:40px;
-  color:gold;
-}
-
-.sub{
-  color:#ccc;
-}
-
-.contact{
-  margin-top:10px;
-  color:gold;
-}
-
-.hero-img img{
-  width:250px;
+.hero img{
+  width:220px;
   border-radius:10px;
 }
 
-/* SERVICES */
-.services{
-  padding:40px;
-  text-align:center;
-}
-
-.service-box{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-}
-
-.service-box div{
-  background:#111;
-  padding:15px;
-  border-left:4px solid gold;
-}
-
-/* KUNDLI */
+/* FORM */
 .kundli{
-  padding:40px;
   text-align:center;
+  padding:30px;
 }
 
-.kundli input{
+input{
   display:block;
   margin:10px auto;
   padding:10px;
@@ -89,26 +57,16 @@ button{
   cursor:pointer;
 }
 
-#result{
-  margin-top:20px;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:20px;
-  background:#111;
-}
-.result-box{
+/* RESULT */
+.result{
   margin-top:20px;
   background:#111;
   padding:20px;
-  border-radius:10px;
 }
 
-.kundli-chart{
+/* CHART */
+.chart{
   margin-top:30px;
-  text-align:center;
 }
 
 .diamond{
@@ -128,3 +86,101 @@ footer{
   justify-content:center;
   transform:rotate(-45deg);
 }
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <h1>🔮 आचार्य पंडित संजय जी</h1>
+  <p>📞 9929806534 / 9950502961</p>
+</header>
+
+<section class="hero">
+  <div>
+    <h2>Real Kundli Generator</h2>
+    <p>Enter details to generate kundli</p>
+  </div>
+  <img src="images/AcharyaPanditSanjayJi.png">
+</section>
+
+<section class="kundli">
+  <input type="text" id="name" placeholder="नाम / Name">
+  <input type="date" id="dob">
+  <input type="time" id="tob">
+  <input type="text" id="place" placeholder="Place">
+
+  <button onclick="generateKundli()">Generate Kundli</button>
+
+  <div id="result" class="result"></div>
+
+  <div id="chart" class="chart" style="display:none;">
+    <h3>Kundli Chart</h3>
+    <div class="diamond">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+      <div class="box">4</div>
+      <div class="box">5</div>
+      <div class="box">6</div>
+      <div class="box">7</div>
+      <div class="box">8</div>
+      <div class="box">9</div>
+      <div class="box">10</div>
+      <div class="box">11</div>
+      <div class="box">12</div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+
+function getSeed(dob, tob){
+  let str = dob + tob;
+  let sum = 0;
+  for(let i=0;i<str.length;i++){
+    sum += str.charCodeAt(i);
+  }
+  return sum;
+}
+
+function generateKundli(){
+
+  let name=document.getElementById("name").value;
+  let dob=document.getElementById("dob").value;
+  let tob=document.getElementById("tob").value;
+  let place=document.getElementById("place").value;
+
+  if(!dob||!tob||!place){
+    alert("Fill all details");
+    return;
+  }
+
+  let seed = getSeed(dob, tob);
+
+  let rashis=["मेष","वृषभ","मिथुन","कर्क","सिंह","कन्या","तुला","वृश्चिक","धनु","मकर","कुंभ","मीन"];
+  let nakshatra=["अश्विनी","भरणी","कृत्तिका","रोहिणी","मृगशीर्ष","आर्द्रा","पुनर्वसु","पुष्य","आश्लेषा","मघा"];
+
+  let rashi = rashis[seed % 12];
+  let lagna = rashis[(seed+3) % 12];
+  let nak = nakshatra[seed % nakshatra.length];
+
+  document.getElementById("result").innerHTML=`
+    <h3>🔮 आपकी कुंडली</h3>
+    <p>नाम: ${name}</p>
+    <p>राशि: ${rashi}</p>
+    <p>लग्न: ${lagna}</p>
+    <p>नक्षत्र: ${nak}</p>
+    <p>👉 पूरी कुंडली के लिए WhatsApp करें</p>
+    <a href="https://wa.me/919929806534">📲 WhatsApp</a>
+  `;
+
+  document.getElementById("chart").style.display="block";
+}
+
+</script>
+
+</body>
+</html>
