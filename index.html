@@ -1,99 +1,58 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Astro Sanjog | Acharya Pandit Sanjay Ji</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astro Sanjog | Acharya Pandit Sanjay Ji</title>
 
-<style>
-body{
-  margin:0;
-  font-family: Arial;
-  background:#000;
-  color:#fff;
-}
-
-header{
-  background:yellow;
-  color:#000;
-  padding:20px;
-  text-align:center;
-}
-
-header h1{
-  margin:0;
-  font-size:32px;
-}
-
-header p{
-  margin:5px 0;
-  font-weight:bold;
-}
-
-.container{
-  padding:20px;
-}
-
-.section{
-  margin:30px 0;
-  padding:20px;
-  background:#111;
-  border-radius:10px;
-}
-
-input{
-  width:100%;
-  padding:10px;
-  margin:10px 0;
-}
-
-button{
-  padding:10px 20px;
-  background:gold;
-  border:none;
-  cursor:pointer;
-}
-
-.service{
-  background:#222;
-  padding:10px;
-  margin:10px 0;
-  border-left:5px solid gold;
-}
-
-.result{
-  margin-top:20px;
-  background:#222;
-  padding:15px;
-}
-</style>
+  <!-- CSS LINK -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<header>
-  <h1>आचार्य पंडित संजय जी</h1>
-  <p>Acharya Pandit Sanjay Ji</p>
-  <p>📞 9929806534 / 9950502961</p>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">🔮 Astro Sanjog</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="horoscope.html">Horoscope</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
 
-<div class="container">
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>आचार्य पंडित संजय जी</h1>
+    <p>Acharya Pandit Sanjay Ji</p>
+    <p class="sub">हस्त रेखा | फेस रीडिंग | जन्म कुंडली</p>
+
+    <p class="contact">📞 9929806534 / 9950502961</p>
+  </div>
+
+  <div class="hero-img">
+    <img src="images/AcharyaPanditSanjayJi.png">
+  </div>
+</section>
 
 <!-- SERVICES -->
-<div class="section">
+<section class="services">
   <h2>🔮 हमारी सेवाएं | Our Services</h2>
 
-  <div class="service">नजर दोष / Evil Eye Solution</div>
-  <div class="service">व्यापार में रुकावट / Business Problems</div>
-  <div class="service">प्रेम / विवाह समस्या / Love & Marriage</div>
-  <div class="service">डर / घबराहट / Anxiety Problems</div>
-  <div class="service">पितृ दोष / टोटका / Pitra Dosh</div>
-  <div class="service">नौकरी / विदेश यात्रा / Job & विदेश</div>
-
-</div>
+  <div class="service-box">
+    <div>👁️ नजर दोष / Evil Eye</div>
+    <div>💼 व्यापार रुकावट / Business Problem</div>
+    <div>❤️ प्रेम विवाह / Love Marriage</div>
+    <div>😰 डर घबराहट / Anxiety</div>
+    <div>🧿 पितृ दोष / Pitra Dosh</div>
+    <div>✈️ नौकरी विदेश / Job & Abroad</div>
+  </div>
+</section>
 
 <!-- KUNDLI -->
-<div class="section">
+<section class="kundli">
   <h2>🔮 कुंडली बनाएं | Generate Kundli</h2>
 
   <input type="text" id="name" placeholder="नाम / Name">
@@ -103,10 +62,13 @@ button{
 
   <button onclick="generateKundli()">Generate Kundli</button>
 
-  <div id="result" class="result"></div>
-</div>
+  <div id="result"></div>
+</section>
 
-</div>
+<!-- FOOTER -->
+<footer>
+  <p>© Astro Sanjog</p>
+</footer>
 
 <script>
 function generateKundli(){
@@ -120,18 +82,15 @@ function generateKundli(){
     return;
   }
 
-  let rashi=["मेष (Aries)","वृषभ (Taurus)","मिथुन (Gemini)","कर्क (Cancer)","सिंह (Leo)","कन्या (Virgo)","तुला (Libra)","वृश्चिक (Scorpio)","धनु (Sagittarius)","मकर (Capricorn)","कुंभ (Aquarius)","मीन (Pisces)"];
+  let rashi=["मेष (Aries)","वृषभ (Taurus)","मिथुन","कर्क","सिंह","कन्या","तुला","वृश्चिक","धनु","मकर","कुंभ","मीन"];
 
   let random=rashi[Math.floor(Math.random()*12)];
 
   document.getElementById("result").innerHTML=`
-    <h3>🔮 आपकी कुंडली | Your Kundli</h3>
-    <p>नाम / Name: ${name}</p>
-    <p>जन्म तिथि / DOB: ${dob}</p>
-    <p>समय / Time: ${tob}</p>
-    <p>स्थान / Place: ${place}</p>
-    <p>राशि / Rashi: ${random}</p>
-    <p>👉 पूरी कुंडली के लिए कॉल करें / Contact for full report</p>
+    <h3>🔮 आपकी कुंडली</h3>
+    <p>नाम: ${name}</p>
+    <p>राशि: ${random}</p>
+    <p>👉 पूरी कुंडली के लिए संपर्क करें</p>
   `;
 }
 </script>
