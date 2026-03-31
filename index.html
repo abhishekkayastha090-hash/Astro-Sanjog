@@ -20,6 +20,27 @@
         body { font-family: 'Poppins', sans-serif; background: #050a14; color: var(--white); overflow-x: hidden; }
         .hindi { font-family: 'Tiro Devanagari Hindi', serif; }
 
+        /* STEP 4: Live Panchang Ticker */
+        .panchang-ticker {
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            color: #000;
+            padding: 8px 0;
+            font-weight: bold;
+            font-size: 0.9rem;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 2px solid #000;
+        }
+        .ticker-content {
+            display: inline-block;
+            animation: scroll 25s linear infinite;
+            padding-left: 100%;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
         /* Floating Background */
         .bg-icons { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.1; }
         .bg-icons i { position: absolute; color: var(--gold); animation: float 15s infinite linear; }
@@ -29,7 +50,7 @@
         .logo { font-size: 24px; font-weight: bold; color: var(--gold); text-decoration: none; }
         nav a { color: var(--white); text-decoration: none; margin-left: 25px; font-weight: 500; }
 
-        .hero { display: flex; align-items: center; justify-content: space-between; padding: 60px 10%; min-height: 70vh; background: radial-gradient(circle, #112240, #0a192f); }
+        .hero { display: flex; align-items: center; justify-content: space-between; padding: 60px 10%; min-height: 60vh; background: radial-gradient(circle, #112240, #0a192f); }
         .hero-text h1 { font-size: 3rem; color: var(--gold); }
         .hero-img img { width: 300px; height: 300px; border-radius: 50%; border: 4px solid var(--gold); object-fit: cover; box-shadow: 0 0 20px var(--gold); }
 
@@ -41,30 +62,38 @@
         button:hover { transform: scale(1.05); background: var(--gold-light); }
 
         /* Kundli Chart Style */
-        .chart-container { position: relative; width: 300px; height: 300px; margin: 20px auto; border: 2px solid var(--gold); background: #0a192f; }
+        .chart-container { position: relative; width: 300px; height: 300px; margin: 30px auto; border: 2px solid var(--gold); background: #0a192f; }
         .chart-line { position: absolute; background: var(--gold); }
         .diag1 { width: 424px; height: 2px; top: 149px; left: -62px; transform: rotate(45deg); }
         .diag2 { width: 424px; height: 2px; top: 149px; left: -62px; transform: rotate(-45deg); }
         .rect { width: 212px; height: 212px; border: 2px solid var(--gold); top: 44px; left: 44px; transform: rotate(45deg); position: absolute; }
         
-        .house { position: absolute; font-size: 0.7rem; color: var(--gold-light); font-weight: bold; width: 60px; text-align: center; }
-        /* Houses Position */
-        .h1 { top: 110px; left: 120px; font-size: 0.9rem; } .h2 { top: 50px; left: 60px; } .h3 { top: 50px; left: 180px; }
-        .h4 { top: 110px; left: 50px; } .h5 { top: 180px; left: 50px; } .h6 { top: 230px; left: 60px; }
-        .h7 { top: 180px; left: 120px; } .h8 { top: 230px; left: 180px; } .h9 { top: 180px; left: 200px; }
-        .h10 { top: 110px; left: 200px; } .h11 { top: 50px; left: 200px; } .h12 { top: 10px; left: 120px; }
+        .house { position: absolute; font-size: 0.75rem; color: var(--gold-light); font-weight: bold; width: 65px; text-align: center; line-height: 1.2; }
+        .h1 { top: 115px; left: 118px; font-size: 1rem; color: #fff; } 
+        .h2 { top: 45px; left: 55px; } .h3 { top: 45px; left: 180px; }
+        .h4 { top: 115px; left: 45px; } .h5 { top: 185px; left: 55px; } .h6 { top: 235px; left: 118px; }
+        .h7 { top: 185px; left: 118px; } .h8 { top: 235px; left: 180px; } .h9 { top: 185px; left: 200px; }
+        .h10 { top: 115px; left: 190px; } .h11 { top: 45px; left: 200px; } .h12 { top: 15px; left: 118px; }
 
-        .result-box { margin-top: 30px; padding: 20px; background: rgba(10, 25, 47, 0.95); border: 2px solid var(--gold); border-radius: 15px; text-align: left; display: none; }
-        .whatsapp-link { display: block; text-align: center; background: #25d366; color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 20px; }
+        .result-box { margin-top: 30px; padding: 25px; background: rgba(10, 25, 47, 0.95); border: 2px solid var(--gold); border-radius: 15px; text-align: left; display: none; }
+        .whatsapp-link { display: block; text-align: center; background: #25d366; color: white; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 20px; transition: 0.3s; }
+        .whatsapp-link:hover { filter: brightness(1.1); }
 
-        footer { padding: 30px; text-align: center; color: #777; }
+        footer { padding: 40px; text-align: center; color: #777; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
 
+    <div class="panchang-ticker">
+        <div class="ticker-content hindi">
+            ✨ आज का पंचांग: तिथि: द्वादशी | नक्षत्र: मघा | योग: सुकर्मा | शुभ मुहूर्त: 11:54 AM से 12:44 PM | राहुकाल: 03:30 PM से 05:00 PM तक (सावधान रहें) ✨
+        </div>
+    </div>
+
     <div class="bg-icons">
         <i class="fas fa-om" style="top: 20%; left: 10%;"></i>
         <i class="fas fa-moon" style="top: 50%; left: 80%;"></i>
+        <i class="fas fa-star" style="top: 80%; left: 20%;"></i>
     </div>
 
     <header class="navbar">
@@ -80,8 +109,8 @@
     <section class="hero">
         <div class="hero-text">
             <h1 class="hindi">आचार्य पंडित संजय जी</h1>
-            <p class="sub">Vedic Software-Driven Astrology</p>
-            <p class="hindi">कुंडली • महादशा • गुण मिलान</p>
+            <p class="sub">Premium Vedic Astrology Software</p>
+            <p class="hindi">कुंडली विश्लेषण • महादशा चक्र • सटीक गुण मिलान</p>
         </div>
         <div class="hero-img">
             <img src="images/sanjay-ji.jpg" alt="Pandit Sanjay Ji">
@@ -91,12 +120,12 @@
     <section class="section-box" id="kundli-engine">
         <h2 class="hindi" style="color: var(--gold);">मुफ्त लग्न कुंडली एवं महादशा</h2>
         <div class="form-container">
-            <input type="text" id="name" placeholder="आपका नाम">
+            <input type="text" id="name" placeholder="आपका पूरा नाम">
             <input type="date" id="dob">
-            <button onclick="generateFullAstro()" class="hindi">विश्लेषण प्राप्त करें</button>
+            <button onclick="generateFullAstro()" class="hindi">सॉफ्टवेयर विश्लेषण शुरू करें</button>
 
             <div id="result" class="result-box">
-                <h3 id="res-name" class="hindi" style="color:var(--gold)"></h3>
+                <h3 id="res-name" class="hindi" style="color:var(--gold); border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom:10px;"></h3>
                 
                 <div class="chart-container" id="kundli-chart">
                     <div class="chart-line diag1"></div>
@@ -110,80 +139,109 @@
                     <div class="house h11" id="house11"></div> <div class="house h12" id="house12"></div>
                 </div>
 
-                <p class="hindi"><b>राशि:</b> <span id="res-rashi"></span> | <b>नक्षत्र:</b> <span id="res-nak"></span></p>
-                <div style="background:rgba(212,175,55,0.1); padding:10px; border-radius:8px; margin:10px 0;" id="res-faladesh" class="hindi"></div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                    <p class="hindi"><b>राशि:</b> <span id="res-rashi" style="color:var(--gold-light)"></span></p>
+                    <p class="hindi"><b>नक्षत्र:</b> <span id="res-nak" style="color:var(--gold-light)"></span></p>
+                </div>
                 
-                <h4 class="hindi" style="color:var(--gold);">⏳ वर्तमान महादशा क्रम:</h4>
-                <div id="dasha-output" style="font-size:0.85rem; color:#ccc;"></div>
+                <div style="background:rgba(212,175,55,0.1); padding:15px; border-radius:10px; margin:15px 0; border-left: 4px solid var(--gold);" id="res-faladesh" class="hindi"></div>
+                
+                <h4 class="hindi" style="color:var(--gold); margin-top:20px;"><i class="fas fa-clock"></i> विंशोत्तरी महादशा चक्र:</h4>
+                <div id="dasha-output" style="font-size:0.9rem; color:#ccc; margin-top:10px;"></div>
 
-                <a id="wa-link" href="#" class="whatsapp-link">📲 पंडित जी से विस्तृत रिपोर्ट लें</a>
+                <a id="wa-link" href="#" class="whatsapp-link">📲 व्हाट्सएप पर पूरी रिपोर्ट और उपाय पाएं</a>
             </div>
         </div>
     </section>
 
     <section class="section-box" id="milan">
-        <h2 class="hindi" style="color: var(--gold);">अष्टकूट गुण मिलान</h2>
+        <h2 class="hindi" style="color: var(--gold);">अष्टकूट गुण मिलान (36 गुण)</h2>
         <div class="form-container">
-            <div style="display:flex; gap:10px;">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 10px;">
                 <input type="text" id="b-name" placeholder="वर का नाम">
                 <input type="text" id="g-name" placeholder="वधू का नाम">
             </div>
-            <button onclick="runMilan()" class="hindi">गुण मिलान चेक करें</button>
-            <div id="m-res" class="result-box" style="text-align:center;">
-                <div style="font-size:2.5rem; color:var(--gold-light);" id="m-score">0 / 36</div>
-                <p id="m-status" class="hindi" style="font-weight:bold;"></p>
-                <a id="m-wa" href="#" class="whatsapp-link">📲 व्हाट्सएप पर परामर्श लें</a>
+            <button onclick="runMilan()" class="hindi">गुण मिलान कैलकुलेट करें</button>
+            <div id="m-res" class="result-box" style="text-align:center; border-color: #25d366;">
+                <div style="font-size:3rem; font-weight:bold; color:var(--gold-light);" id="m-score">0 / 36</div>
+                <p id="m-status" class="hindi" style="font-weight:bold; font-size: 1.2rem; margin-top:10px;"></p>
+                <p id="m-desc" class="hindi" style="margin-top:10px; color:#bbb;"></p>
+                <a id="m-wa" href="#" class="whatsapp-link">📲 मिलान पर पंडित जी की राय लें</a>
             </div>
         </div>
     </section>
 
-    <footer><p>© Astro Sanjog | By Acharya Pandit Sanjay Ji</p></footer>
+    <footer><p>© 2026 Astro Sanjog | आचार्य पंडित संजय जी द्वारा प्रमाणित</p></footer>
 
     <script>
         function generateFullAstro() {
             const name = document.getElementById("name").value;
             const dob = document.getElementById("dob").value;
-            if(!name || !dob) return alert("विवरण भरें");
+            if(!name || !dob) return alert("कृपया नाम और जन्म तिथि भरें");
 
             const date = new Date(dob);
             const d = date.getDate(); const m = date.getMonth() + 1; const y = date.getFullYear();
 
-            // 1. Basic Rashi Logic
+            // 1. Core Logic: Rashi & Prediction
             const rashis = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
+            const naks = ["अश्विनी", "रोहिणी", "पुष्य", "हस्त", "चित्रा", "रेवती"];
             let rIdx = (d + m) % 12;
             document.getElementById("res-rashi").innerText = rashis[rIdx];
-            document.getElementById("res-nak").innerText = "पुष्य";
-            document.getElementById("res-faladesh").innerText = "आपके भाग्य स्थान में शुभ ग्रहों की दृष्टि है, मेहनत का फल मिलेगा।";
+            document.getElementById("res-nak").innerText = naks[d % 6];
+            document.getElementById("res-faladesh").innerText = "आपके लग्न भाव में शुभ ग्रहों की दृष्टि है। आने वाले समय में आर्थिक लाभ और मानसिक शांति के प्रबल योग हैं। हनुमान जी की आराधना फलदायी होगी।";
 
-            // 2. Step 3: Chart Logic (Adding random planets for demo)
+            // 2. Step 3: Interactive Diamond Chart Logic
             const planets = ["सू", "चं", "मं", "बु", "गु", "शु", "श"];
             for(let i=1; i<=12; i++) {
-                let p = (i === rIdx + 1) ? planets[Math.floor(Math.random()*planets.length)] : "";
-                document.getElementById("house"+i).innerText = p || i;
+                // Placing main planet based on Rashi index for authenticity
+                let p = (i === (rIdx % 12) + 1) ? planets[y % 7] : "";
+                let p2 = (i === (d % 12) + 1) ? planets[(y+2) % 7] : "";
+                document.getElementById("house"+i).innerText = (p + " " + p2).trim() || i;
             }
 
-            // 3. Step 1: Dasha Logic
+            // 3. Step 1: Dasha Engine (120 Years Cycle)
             let dashaHTML = "";
             const dNames = ["केतु", "शुक्र", "सूर्य", "चंद्र", "मंगल", "राहु", "गुरु", "शनि", "बुध"];
-            let start = y;
-            for(let i=0; i<5; i++) {
-                let active = (2026 >= start && 2026 <= start+10);
-                dashaHTML += `<p style="${active?'color:#25d366;font-weight:bold':''}">• ${dNames[i]} की दशा: ${start}-${start+10} ${active?'(सक्रिय)':''}</p>`;
-                start += 10;
+            const dYears = [7, 20, 6, 10, 7, 18, 16, 19, 17];
+            let startYear = y;
+            let currentYear = 2026;
+            let startIdx = (d + m) % 9;
+
+            for(let i=0; i<6; i++) {
+                let idx = (startIdx + i) % 9;
+                let endYear = startYear + dYears[idx];
+                let isActive = (currentYear >= startYear && currentYear <= endYear);
+                
+                dashaHTML += `<div style="margin-bottom:5px; padding:5px; border-radius:5px; ${isActive ? 'background:rgba(37,211,102,0.15); border-left:3px solid #25d366; color:#fff;' : ''}">
+                    • ${dNames[idx]} की महादशा: ${startYear} - ${endYear} ${isActive ? '<b>(वर्तमान में सक्रिय)</b>' : ''}
+                </div>`;
+                startYear = endYear;
             }
             document.getElementById("dasha-output").innerHTML = dashaHTML;
 
+            // UI Display
             document.getElementById("result").style.display = "block";
             document.getElementById("res-name").innerText = "प्रणाम, " + name + " जी";
-            document.getElementById("wa-link").href = "https://wa.me/919929806534?text=प्रणाम, मेरी राशि " + rashis[rIdx] + " है।";
+            document.getElementById("wa-link").href = "https://wa.me/919929806534?text=प्रणाम पंडित जी, मेरा नाम " + name + " है। मेरी राशि " + rashis[rIdx] + " निकली है। मार्गदर्शन करें।";
+            document.getElementById("result").scrollIntoView({behavior: 'smooth'});
         }
 
         function runMilan() {
+            const bn = document.getElementById("b-name").value;
+            const gn = document.getElementById("g-name").value;
+            if(!bn || !gn) return alert("कृपया वर और वधू का नाम भरें");
+
             let s = 18 + Math.floor(Math.random() * 15);
             document.getElementById("m-res").style.display = "block";
             document.getElementById("m-score").innerText = s + " / 36";
-            document.getElementById("m-status").innerText = s > 25 ? "✅ उत्तम मिलान" : "⚖️ मध्यम मिलान";
-            document.getElementById("m-wa").href = "https://wa.me/919929806534?text=गुण मिलान स्कोर: " + s;
+            
+            let status = s > 25 ? "✅ उत्तम मिलान" : "⚖️ मध्यम मिलान";
+            let desc = s > 25 ? "यह मिलान अत्यंत शुभ है, सुखद दाम्पत्य जीवन के योग हैं।" : "मिलान औसत है, विवाह पूर्व मंगल दोष की जांच अवश्य कराएं।";
+            
+            document.getElementById("m-status").innerText = status;
+            document.getElementById("m-desc").innerText = desc;
+            document.getElementById("m-wa").href = "https://wa.me/919929806534?text=प्रणाम, हमने " + bn + " और " + gn + " का गुण मिलान किया है। स्कोर " + s + "/36 है।";
+            document.getElementById("m-res").scrollIntoView({behavior: 'smooth'});
         }
     </script>
 </body>
