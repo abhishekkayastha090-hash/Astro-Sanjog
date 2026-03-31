@@ -1,60 +1,227 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <title>About - ASTRO SANJOG</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | आचार्य पंडित संजय जी</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark-blue: #0a192f;
+            --deep-red: #8b0000;
+            --light-bg: #fdfcf0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .hindi-font {
+            font-family: 'Tiro Devanagari Hindi', serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.8)), url('https://images.unsplash.com/photo-1509424883041-381104d41e79?auto=format&fit=crop&q=80') center/cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            border-bottom: 5px solid var(--gold);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: -50px auto 50px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Intro Section */
+        .intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .intro h2 {
+            color: var(--deep-red);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            transition: 0.3s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .service-card h3 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Specialities Area */
+        .speciality-tag {
+            display: inline-block;
+            background: var(--light-bg);
+            color: var(--deep-red);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: 600;
+            border: 1px solid var(--gold);
+        }
+
+        /* Contact Section */
+        .contact-box {
+            background: var(--dark-blue);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .contact-box h2 {
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .phone-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            display: block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .phone-link:hover {
+            color: var(--gold);
+        }
+
+        /* Footer Decoration */
+        .decoration {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--gold);
+            margin: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container { margin: -30px 15px 30px; padding: 20px; }
+            .hero h1 { font-size: 2rem; }
+            .intro h2 { font-size: 1.8rem; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>About Me</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <h2>Astrology Expertise</h2>
-    <p>About Acharya Pandit Sanjay Ji
-आचार्य पंडित संजय जी ज्योतिष और आध्यात्मिक मार्गदर्शन की दुनिया में एक प्रतिष्ठित नाम हैं। वर्षों के गहन अध्ययन और साधना के माध्यम से, उन्होंने मानव जीवन की जटिल समस्याओं को सुलझाने और लोगों को सही मार्ग दिखाने में विशेषज्ञता हासिल की है। जयपुर, राजस्थान से संचालित होने वाली उनकी सेवाएँ न केवल स्थानीय बल्कि दूर-दराज के क्षेत्रों में भी लोगों के जीवन में सकारात्मक बदलाव ला रही हैं।
+    <section class="hero">
+        <div class="hindi-font">
+            <h1>आचार्य पंडित संजय जी</h1>
+            <p>वैदिक ज्योतिष एवं आध्यात्मिक समाधान</p>
+        </div>
+    </section>
 
-हमारी विशेषज्ञता और सेवाएँ
-पंडित जी प्राचीन वैदिक ज्ञान और आधुनिक विश्लेषण का अनूठा संगम प्रस्तुत करते हैं। उनकी विशेषज्ञता के प्रमुख क्षेत्रों में शामिल हैं:
+    <div class="container">
+        <section class="intro">
+            <h2 class="hindi-font">विश्वसनीय ज्योतिषीय मार्गदर्शन</h2>
+            <p class="hindi-font">
+                जयपुर की पावन धरा से संचालित, आचार्य पंडित संजय जी पिछले कई वर्षों से लोगों के जीवन की जटिल समस्याओं का समाधान 
+                प्राचीन वैदिक विद्याओं के माध्यम से कर रहे हैं। हमारा उद्देश्य आपके जीवन से अंधकार को मिटाकर सफलता का प्रकाश फैलाना है।
+            </p>
+        </section>
 
-हस्तरेखा और मस्तक रेखा विश्लेषण: आपकी हथेलियों और ललाट की रेखाओं के सूक्ष्म अध्ययन द्वारा आपके भूत, वर्तमान और भविष्य का सटीक विवरण।
+        <div class="decoration">ॐ</div>
 
-फेस रीडिंग (मुख आकृति विज्ञान): चेहरे के हाव-भाव और बनावट के आधार पर व्यक्ति के स्वभाव और आने वाली चुनौतियों का विश्लेषण।
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 class="hindi-font">विशेषज्ञता (Expertise)</h3>
+                <p class="hindi-font">
+                    हम <b>हस्त रेखा</b>, <b>मस्तक रेखा</b>, और <b>फेस रीडिंग</b> के माध्यम से आपके व्यक्तित्व और भविष्य का सटीक विश्लेषण करते हैं। 
+                    इसके साथ ही जन्म कुंडली का गहन अवलोकन कर ग्रहों के अशुभ प्रभाव को शांत करने का मार्गदर्शन देते हैं।
+                </p>
+            </div>
 
-जन्म कुंडली अवलोकन: आपकी जन्मपत्री का गहराई से विश्लेषण करके ग्रहों की स्थिति के अनुसार उचित मार्गदर्शन और दोष निवारण।
+            <div class="service-card">
+                <h3 class="hindi-font">समस्या निवारण</h3>
+                <div style="margin-top: 15px;">
+                    <span class="speciality-tag">नजर दोष</span>
+                    <span class="speciality-tag">व्यापार घाटा</span>
+                    <span class="speciality-tag">विवाह में देरी</span>
+                    <span class="speciality-tag">पितृ दोष</span>
+                    <span class="speciality-tag">नौकरी बाधा</span>
+                    <span class="speciality-tag">विदेश यात्रा</span>
+                </div>
+            </div>
+        </div>
 
-विशिष्ट समस्याओं का समाधान
-हम जीवन के विभिन्न पहलुओं से जुड़ी बाधाओं के लिए विशेष उपाय, यंत्र और ताबीज प्रदान करते हैं:
+        <div style="margin-top: 50px;" class="hindi-font">
+            <h3 style="color: var(--deep-red); border-left: 5px solid var(--gold); padding-left: 15px;">सिद्ध उपाय और यंत्र</h3>
+            <p>
+                यदि आप बार-बार डर लगना, घबराहट, बेचैनी या किसी अज्ञात वहम से परेशान हैं, तो हमारे यहाँ विशेष रूप से सिद्ध किए गए 
+                <b>यंत्र और ताबीज</b> तैयार किए जाते हैं। व्यापार में आ रही रुकावटों को दूर करने और लक्ष्मी कृपा प्राप्त करने के लिए 
+                हम शास्त्रों के अनुसार सटीक अनुष्ठान और उपाय सुझाते हैं।
+            </p>
+        </div>
 
-नजर दोष और सुरक्षा: यदि आप या आपका परिवार बुरी नजर (नजर लगना) से प्रभावित है, तो हम सुरक्षा के लिए विशेष ताबीज और असरदार उपाय प्रदान करते हैं।
+        <section class="contact-box">
+            <h2 class="hindi-font">आज ही परामर्श लें</h2>
+            <p class="hindi-font">अपनी समस्याओं के समाधान के लिए नीचे दिए गए नंबरों पर संपर्क करें:</p>
+            <a href="tel:+919929806534" class="phone-link">📞 +91 9929806534</a>
+            <a href="tel:+919950502961" class="phone-link">📞 +91 9950502961</a>
+            <p class="hindi-font" style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">स्थान: जयपुर, राजस्थान</p>
+        </section>
 
-व्यापार और करियर: व्यापार में बार-बार आने वाली रुकावटें या लगातार हो रहे घाटे को दूर करने के लिए सिद्ध यंत्रों का निर्माण किया जाता है।
+        <div class="decoration">卐</div>
+    </div>
 
-विवाह और प्रेम संबंध: प्रेम संबंधों में तनाव, विवाह में देरी या वैवाहिक जीवन की बाधाओं के लिए सटीक ज्योतिषीय समाधान।
-
-मानसिक और आध्यात्मिक शांति: बेवजह का डर, घबराहट या बेचैनी महसूस होने पर आध्यात्मिक शांति के उपाय।
-
-पितृ दोष और अन्य वहम: पितृ दोष, टोना-टोटका या किसी भी प्रकार के अज्ञात भय के निवारण हेतु उचित मार्गदर्शन।
-
-शिक्षा और विदेश यात्रा: नौकरी प्राप्ति में आ रही बाधाओं और विदेश यात्रा के योगों को प्रबल करने के लिए विशेष परामर्श।
-
-"हमारा उद्देश्य आपकी समस्याओं का समाधान कर आपके जीवन में खुशहाली और समृद्धि लाना है।"
-
-संपर्क करें
-यदि आप अपनी समस्याओं का स्थायी समाधान चाहते हैं या व्यक्तिगत परामर्श (Consultation) लेना चाहते हैं, तो आप सीधे नीचे दिए गए नंबरों पर कॉल कर सकते हैं:
-
-मोबाइल: +91-9929806534
-
-मोबाइल: +91-9950502961
-
-स्थान: जयपुर, राजस्थान </p>
-  </section>
 </body>
 </html>
