@@ -1,174 +1,205 @@
-body{
-  margin:0;
-  font-family: Arial;
-  background:#0b0b0b;
-  color:#fff;
-}
+/* --- Astro Sanjog Royal Premium CSS --- */
 
-/* NAVBAR */
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  padding:15px 30px;
-  background:#111;
-}
-
-.navbar a{
-  color:#fff;
-  margin:0 10px;
-  text-decoration:none;
-}
-
-.logo{
-  font-weight:bold;
-}
-
-/* HERO */
-.hero{
-  display:flex;
-  align-items:center;
-  justify-content:space-around;
-  padding:50px;
-  background:linear-gradient(#000,#111);
-}
-
-.hero-text h1{
-  font-size:40px;
-  color:gold;
-}
-
-.sub{
-  color:#ccc;
-}
-
-.contact{
-  margin-top:10px;
-  color:gold;
-}
-
-.hero-img img{
-  width:250px;
-  border-radius:10px;
-}
-
-/* SERVICES */
-.services{
-  padding:40px;
-  text-align:center;
-}
-
-.service-box{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-}
-
-.service-box div{
-  background:#111;
-  padding:15px;
-  border-left:4px solid gold;
-}
-
-/* KUNDLI */
-.kundli{
-  padding:40px;
-  text-align:center;
-}
-
-.kundli input{
-  display:block;
-  margin:10px auto;
-  padding:10px;
-  width:250px;
-}
-
-button{
-  padding:10px 20px;
-  background:gold;
-  border:none;
-  cursor:pointer;
-}
-
-#result{
-  margin-top:20px;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:20px;
-  background:#111;
-}
-/* Premium Astrology Theme */
 :root {
-    --primary: #0a192f;
-    --gold: #d4af37;
-    --gold-light: #f4d03f;
-    --white: #ffffff;
-    --glass: rgba(255, 255, 255, 0.05);
+    --royal-bg: #040a18;
+    --royal-box: #0a1428;
+    --gold: #c5a059;
+    --gold-bright: #f1d38e;
+    --gold-gradient: linear-gradient(45deg, #8a6d3b, #f1d38e, #8a6d3b);
+    --white: #f4f4f4;
+    --text-muted: #8fa1c1;
+    --shadow: 0 15px 35px rgba(0,0,0,0.8);
+    --glass: rgba(255, 255, 255, 0.03);
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: #050a14;
-    color: var(--white);
-    margin: 0;
     font-family: 'Poppins', sans-serif;
+    background-color: var(--royal-bg);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* Navbar */
-.navbar {
+.hindi {
+    font-family: 'Tiro Devanagari Hindi', serif;
+}
+
+.royal-title {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Navbar Upgrade */
+header.navbar {
     display: flex;
     justify-content: space-between;
-    padding: 20px 5%;
-    background: rgba(10, 25, 47, 0.9);
-    border-bottom: 2px solid var(--gold);
+    align-items: center;
+    padding: 20px 8%;
+    background: rgba(4, 10, 24, 0.95);
+    border-bottom: 1px solid var(--gold);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     backdrop-filter: blur(10px);
 }
 
-/* Hero Section */
-.hero {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
-    padding: 100px 5%;
-    background: radial-gradient(circle, #112240, #0a192f);
-}
-
-.hero-text h1 {
-    font-size: 3.5rem;
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
     color: var(--gold);
-    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    text-decoration: none;
+    text-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
 }
 
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    transition: 0.3s ease;
+    font-size: 0.95rem;
+}
+
+nav a:hover {
+    color: var(--gold-bright);
+    text-shadow: 0 0 8px var(--gold);
+}
+
+/* Hero Image with Golden Glow */
 .hero-img img {
     width: 350px;
     height: 350px;
     border-radius: 50%;
-    border: 4px solid var(--gold);
-    box-shadow: 0 0 40px var(--gold);
+    border: 6px double var(--gold);
     object-fit: cover;
+    box-shadow: 0 0 50px rgba(197, 160, 89, 0.25);
+    transition: transform 0.5s ease;
 }
 
-/* Service Cards */
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    padding: 50px 5%;
+.hero-img img:hover {
+    transform: scale(1.03) rotate(2deg);
 }
 
-.service-card {
-    background: var(--glass);
+/* Form Container - Royal Box */
+.form-container {
+    background: var(--royal-box);
     padding: 40px;
-    border-radius: 20px;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    text-align: center;
-    transition: 0.3s ease-in-out;
+    border-radius: 25px;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    box-shadow: var(--shadow);
+    transition: 0.4s ease;
 }
 
-.service-card:hover {
-    background: rgba(212, 175, 55, 0.1);
-    transform: translateY(-10px);
+.form-container:hover {
     border-color: var(--gold);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+}
+
+/* Custom Inputs & Selects */
+input, select, textarea {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    background: var(--glass);
+    border: 1px solid #1e2a44;
+    color: white;
+    border-radius: 12px;
+    font-family: inherit;
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.07);
+    outline: none;
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);
+}
+
+/* Premium Buttons */
+button.btn-royal {
+    background: var(--gold-gradient);
+    color: #1a1a1a;
+    border: none;
+    padding: 16px 45px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(138, 109, 59, 0.4);
+    transition: 0.4s;
+    text-transform: uppercase;
+}
+
+button.btn-royal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(197, 160, 89, 0.6);
+    filter: brightness(1.1);
+}
+
+/* Kundli Chart Premium Styling */
+.chart-container {
+    border: 3px solid var(--gold);
+    background: radial-gradient(circle, #0d1b35, #040a18);
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+}
+
+.house {
+    color: var(--gold-bright);
+    text-shadow: 0 0 5px rgba(0,0,0,1);
+}
+
+/* Result Box - Glassmorphism */
+.result-box {
+    background: rgba(10, 20, 40, 0.9);
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    backdrop-filter: blur(15px);
+}
+
+.faladesh-text {
+    border-left: 5px solid var(--gold);
+    background: rgba(197, 160, 89, 0.08);
+    color: #cbd5e1;
+    font-style: italic;
+}
+
+/* WhatsApp Button Modern */
+.whatsapp-link {
+    background: #128c7e;
+    box-shadow: 0 10px 20px rgba(18, 140, 126, 0.3);
+    transition: 0.4s;
+}
+
+.whatsapp-link:hover {
+    background: #075e54;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(18, 140, 126, 0.5);
+}
+
+/* Footer Decoration */
+footer {
+    background: #02060f;
+    color: var(--text-muted);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    header.navbar { padding: 15px 5%; }
+    .hero-text h1 { font-size: 2.5rem; }
+    .form-container { padding: 25px; }
 }
