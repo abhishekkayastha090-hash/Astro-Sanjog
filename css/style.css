@@ -99,3 +99,32 @@ footer{
   padding:20px;
   background:#111;
 }
+.result-box{
+  margin-top:20px;
+  background:#111;
+  padding:20px;
+  border-radius:10px;
+}
+
+.kundli-chart{
+  margin-top:30px;
+  text-align:center;
+}
+
+.diamond{
+  width:300px;
+  height:300px;
+  margin:auto;
+  transform:rotate(45deg);
+  border:2px solid gold;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+}
+
+.box{
+  border:1px solid #444;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transform:rotate(-45deg);
+}
