@@ -82,14 +82,9 @@
   </div>
 </div>
 </section>
-
-<!-- FOOTER -->
-<footer>
-  <p>© Astro Sanjog</p>
-</footer>
-
 <script>
 function generateKundli(){
+
   let name=document.getElementById("name").value;
   let dob=document.getElementById("dob").value;
   let tob=document.getElementById("tob").value;
@@ -108,9 +103,18 @@ function generateKundli(){
     <h3>🔮 आपकी कुंडली</h3>
     <p>नाम: ${name}</p>
     <p>राशि: ${random}</p>
-    <p>👉 पूरी कुंडली के लिए संपर्क करें</p>
+    <p>👉 पूरी कुंडली के लिए WhatsApp करें</p>
+    <a href="https://wa.me/919929806534" target="_blank">📲 WhatsApp Now</a>
   `;
+
+  document.getElementById("chart").style.display="block";
 }
+</script>
+<!-- FOOTER -->
+<footer>
+  <p>© Astro Sanjog</p>
+</footer>
+
 </script>
 
 </body>
