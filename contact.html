@@ -1,26 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <title>Contact - ASTRO SANJOG </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>संपर्क करें | Astro Sanjog</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            padding: 80px 10%;
+            background: #050a14;
+        }
+
+        /* Left Side: Info */
+        .contact-info h1 {
+            color: var(--gold);
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid var(--gold);
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-right: 20px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .info-item h3 { color: #ccc; font-size: 0.9rem; margin: 0; }
+        .info-item p { font-size: 1.1rem; margin: 5px 0 0; color: #fff; }
+
+        /* Right Side: Form */
+        .contact-form {
+            background: rgba(10, 25, 47, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .contact-form h2 { color: var(--gold); margin-bottom: 25px; }
+
+        .input-group { margin-bottom: 20px; position: relative; }
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 8px;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: var(--gold);
+            outline: none;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, var(--gold), #f4d03f);
+            color: #000;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
+
+        /* Map Section */
+        .map-section { padding: 0 10% 80px; }
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            height: 400px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container { padding: 40px 5%; }
+            .contact-info h1 { font-size: 2.2rem; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Contact Me</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <h2>Get in Touch</h2>
-    <p>Email:sanjaykuamr221026@gmail.com</p>
-    <p>Phone: +91-9929806534</p>
-    <p>Instagram: @aacharyapanditsanjay</p>
-  </section>
+    <header class="navbar">
+        <div class="logo">🔮 ASTRO SANJOG</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="horoscope.html">Horoscope</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <h1 class="hindi">संपर्क करें</h1>
+            <p class="hindi" style="color: #aaa; margin-bottom: 40px;">अपनी समस्याओं के समाधान के लिए आप हमसे कभी भी संपर्क कर सकते हैं।</p>
+            
+            <div class="info-item">
+                <i class="fas fa-phone-alt"></i>
+                <div>
+                    <h3>Call Us</h3>
+                    <p>+91-9929806534</p>
+                    <p>+91-9950502961</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <i class="fab fa-whatsapp"></i>
+                <div>
+                    <h3>WhatsApp</h3>
+                    <p>+91-9929806534</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h3>Address</h3>
+                    <p>जयपुर, राजस्थान (India)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2 class="hindi">अपना संदेश भेजें</h2>
+            <form action="#">
+                <div class="input-group">
+                    <input type="text" placeholder="आपका नाम (Your Name)" required>
+                </div>
+                <div class="input-group">
+                    <input type="tel" placeholder="मोबाइल नंबर (Mobile No.)" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="समस्या का विषय (Subject)">
+                </div>
+                <div class="input-group">
+                    <textarea rows="5" placeholder="आपका संदेश (Your Message)"></textarea>
+                </div>
+                <button type="submit" class="submit-btn hindi">मैसेज भेजें</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="map-section">
+        <h2 class="hindi" style="color: var(--gold); margin-bottom: 20px; text-align: center;">हमारा स्थान</h2>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m13!1m2!1s0x396db19b3530411c%3A0xc3670695079a44!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1709700000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p style="text-align: center; padding: 40px; color: #777;">© 2026 Astro Sanjog | आचार्य पंडित संजय जी</p>
+    </footer>
+
 </body>
 </html>
