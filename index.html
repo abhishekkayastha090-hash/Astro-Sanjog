@@ -4,347 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astro Sanjog | ज्योतिषाचार्य प. संजय जी</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* --- Astro Sanjog Royal & Mystical Premium CSS --- */
         :root {
-            --royal-bg: transparent; /* Changed to transparent for 3D background */
-            --royal-box: rgba(8, 14, 25, 0.65); /* More transparent glassmorphism */
             --gold: #c5a059;
-            --gold-bright: #ffdf8c;
-            --gold-gradient: linear-gradient(135deg, #8a6d3b 0%, #ffeaa7 50%, #8a6d3b 100%);
-            --mystic-red: #4a0404; 
-            --white: #f8f9fa;
-            --text-muted: #a0aec0;
-            
-            --shadow-deep: 0 20px 50px rgba(0, 0, 0, 0.9);
-            --glow-gold: 0 0 25px rgba(197, 160, 89, 0.3), inset 0 0 15px rgba(197, 160, 89, 0.1);
-            --glow-red: 0 0 40px rgba(220, 20, 60, 0.15);
+            --gold-bright: #f1d38e;
+            --deep-black: #020508;
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: var(--deep-black); color: #fff; margin: 0; overflow-x: hidden; }
         
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            background-color: #02050a; /* Fallback color */
-            color: var(--white); 
-            overflow-x: hidden; 
-            width: 100%; 
-        }
+        /* Cinematic Starfield Background */
+        #stars-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
 
-        /* 3D Canvas Container */
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-            pointer-events: none; /* Allows clicking on form elements through the canvas */
-        }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gold); }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--gold); text-decoration: none; font-family: 'Cinzel'; }
+        nav a { color: #fff; text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
 
-        .hindi { font-family: 'Tiro Devanagari Hindi', serif; }
-        .royal-title { font-family: 'Cinzel', serif; letter-spacing: 2px; color: var(--gold-bright); text-shadow: 0 4px 15px rgba(197, 160, 89, 0.4); text-transform: uppercase; }
+        .hero { display: flex; justify-content: center; align-items: center; gap: 50px; padding: 80px 10%; flex-wrap: wrap; }
+        .hero-text { max-width: 500px; }
+        .hero-text h1 { font-size: 3.5rem; color: var(--gold-bright); font-family: 'Cinzel'; margin-bottom: 10px; }
+        .hero-img { border: 4px solid var(--gold); border-radius: 50%; padding: 5px; box-shadow: 0 0 30px rgba(197,160,89,0.3); }
+        .hero-img img { width: 250px; height: 250px; border-radius: 50%; object-fit: cover; }
 
-        /* Panchang Ticker */
-        .panchang-ticker {
-            background: linear-gradient(90deg, rgba(62, 27, 4, 0.8), rgba(74, 4, 4, 0.8), rgba(62, 27, 4, 0.8));
-            color: var(--gold-bright); padding: 10px 0; font-weight: bold; font-size: 0.9rem;
-            border-bottom: 2px solid var(--gold); box-shadow: 0 4px 15px rgba(197, 160, 89, 0.2);
-            position: relative; z-index: 10; backdrop-filter: blur(5px);
-        }
-        .ticker-content { display: inline-block; animation: scroll 30s linear infinite; padding-left: 100%; white-space: nowrap; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+        .form-container { background: var(--glass); backdrop-filter: blur(15px); padding: 40px; border-radius: 20px; border: 1px solid rgba(197,160,89,0.3); max-width: 600px; margin: 40px auto; }
+        input { width: 100%; padding: 15px; margin: 10px 0; background: rgba(0,0,0,0.3); border: 1px solid var(--gold); color: #fff; border-radius: 10px; }
+        .btn-royal { width: 100%; padding: 15px; background: linear-gradient(45deg, #8a6d3b, var(--gold)); border: none; color: #000; font-weight: bold; border-radius: 50px; cursor: pointer; text-transform: uppercase; }
 
-        /* Navigation - Obsidian Glass */
-        header.navbar { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 8%; background: rgba(2, 5, 10, 0.6); 
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(15px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-        }
-        .logo { font-size: 1.8rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; filter: drop-shadow(0 2px 10px rgba(197, 160, 89, 0.4)); }
-        nav a { color: var(--white); text-decoration: none; margin-left: 30px; font-weight: 500; transition: 0.4s ease; font-size: 0.95rem; text-transform: uppercase; position: relative; }
-        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; background: var(--gold-bright); transition: 0.4s ease; transform: translateX(-50%); box-shadow: 0 0 10px var(--gold-bright); }
-        nav a:hover::after { width: 100%; }
-        nav a:hover { color: var(--gold-bright); text-shadow: 0 0 15px var(--gold); }
-
-        /* Hero Section */
-        .hero { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 60px 10%; min-height: 70vh; position: relative; z-index: 1; }
-        .hero-text h1 { font-size: 3.5rem; margin-bottom: 15px; }
-        .hero-text .sub { font-size: 1.2rem; color: #e2e8f0; margin-bottom: 25px; border-left: 4px solid var(--mystic-red); padding-left: 15px; background: rgba(74,4,4,0.3); padding: 5px 15px; border-radius: 0 10px 10px 0; display: inline-block; backdrop-filter: blur(5px);}
-        
-        .hero-img { position: relative; display: inline-block; margin-top: 30px; }
-        .hero-img::before { content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border-radius: 50%; background: radial-gradient(circle, rgba(197,160,89,0.3) 0%, rgba(139,0,0,0.3) 50%, transparent 100%); z-index: -1; animation: auraPulse 4s infinite alternate; }
-        @keyframes auraPulse { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.15); opacity: 1; } }
-        .hero-img img { width: 350px; height: 350px; border-radius: 50%; border: 4px solid var(--gold); padding: 10px; background: rgba(0,0,0,0.5); object-fit: cover; box-shadow: var(--glow-gold), var(--shadow-deep); transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .hero-img img:hover { transform: scale(1.05); border-color: var(--gold-bright); }
-
-        /* Realistic Divine Flame */
-        .diya-container { position: relative; width: 60px; height: 60px; margin: 25px auto; }
-        .flame { width: 18px; height: 32px; background: radial-gradient(ellipse at bottom, #fff 10%, #ffdf00 40%, #ff4500 80%, transparent 100%); border-radius: 50% 50% 20% 20%; position: absolute; top: -15px; left: 21px; animation: divineFlicker 0.12s infinite alternate; box-shadow: 0 0 15px #ffdf00, 0 0 40px #ff4500; transform-origin: bottom center; }
-        @keyframes divineFlicker { 0% { transform: scale(1) rotate(-1deg); opacity: 0.9; } 50% { transform: scale(1.05) rotate(1deg); opacity: 1; } 100% { transform: scale(1.1) rotate(0deg); box-shadow: 0 0 25px #ffdf00, 0 0 60px #ff4500; } }
-        .diya-base { width: 60px; height: 25px; background: linear-gradient(to bottom, #8b4513, #3e1b04); border-radius: 0 0 60px 60px; position: absolute; bottom: 0; border-top: 3px solid #ffdf00; box-shadow: 0 10px 20px rgba(0,0,0,0.8); }
-
-        /* Form Container - Obsidian Tablet */
-        .section-box { padding: 60px 5%; text-align: center; position: relative; z-index: 1; }
-        .form-container { max-width: 800px; margin: 0 auto; background: var(--royal-box); padding: 50px 40px; border-radius: 20px; border: 1px solid rgba(197, 160, 89, 0.2); border-top: 2px solid var(--gold); box-shadow: var(--shadow-deep), var(--glow-gold); backdrop-filter: blur(10px); transition: 0.4s ease; position: relative; }
-        
-        input, select { width: 100%; padding: 16px 15px; margin: 15px 0; background: rgba(0, 0, 0, 0.6); border: none; border-bottom: 2px solid rgba(197, 160, 89, 0.3); color: var(--gold-bright); border-radius: 8px 8px 0 0; font-size: 1.05rem; transition: 0.4s ease; }
-        input:focus { border-bottom-color: var(--gold-bright); background: rgba(197, 160, 89, 0.1); outline: none; box-shadow: 0 10px 15px -10px rgba(197, 160, 89, 0.4); }
-        
-        .btn-royal { width: 100%; background: var(--gold-gradient); color: #000; border: 1px solid #ffd700; padding: 18px 45px; font-weight: 800; font-size: 1.2rem; cursor: pointer; border-radius: 50px; box-shadow: 0 8px 25px rgba(197, 160, 89, 0.3); transition: 0.4s; text-transform: uppercase; margin-top: 20px; }
-        .btn-royal:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(197, 160, 89, 0.5); filter: brightness(1.15); }
-
-        /* Chart */
-        .chart-wrapper { overflow-x: auto; width: 100%; display: flex; justify-content: center; padding: 20px 0; }
-        .chart-container { position: relative; width: 320px; height: 320px; border: 2px solid var(--gold); background: rgba(4, 10, 24, 0.7); box-shadow: inset 0 0 50px rgba(0,0,0,0.9), 0 0 20px rgba(197,160,89,0.2); flex-shrink: 0; backdrop-filter: blur(10px); }
-        .chart-line { position: absolute; background: rgba(197, 160, 89, 0.6); }
-        .diag1 { width: 452px; height: 2px; top: 159px; left: -66px; transform: rotate(45deg); }
-        .diag2 { width: 452px; height: 2px; top: 159px; left: -66px; transform: rotate(-45deg); }
-        .rect { width: 226px; height: 226px; border: 2px solid rgba(197, 160, 89, 0.6); top: 47px; left: 47px; transform: rotate(45deg); position: absolute; }
-        .house { position: absolute; font-size: 1rem; color: var(--gold-bright); font-weight: bold; width: 85px; text-align: center; text-shadow: 0 0 8px #000, 0 0 15px rgba(197, 160, 89, 0.8); }
-        .h1 { top: 125px; left: 118px; font-size: 1.2rem; color: #fff; }
-
-        /* Result Box - Intense Energy */
-        .result-box { margin-top: 30px; padding: 35px; background: rgba(6, 11, 20, 0.85); border: 1px solid var(--gold); border-top: 5px solid var(--mystic-red); border-radius: 15px; text-align: left; display: none; box-shadow: var(--shadow-deep), var(--glow-red); backdrop-filter: blur(15px); }
-        
-        .whatsapp { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #128c7e, #075e54); color: #fff; width: 65px; height: 65px; border-radius: 50%; font-size: 35px; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 1001; box-shadow: 0 10px 25px rgba(18, 140, 126, 0.4); border: 1px solid #25d366; animation: pulseWa 2s infinite; }
-        @keyframes pulseWa { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
-
-        footer { padding: 40px 5%; text-align: center; color: var(--text-muted); background: rgba(1, 3, 7, 0.8); border-top: 1px solid rgba(197,160,89,0.1); position: relative; z-index: 1; backdrop-filter: blur(10px);}
-
-        .hidden-motion { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-        .show-motion { opacity: 1; transform: translateY(0); }
-
-        @media (min-width: 768px) {
-            .hero { flex-direction: row; text-align: left; padding: 80px 10%; justify-content: space-between;}
-            .diya-container { margin: 25px 0;}
-        }
+        footer { text-align: center; padding: 40px; color: var(--gold); font-family: 'Cinzel'; }
     </style>
 </head>
 <body>
 
-    <!-- 3D Cinematic Planets Container -->
-    <div id="canvas-container"></div>
-
-    <div class="panchang-ticker">
-        <div class="ticker-content hindi">
-            ☀️ आज का शाही पंचांग: तिथि: द्वादशी | नक्षत्र: मघा | योग: सुकर्मा | शुभ मुहूर्त: 11:54 AM से 12:44 PM | राहुकाल: 03:30 PM से 05:00 PM तक | अमृत काल: आज रात्रि 08:20 से ✨
-        </div>
-    </div>
+    <canvas id="stars-canvas"></canvas>
 
     <header class="navbar">
-        <a href="#" class="logo royal-title">🔮 ASTRO SANJOG</a>
+        <a href="#" class="logo">🔮 ASTRO SANJOG</a>
         <nav>
-            <a href="index.html">HOME</a>
-            <a href="about.html">ABOUT</a>
-            <a href="horoscope.html">HOROSCOPE</a>
-            <a href="contact.html">CONTACT</a>
+            <a href="#">HOME</a><a href="#">ABOUT</a><a href="#">HOROSCOPE</a><a href="#">CONTACT</a>
         </nav>
     </header>
 
-    <section class="hero hidden-motion">
+    <section class="hero">
         <div class="hero-text">
-            <h1 class="royal-title">ज्योतिषाचार्य प. संजय जी</h1>
-            <p class="sub hindi">प्राचीन तांत्रिक विद्या एवं वैदिक विश्लेषण</p>
-            <p class="hindi" style="color: #cbd5e1; font-size: 1.1rem; margin-bottom: 20px;">कुंडली • महादशा चक्र • अष्टकूट मिलान • रत्न परामर्श</p>
-            
-            <div class="diya-container">
-                <div class="flame"></div>
-                <div class="diya-base"></div>
-            </div>
+            <h1 class="hindi">ज्योतिषाचार्य प. संजय जी</h1>
+            <p style="color:var(--gold)">प्राचीन तांत्रिक विद्या एवं वैदिक विश्लेषण</p>
         </div>
         <div class="hero-img">
-            <img src="images/sanjay-ji.jpg" alt="ज्योतिषाचार्य प. संजय जी" onerror="this.src='https://via.placeholder.com/350/02050a/ffdf8c?text=Sanjay+Ji'">
+            <img src="images/sanjay-ji.jpg" alt="Pandit Sanjay Ji">
         </div>
     </section>
 
-    <section class="section-box hidden-motion" id="kundli-engine">
-        <h2 class="hindi royal-title" style="margin-bottom: 40px; font-size: 2.5rem;">लग्न कुंडली विश्लेषण</h2>
-        <div class="form-container">
-            <input type="text" id="name" placeholder="जातक का पूरा नाम">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <input type="date" id="dob">
-                <input type="text" id="place" placeholder="जन्म स्थान">
-            </div>
-            <button onclick="generateFullAstro()" class="btn-royal hindi">भविष्यफल प्राप्त करें</button>
-
-            <div id="result" class="result-box">
-                <h2 id="res-name" class="hindi" style="color:var(--gold-bright); margin-bottom: 15px;"></h2>
-                <div class="chart-wrapper">
-                    <div class="chart-container" id="kundli-chart">
-                        <div class="chart-line diag1"></div><div class="chart-line diag2"></div>
-                        <div class="rect"></div>
-                        <div class="house h1" id="house1"></div> <div class="house h2" id="house2"></div>
-                        <div class="house h3" id="house3"></div> <div class="house h4" id="house4"></div>
-                        <div class="house h5" id="house5"></div> <div class="house h6" id="house6"></div>
-                        <div class="house h7" id="house7"></div> <div class="house h8" id="house8"></div>
-                        <div class="house h9" id="house9"></div> <div class="house h10" id="house10"></div>
-                        <div class="house h11" id="house11"></div> <div class="house h12" id="house12"></div>
-                    </div>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(197,160,89,0.2);">
-                    <p class="hindi">🔱 <b>राशि:</b> <span id="res-rashi" style="color:var(--gold-bright)"></span></p>
-                    <p class="hindi">🌙 <b>नक्षत्र:</b> <span id="res-nak" style="color:var(--gold-bright)"></span></p>
-                </div>
-                <div class="hindi" id="res-faladesh" style="font-size: 1.1rem; line-height: 1.8; margin-top:15px; color:#e2e8f0; border-left: 4px solid var(--mystic-red); background: linear-gradient(90deg, rgba(74,4,4,0.3) 0%, transparent 100%); padding: 15px;"></div>
-                
-                <a id="wa-link" href="#" class="btn-royal hindi" style="display: block; text-align: center; text-decoration: none; margin-top: 25px;"><i class="fab fa-whatsapp" style="margin-right: 5px;"></i> पंडित जी से समाधान लें</a>
-            </div>
+    <div class="form-container">
+        <input type="text" placeholder="जातक का पूरा नाम">
+        <div style="display:flex; gap:10px;">
+            <input type="date">
+            <input type="text" placeholder="जन्म स्थान">
         </div>
-    </section>
+        <button class="btn-royal">भविष्यफल प्राप्त करें</button>
+    </div>
 
-    <footer>
-        <p class="royal-title" style="font-size: 1rem;">ASTRO SANJOG | जयपुर, राजस्थान</p>
-        <p class="hindi" style="margin-top: 10px;">© 2026 सर्वाधिकार सुरक्षित | ज्योतिषाचार्य प. संजय जी</p>
-    </footer>
-
-    <a href="https://wa.me/919929806534" class="whatsapp" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Three.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <footer>© 2026 सर्वाधिकार सुरक्षित | Astro Sanjog</footer>
 
     <script>
-        // --- 1. Kundli Generation Logic ---
-        function generateFullAstro() {
-            const name = document.getElementById("name").value;
-            const dob = document.getElementById("dob").value;
-            if(!name || !dob) return alert("कृपया विवरण भरें");
-
-            const date = new Date(dob);
-            const d = date.getDate(); const m = date.getMonth() + 1;
-            const rashis = ["मेष", "वृषभ", "मिथुन", "कर्क", "सिंह", "कन्या", "तुला", "वृश्चिक", "धनु", "मकर", "कुंभ", "मीन"];
-            let rIdx = (d + m) % 12;
-
-            document.getElementById("res-name").innerText = "प्रणाम, " + name + " जी";
-            document.getElementById("res-rashi").innerText = rashis[rIdx];
-            document.getElementById("res-nak").innerText = "पुष्य (Pushya)";
-            document.getElementById("res-faladesh").innerText = "आपके जन्म समय के अनुसार लग्न में शुभ ग्रहों का प्रभाव है। आने वाला समय करियर के लिए अनुकूल है। शनिवार को शनि देव की आराधना करें।";
-
-            const planets = ["☀️ Sun", "🌙 Moon", "♂️ Mars", "☿️ Mercury", "♃️ Jupiter", "♀️ Venus", "♄️ Saturn", "☊ Rahu", "☋ Ketu"];
-            for(let i=1; i<=12; i++) {
-                let p = (i === (rIdx + 1)) ? planets[0]+" "+planets[1] : i;
-                document.getElementById("house"+i).innerText = p;
-            }
-
-            document.getElementById("wa-link").href = "https://wa.me/919929806534?text=प्रणाम पंडित जी, मेरा नाम: " + name + " है, मेरी राशि: " + rashis[rIdx] + "। मार्गदर्शन करें।";
-            
-            const resultBox = document.getElementById("result");
-            resultBox.style.display = "block";
-            resultBox.style.opacity = 0;
-            setTimeout(() => {
-                resultBox.style.transition = "opacity 0.8s ease";
-                resultBox.style.opacity = 1;
-                resultBox.scrollIntoView({behavior: 'smooth', block: 'center'});
-            }, 50);
+        // Cinematic Stars Background
+        const canvas = document.getElementById('stars-canvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        function init() {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            for(let i=0; i<400; i++) stars.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*1.5});
         }
-
-        // --- 2. Scroll Animation Observer ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show-motion');
-                    observer.unobserve(entry.target); 
-                }
+        function draw() {
+            ctx.fillStyle = '#020508'; ctx.fillRect(0,0,canvas.width, canvas.height);
+            ctx.fillStyle = '#fff';
+            stars.forEach(s => {
+                ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI*2); ctx.fill();
+                s.y -= 0.1; if(s.y < 0) s.y = canvas.height;
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-
-        document.querySelectorAll('.hidden-motion').forEach(el => observer.observe(el));
-
-        // --- 3. Three.js 4K Cinematic Navagraha (9 Planets) ---
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // Alpha true makes background transparent
-        
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Optimized for 4K and performance
-        document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-        // Cinematic Lighting
-        const ambientLight = new THREE.AmbientLight(0x0a1428, 1.2); // Dark blue cosmic ambient
-        scene.add(ambientLight);
-
-        const pointLight = new THREE.PointLight(0xffdf8c, 2.5, 100); // Golden cinematic light
-        pointLight.position.set(10, 10, 10);
-        scene.add(pointLight);
-
-        const backLight = new THREE.PointLight(0x4a0404, 2, 100); // Mystic red rim light
-        backLight.position.set(-10, -10, -10);
-        scene.add(backLight);
-
-        // Planets Data (Navagraha Theme)
-        const planetsData = [
-            { name: "Surya", color: 0xffaa00, size: 2.2, x: 0, y: 0, z: -12, emissive: 0xcc5500 }, // Sun
-            { name: "Chandra", color: 0xffffff, size: 1.2, x: -7, y: 5, z: -15, emissive: 0x222222 }, // Moon
-            { name: "Mangal", color: 0xff3300, size: 1.0, x: 8, y: 4, z: -18, emissive: 0x000000 }, // Mars
-            { name: "Budh", color: 0x00ff44, size: 0.8, x: -6, y: -4, z: -10, emissive: 0x000000 }, // Mercury
-            { name: "Guru", color: 0xffd700, size: 1.8, x: 7, y: -5, z: -20, emissive: 0x000000 }, // Jupiter
-            { name: "Shukra", color: 0xffb6c1, size: 1.3, x: -9, y: -1, z: -16, emissive: 0x000000 }, // Venus
-            { name: "Shani", color: 0x1a1a2e, size: 1.5, x: 9, y: -7, z: -14, emissive: 0x000000 }, // Saturn
-            { name: "Rahu", color: 0x333333, size: 1.1, x: -4, y: 7, z: -18, emissive: 0x000000 }, // Rahu
-            { name: "Ketu", color: 0x555555, size: 1.1, x: 4, y: 7, z: -18, emissive: 0x000000 }  // Ketu
-        ];
-
-        const planets = [];
-
-        // Build 3D Spheres
-        planetsData.forEach((data) => {
-            const material = new THREE.MeshStandardMaterial({
-                color: data.color,
-                emissive: data.emissive,
-                emissiveIntensity: 0.6,
-                roughness: 0.5,
-                metalness: 0.4
-            });
-
-            const geometry = new THREE.SphereGeometry(data.size, 64, 64);
-            const planet = new THREE.Mesh(geometry, material);
-            
-            planet.position.set(data.x, data.y, data.z);
-            
-            planet.userData = {
-                orbitSpeed: Math.random() * 0.003 + 0.001,
-                floatSpeed: Math.random() * 0.01 + 0.005,
-                floatOffset: Math.random() * Math.PI * 2,
-                baseY: data.y
-            };
-
-            scene.add(planet);
-            planets.push(planet);
-        });
-
-        camera.position.z = 2;
-
-        // Floating & Rotating Animation Loop
-        function animate() {
-            requestAnimationFrame(animate);
-            
-            const time = Date.now() * 0.001;
-
-            planets.forEach((planet) => {
-                planet.rotation.y += planet.userData.orbitSpeed;
-                planet.rotation.x += planet.userData.orbitSpeed * 0.5;
-                // Smooth bobbing up and down
-                planet.position.y = planet.userData.baseY + Math.sin(time * planet.userData.floatSpeed + planet.userData.floatOffset) * 0.8;
-            });
-
-            renderer.render(scene, camera);
+            requestAnimationFrame(draw);
         }
-
-        animate();
-
-        // Responsive Canvas
-        window.addEventListener('resize', () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-        });
+        init(); draw();
     </script>
 </body>
 </html>
