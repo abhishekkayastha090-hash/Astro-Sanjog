@@ -2,61 +2,62 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astro Sanjog | ज्योतिषाचार्य प. संजय जी</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
-        /* [आपका पिछला CSS कोड यहाँ रहेगा, नीचे वाला हिस्सा उसमें जोड़ें] */
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #02050a; color: #fff; font-family: 'Poppins', sans-serif; }
         
-        /* 1. Custom Cursor */
-        body { cursor: none; }
-        .cursor { width: 12px; height: 12px; border: 2px solid var(--gold); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: transform 0.1s; }
-        .cursor-follower { width: 30px; height: 30px; border: 1px solid rgba(197,160,89,0.3); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: transform 0.2s; }
+        /* 3D Background */
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        
+        /* Content Wrapper: सुनिश्चित करता है कि कंटेंट हमेशा 3D बैकग्राउंड के ऊपर दिखे */
+        #main-content { position: relative; z-index: 1; width: 100%; }
 
-        /* 2. Scroll Reveal */
-        .reveal { opacity: 0; transform: translateY(50px); transition: all 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* 3. Music Toggle */
-        #music-btn { position: fixed; top: 20px; left: 20px; z-index: 1000; background: var(--gold); border-radius: 50%; padding: 10px; cursor: pointer; }
+        /* बेसिक स्टाइलिंग ताकि टेक्स्ट दिखे */
+        .hero { padding: 50px; text-align: center; }
+        h1 { color: #ffdf8c; }
     </style>
 </head>
 <body>
 
+    <!-- 3D Background -->
     <div id="canvas-container"></div>
 
-    <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
-    <div id="music-btn"><i class="fas fa-music"></i></div>
+    <!-- Website Content -->
+    <div id="main-content">
+        <div class="hero">
+            <h1>ज्योतिषाचार्य प. संजय जी</h1>
+            <p>प्राचीन तांत्रिक विद्या एवं वैदिक विश्लेषण</p>
+        </div>
+        <!-- बाकी का आपका कंटेंट यहाँ आएगा -->
+    </div>
 
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-
+    <!-- Three.js Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Custom Cursor
-        const cursor = document.querySelector('.cursor');
-        const follower = document.querySelector('.cursor-follower');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
-            follower.style.left = e.clientX - 9 + 'px'; follower.style.top = e.clientY - 9 + 'px';
-        });
+        // 3D Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-        // Scroll Reveal
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('.reveal').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
-            });
-        });
+        // Simple Ambient Light
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
 
-        // Music Toggle
-        const music = document.getElementById('bg-music');
-        document.getElementById('music-btn').addEventListener('click', () => {
-            music.paused ? music.play() : music.pause();
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize Fix
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
         });
     </script>
-
-    </body>
+</body>
 </html>
