@@ -2,62 +2,92 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astro Sanjog | ज्योतिषाचार्य प. संजय जी</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #02050a; color: #fff; font-family: 'Poppins', sans-serif; }
-        
-        /* 3D Background */
-        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-        
-        /* Content Wrapper: सुनिश्चित करता है कि कंटेंट हमेशा 3D बैकग्राउंड के ऊपर दिखे */
-        #main-content { position: relative; z-index: 1; width: 100%; }
+        :root {
+            --gold: #c5a059;
+            --gold-bright: #f1d38e;
+            --deep-black: #020508;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
 
-        /* बेसिक स्टाइलिंग ताकि टेक्स्ट दिखे */
-        .hero { padding: 50px; text-align: center; }
-        h1 { color: #ffdf8c; }
+        body { font-family: 'Poppins', sans-serif; background: var(--deep-black); color: #fff; margin: 0; overflow-x: hidden; }
+        
+        /* Cinematic Starfield Background */
+        #stars-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gold); }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--gold); text-decoration: none; font-family: 'Cinzel'; }
+        nav a { color: #fff; text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
+
+        .hero { display: flex; justify-content: center; align-items: center; gap: 50px; padding: 80px 10%; flex-wrap: wrap; }
+        .hero-text { max-width: 500px; }
+        .hero-text h1 { font-size: 3.5rem; color: var(--gold-bright); font-family: 'Cinzel'; margin-bottom: 10px; }
+        .hero-img { border: 4px solid var(--gold); border-radius: 50%; padding: 5px; box-shadow: 0 0 30px rgba(197,160,89,0.3); }
+        .hero-img img { width: 250px; height: 250px; border-radius: 50%; object-fit: cover; }
+
+        .form-container { background: var(--glass); backdrop-filter: blur(15px); padding: 40px; border-radius: 20px; border: 1px solid rgba(197,160,89,0.3); max-width: 600px; margin: 40px auto; }
+        input { width: 100%; padding: 15px; margin: 10px 0; background: rgba(0,0,0,0.3); border: 1px solid var(--gold); color: #fff; border-radius: 10px; }
+        .btn-royal { width: 100%; padding: 15px; background: linear-gradient(45deg, #8a6d3b, var(--gold)); border: none; color: #000; font-weight: bold; border-radius: 50px; cursor: pointer; text-transform: uppercase; }
+
+        footer { text-align: center; padding: 40px; color: var(--gold); font-family: 'Cinzel'; }
     </style>
 </head>
 <body>
 
-    <!-- 3D Background -->
-    <div id="canvas-container"></div>
+    <canvas id="stars-canvas"></canvas>
 
-    <!-- Website Content -->
-    <div id="main-content">
-        <div class="hero">
-            <h1>ज्योतिषाचार्य प. संजय जी</h1>
-            <p>प्राचीन तांत्रिक विद्या एवं वैदिक विश्लेषण</p>
+    <header class="navbar">
+        <a href="#" class="logo">🔮 ASTRO SANJOG</a>
+        <nav>
+            <a href="#">HOME</a><a href="#">ABOUT</a><a href="#">HOROSCOPE</a><a href="#">CONTACT</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1 class="hindi">ज्योतिषाचार्य प. संजय जी</h1>
+            <p style="color:var(--gold)">प्राचीन तांत्रिक विद्या एवं वैदिक विश्लेषण</p>
         </div>
-        <!-- बाकी का आपका कंटेंट यहाँ आएगा -->
+        <div class="hero-img">
+            <img src="images/sanjay-ji.jpg" alt="Pandit Sanjay Ji">
+        </div>
+    </section>
+
+    <div class="form-container">
+        <input type="text" placeholder="जातक का पूरा नाम">
+        <div style="display:flex; gap:10px;">
+            <input type="date">
+            <input type="text" placeholder="जन्म स्थान">
+        </div>
+        <button class="btn-royal">भविष्यफल प्राप्त करें</button>
     </div>
 
-    <!-- Three.js Script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <footer>© 2026 सर्वाधिकार सुरक्षित | Astro Sanjog</footer>
+
     <script>
-        // 3D Scene setup
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-        // Simple Ambient Light
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-        scene.add(ambientLight);
-
-        // Animation Loop
-        function animate() {
-            requestAnimationFrame(animate);
-            renderer.render(scene, camera);
+        // Cinematic Stars Background
+        const canvas = document.getElementById('stars-canvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        function init() {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            for(let i=0; i<400; i++) stars.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*1.5});
         }
-        animate();
-
-        // Resize Fix
-        window.addEventListener('resize', () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-        });
+        function draw() {
+            ctx.fillStyle = '#020508'; ctx.fillRect(0,0,canvas.width, canvas.height);
+            ctx.fillStyle = '#fff';
+            stars.forEach(s => {
+                ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI*2); ctx.fill();
+                s.y -= 0.1; if(s.y < 0) s.y = canvas.height;
+            });
+            requestAnimationFrame(draw);
+        }
+        init(); draw();
     </script>
 </body>
 </html>
