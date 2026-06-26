@@ -5,138 +5,168 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>दैनिक राशिफल | Astro Sanjog</title>
     
-    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         :root {
             --royal-bg: #040a18;
-            --royal-box: #0a1428;
+            --royal-box: rgba(10, 20, 40, 0.6); /* Glassmorphism base */
             --gold: #c5a059;
             --gold-bright: #f1d38e;
             --white: #f4f4f4;
             --shadow: 0 15px 40px rgba(0,0,0,0.6);
         }
 
-        /* STEP 1: Premium Background Upgrade */
+        /* Base Resets */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Poppins', sans-serif; 
-            background: radial-gradient(circle at top, #1a1a1a, #000); 
+            background-color: var(--royal-bg); 
             color: var(--white); 
             overflow-x: hidden; 
             width: 100%; 
         }
+
+        /* --- NEW: Live Flow Canvas Background --- */
+        #space-flow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+        }
+
         .hindi { font-family: 'Tiro Devanagari Hindi', serif; }
         .royal-title { font-family: 'Cinzel', serif; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
 
         /* Floating Background Icons */
         .bg-icons { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.15; }
         .bg-icons i { position: absolute; color: var(--gold-bright); animation: float 22s infinite linear; font-size: 60px; filter: drop-shadow(0 0 10px var(--gold)); }
-        @keyframes float { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
+        @keyframes float { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
 
-        /* Header */
+        /* Navigation (Glassmorphism) */
         header.navbar { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 8%; background: rgba(0, 0, 0, 0.9); 
-            border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px);
+            padding: 20px 8%; background: rgba(4, 10, 24, 0.7); 
+            border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(15px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
         }
         .logo { font-size: 1.5rem; font-weight: bold; color: var(--gold); text-decoration: none; text-shadow: 0 0 10px rgba(197, 160, 89, 0.5); }
         nav a { color: var(--white); text-decoration: none; margin-left: 20px; font-weight: 500; font-size: 0.9rem; transition: 0.3s; }
-        nav a:hover { color: var(--gold-bright); }
+        nav a:hover { color: var(--gold-bright); text-shadow: 0 0 8px var(--gold); }
 
         /* Horoscope Header */
         .horoscope-header {
             text-align: center;
             padding: 60px 10% 40px;
-            background: radial-gradient(circle at center, #0d1b35 0%, transparent 100%);
+            position: relative;
+            z-index: 1;
         }
-        .horoscope-header h1 { font-size: 3.5rem; margin-bottom: 10px; }
-        .date-display { color: var(--gold-bright); font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; border: 1px solid var(--gold); display: inline-block; padding: 5px 20px; border-radius: 50px; background: rgba(197, 160, 89, 0.1); }
+        .horoscope-header h1 { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 0 0 20px rgba(197, 160, 89, 0.3); }
+        .date-display { color: var(--gold-bright); font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; border: 1px solid var(--gold); display: inline-block; padding: 5px 20px; border-radius: 50px; background: rgba(197, 160, 89, 0.2); backdrop-filter: blur(5px); box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);}
 
-        /* Shining Sun Animation */
+        /* Animations */
         .shining-sun {
             color: var(--gold-bright); font-size: 40px;
             text-shadow: 0 0 20px var(--gold), 0 0 40px var(--gold-bright);
             animation: sunPulse 3s ease-in-out infinite;
         }
-        @keyframes sunPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+        @keyframes sunPulse { 0%, 100% { transform: scale(1); filter: brightness(1); } 50% { transform: scale(1.15); filter: brightness(1.3); } }
 
-        /* Diya Animation */
         .diya-wrapper { margin: 20px auto; width: 60px; position: relative; }
         .flame {
             width: 18px; height: 30px; background: linear-gradient(to bottom, #fff, #ff9d00, #ff5e00);
             border-radius: 50% 50% 20% 20%; position: absolute; top: -25px; left: 21px;
-            animation: flicker 0.15s infinite alternate; box-shadow: 0 0 20px #ff9d00;
+            animation: flicker 0.15s infinite alternate; box-shadow: 0 0 20px #ff9d00, 0 0 40px #ff5e00;
         }
-        @keyframes flicker { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
-        .diya-base { width: 60px; height: 28px; background: #8b4513; border-radius: 0 0 60px 60px; }
+        @keyframes flicker { 0% { transform: scale(1) rotate(-1deg); opacity: 0.9; } 100% { transform: scale(1.1) rotate(1deg); opacity: 1; } }
+        .diya-base { width: 60px; height: 28px; background: #8b4513; border-radius: 0 0 60px 60px; border-top: 3px solid #5d2e0d; }
 
-        /* Zodiac Grid */
+        /* Zodiac Grid (Glassmorphism) */
         .zodiac-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 25px;
             padding: 40px 10%;
+            position: relative;
+            z-index: 1;
         }
 
         .zodiac-card {
             background: var(--royal-box);
-            border: 1px solid rgba(197, 160, 89, 0.3);
+            border: 1px solid rgba(197, 160, 89, 0.2);
             padding: 40px 20px;
             border-radius: 20px;
             text-align: center;
             cursor: pointer;
-            transition: 0.4s;
-            box-shadow: var(--shadow);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
-        .zodiac-card::before { content: "ॐ"; position: absolute; top: -10px; right: -10px; font-size: 40px; color: rgba(197, 160, 89, 0.05); }
+        .zodiac-card::before { content: "ॐ"; position: absolute; top: -10px; right: -10px; font-size: 50px; color: rgba(197, 160, 89, 0.05); transition: 0.4s; }
 
         .zodiac-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-10px);
-            background: rgba(197, 160, 89, 0.05);
-            box-shadow: 0 15px 40px rgba(197, 160, 89, 0.2);
+            border-color: var(--gold-bright);
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(197, 160, 89, 0.1);
+            box-shadow: 0 20px 40px rgba(197, 160, 89, 0.2);
         }
+        .zodiac-card:hover::before { color: rgba(197, 160, 89, 0.15); transform: rotate(15deg); }
 
         .zodiac-card img {
             width: 80px;
+            height: 80px;
             margin-bottom: 20px;
-            filter: drop-shadow(0 0 8px var(--gold));
+            filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.6));
+            transition: 0.3s;
         }
+        .zodiac-card:hover img { filter: drop-shadow(0 0 20px var(--gold-bright)); transform: scale(1.1); }
 
         .zodiac-card h3 { color: var(--gold-bright); margin-bottom: 5px; font-size: 1.5rem; }
-        .zodiac-card p { font-size: 0.9rem; color: #8fa1c1; text-transform: uppercase; letter-spacing: 1px; }
+        .zodiac-card p { font-size: 0.9rem; color: #cbd5e1; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Result Modal */
+        /* Modal Upgrade (Cinematic Entrance) */
         #horoscope-result {
             display: none;
             position: fixed;
             top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) scale(0.8);
             width: 90%; max-width: 650px;
-            background: var(--royal-box);
-            border: 2px solid var(--gold);
+            background: rgba(10, 20, 40, 0.95);
+            border: 1px solid var(--gold);
             padding: 50px;
             border-radius: 30px;
             z-index: 1001;
-            box-shadow: 0 0 100px rgba(0,0,0,0.9);
-            border-top: 10px solid var(--gold);
+            box-shadow: 0 0 50px rgba(0,0,0,0.9), inset 0 0 30px rgba(197, 160, 89, 0.1);
+            border-top: 8px solid var(--gold);
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #horoscope-result.show-modal {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
         }
 
         .overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.8);
             z-index: 1000;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
+        .overlay.show-overlay { opacity: 1; }
 
-        .close-btn { position: absolute; top: 20px; right: 25px; color: var(--gold); font-size: 30px; cursor: pointer; }
+        .close-btn { position: absolute; top: 20px; right: 25px; color: var(--gold); font-size: 35px; cursor: pointer; transition: 0.3s; }
+        .close-btn:hover { color: #fff; transform: rotate(90deg); }
 
         .premium-btn {
             background: linear-gradient(45deg, #8a6d3b, var(--gold-bright));
@@ -148,40 +178,62 @@
             display: inline-block;
             margin-top: 30px;
             text-transform: uppercase;
-            box-shadow: 0 8px 20px rgba(197, 160, 89, 0.4);
+            box-shadow: 0 8px 20px rgba(197, 160, 89, 0.3);
             transition: 0.3s;
         }
-        .premium-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+        .premium-btn:hover { transform: scale(1.05) translateY(-3px); box-shadow: 0 12px 25px rgba(197, 160, 89, 0.5); }
 
         /* Trust Section */
         .trust {
-            padding: 60px 10%; text-align: center; background: rgba(255, 255, 255, 0.02);
+            padding: 80px 10%; text-align: center; position: relative; z-index: 1;
             border-top: 1px solid rgba(197, 160, 89, 0.1); margin-top: 40px;
         }
-        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .trust-card { background: var(--royal-box); padding: 30px; border-radius: 15px; border-left: 4px solid var(--gold); }
+        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .trust-card { 
+            background: var(--royal-box); 
+            padding: 40px 30px; border-radius: 20px; 
+            border-left: 4px solid var(--gold); 
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-left: 4px solid var(--gold);
+            transition: 0.4s ease;
+        }
+        .trust-card:hover { transform: translateY(-10px); border-color: var(--gold-bright); box-shadow: 0 10px 30px rgba(197,160,89,0.2); }
 
-        /* Floating WhatsApp Button */
+        /* Scroll Motion Classes */
+        .hidden-motion {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .show-motion {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* WhatsApp */
         .whatsapp {
             position: fixed; bottom: 30px; right: 30px;
-            background: #25d366; color: #fff; width: 60px; height: 60px;
-            border-radius: 50%; font-size: 30px; display: flex; align-items: center;
+            background: #25d366; color: #fff; width: 65px; height: 65px;
+            border-radius: 50%; font-size: 35px; display: flex; align-items: center;
             justify-content: center; text-decoration: none; z-index: 1001;
             box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: 0.3s;
             animation: pulseWa 2s infinite;
         }
         @keyframes pulseWa { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
 
-        footer { padding: 60px 5%; text-align: center; color: #55607a; border-top: 1px solid #1a2a4a; background: #02060f; }
+        footer { padding: 60px 5%; text-align: center; color: #8fa1c1; border-top: 1px solid rgba(197,160,89,0.2); background: rgba(4, 10, 24, 0.9); position: relative; z-index: 1; }
 
         @media (max-width: 768px) {
             .horoscope-header h1 { font-size: 2.5rem; }
-            .zodiac-grid { padding: 20px 5%; }
-            #horoscope-result { padding: 30px; }
+            .zodiac-grid { padding: 20px 5%; gap: 15px; }
+            #horoscope-result { padding: 30px; width: 95%; }
         }
     </style>
 </head>
 <body>
+
+    <canvas id="space-flow"></canvas>
 
     <div class="bg-icons">
         <i class="fas fa-om" style="left: 10%; animation-delay: 0s;"></i>
@@ -196,16 +248,16 @@
         <nav>
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
-            <a href="horoscope.html">Horoscope</a>
+            <a href="horoscope.html" style="color: var(--gold-bright); text-shadow: 0 0 8px var(--gold);">Horoscope</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>
 
-    <div class="horoscope-header">
+    <div class="horoscope-header hidden-motion">
         <div class="shining-sun"><i class="fas fa-sun"></i></div>
         <h1 class="hindi royal-title">दैनिक राशिफल</h1>
         <div id="current-date" class="date-display"></div>
-        <p class="hindi" style="color: #8fa1c1; font-size: 1.1rem; margin-top: 15px;">आज के ग्रहों की स्थिति के अनुसार अपनी राशि का भविष्यफल जानें</p>
+        <p class="hindi" style="color: #cbd5e1; font-size: 1.1rem; margin-top: 15px;">आज के ग्रहों की स्थिति के अनुसार अपनी राशि का भविष्यफल जानें</p>
         
         <div class="diya-wrapper">
             <div class="flame"></div>
@@ -216,23 +268,23 @@
     <div class="zodiac-grid" id="zodiac-container">
         </div>
 
-    <section class="trust">
-        <h2 class="hindi royal-title" style="margin-bottom: 30px; font-size: 1.8rem;">सटीक गणना एवं समाधान</h2>
+    <section class="trust hidden-motion">
+        <h2 class="hindi royal-title" style="margin-bottom: 40px; font-size: 2.2rem;">सटीक गणना एवं समाधान</h2>
         <div class="trust-grid">
-            <div class="trust-card">
-                <i class="fas fa-certificate" style="font-size: 2rem; color: var(--gold-bright); margin-bottom: 10px;"></i>
-                <h3 class="hindi">शुद्ध गणना</h3>
-                <p class="hindi" style="font-size: 0.9rem; color: #aaa;">वैदिक गणित पर आधारित सटीक फलित।</p>
+            <div class="trust-card hidden-motion">
+                <i class="fas fa-certificate" style="font-size: 2.5rem; color: var(--gold-bright); margin-bottom: 15px; filter: drop-shadow(0 0 5px var(--gold));"></i>
+                <h3 class="hindi" style="color: var(--gold-bright); margin-bottom: 10px;">शुद्ध गणना</h3>
+                <p class="hindi" style="font-size: 1rem; color: #cbd5e1; line-height: 1.6;">वैदिक गणित पर आधारित सटीक फलित।</p>
             </div>
-            <div class="trust-card">
-                <i class="fas fa-user-check" style="font-size: 2rem; color: var(--gold-bright); margin-bottom: 10px;"></i>
-                <h3 class="hindi">विद्वान मार्गदर्शन</h3>
-                <p class="hindi" style="font-size: 0.9rem; color: #aaa;">आचार्य जी का वर्षों का गहरा अनुभव।</p>
+            <div class="trust-card hidden-motion" style="transition-delay: 0.1s;">
+                <i class="fas fa-user-check" style="font-size: 2.5rem; color: var(--gold-bright); margin-bottom: 15px; filter: drop-shadow(0 0 5px var(--gold));"></i>
+                <h3 class="hindi" style="color: var(--gold-bright); margin-bottom: 10px;">विद्वान मार्गदर्शन</h3>
+                <p class="hindi" style="font-size: 1rem; color: #cbd5e1; line-height: 1.6;">आचार्य जी का वर्षों का गहरा अनुभव।</p>
             </div>
-            <div class="trust-card">
-                <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--gold-bright); margin-bottom: 10px;"></i>
-                <h3 class="hindi">पूर्ण गोपनीयता</h3>
-                <p class="hindi" style="font-size: 0.9rem; color: #aaa;">आपकी जानकारी सुरक्षित और गुप्त।</p>
+            <div class="trust-card hidden-motion" style="transition-delay: 0.2s;">
+                <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--gold-bright); margin-bottom: 15px; filter: drop-shadow(0 0 5px var(--gold));"></i>
+                <h3 class="hindi" style="color: var(--gold-bright); margin-bottom: 10px;">पूर्ण गोपनीयता</h3>
+                <p class="hindi" style="font-size: 1rem; color: #cbd5e1; line-height: 1.6;">आपकी जानकारी सुरक्षित और गुप्त।</p>
             </div>
         </div>
     </section>
@@ -240,12 +292,14 @@
     <div class="overlay" id="overlay" onclick="closeModal()"></div>
     <div id="horoscope-result">
         <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2 id="rashi-name" class="hindi royal-title" style="margin-bottom: 25px; border-bottom: 1px solid var(--gold); padding-bottom: 10px;"></h2>
-        <p id="prediction" class="hindi" style="font-size: 1.25rem; line-height: 1.8; color: #cbd5e1;"></p>
+        <h2 id="rashi-name" class="hindi royal-title" style="margin-bottom: 25px; border-bottom: 1px solid rgba(197,160,89,0.3); padding-bottom: 15px; font-size: 2rem;"></h2>
+        <p id="prediction" class="hindi" style="font-size: 1.15rem; line-height: 1.8; color: #e2e8f0;"></p>
         <div style="background: rgba(197, 160, 89, 0.1); padding: 20px; border-radius: 15px; margin-top: 25px; border-left: 4px solid var(--gold);">
-            <p class="hindi" style="font-size: 0.95rem; color: #fff;">💡 <b>आज का विशेष उपाय:</b> <span id="remedy"></span></p>
+            <p class="hindi" style="font-size: 1rem; color: #fff; line-height: 1.6;">💡 <b style="color:var(--gold-bright);">आज का विशेष उपाय:</b> <span id="remedy"></span></p>
         </div>
-        <a id="wa-link" href="#" class="premium-btn">📲 पंडित जी से विस्तृत परामर्श लें</a>
+        <div style="text-align: center;">
+            <a id="wa-link" href="#" class="premium-btn"><i class="fab fa-whatsapp" style="font-size: 1.2rem; margin-right: 5px;"></i> पंडित जी से विस्तृत परामर्श लें</a>
+        </div>
     </div>
 
     <a href="https://wa.me/919929806534" class="whatsapp" target="_blank">
@@ -253,6 +307,7 @@
     </a>
 
     <script>
+        // Data Arrays
         const zodiacs = [
             { id: "Aries", name: "मेष", eng: "Aries", icon: "sun.svg", lucky: "आज व्यापार में अप्रत्याशित वृद्धि होगी। परिवार में खुशी का माहौल रहेगा और पुराने रुके हुए कार्य गति पकड़ेंगे।" },
             { id: "Taurus", name: "वृषभ", eng: "Taurus", icon: "moon.svg", lucky: "धन लाभ के प्रबल योग हैं। संपत्ति से जुड़े विवाद सुलझेंगे। जीवनसाथी का भरपूर सहयोग प्राप्त होगा।" },
@@ -280,42 +335,137 @@
         const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById('current-date').innerText = new Date().toLocaleDateString('hi-IN', dateOptions);
 
-        // Render Grid
+        // Render Grid & Attach Observers
         const container = document.getElementById('zodiac-container');
+        let delayCounter = 0;
+
         zodiacs.forEach(z => {
             const card = document.createElement('div');
-            card.className = 'zodiac-card';
+            // Adding hidden-motion for the scroll animation
+            card.className = 'zodiac-card hidden-motion'; 
+            // Staggering the animation slightly for a "domino" effect
+            card.style.transitionDelay = `${delayCounter}s`;
+            delayCounter += 0.05;
+
             card.onclick = () => showHoroscope(z.name + " (" + z.eng + ")", z.lucky);
+            // I left your image source exactly as is so your local images work
+            // Added an onerror fallback just in case the images don't load initially
             card.innerHTML = `
-                <img src="images/${z.icon}" alt="${z.name}">
+                <img src="images/${z.icon}" alt="${z.name}" onerror="this.style.display='none'">
                 <h3 class="hindi">${z.name}</h3>
                 <p>${z.eng}</p>
             `;
             container.appendChild(card);
         });
 
+        // Cinematic Modal Logic
         function showHoroscope(name, prediction) {
             document.getElementById('rashi-name').innerText = name;
             document.getElementById('prediction').innerText = prediction;
             document.getElementById('remedy').innerText = remedies[Math.floor(Math.random() * remedies.length)];
             
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('horoscope-result').style.display = 'block';
-            
             const msg = `प्रणाम पंडित जी, मैंने Astro Sanjog पर ${name} का दैनिक राशिफल देखा। कृपया मुझे विस्तार से मार्गदर्शन प्रदान करें।`;
             document.getElementById('wa-link').href = `https://wa.me/919929806534?text=${encodeURIComponent(msg)}`;
+
+            // Make elements block first, then add the show class for CSS transition to trigger
+            const overlay = document.getElementById('overlay');
+            const modal = document.getElementById('horoscope-result');
+            
+            overlay.style.display = 'block';
+            modal.style.display = 'block';
+            
+            // Small timeout allows the display:block to register before changing opacity/transform
+            setTimeout(() => {
+                overlay.classList.add('show-overlay');
+                modal.classList.add('show-modal');
+            }, 10);
         }
 
         function closeModal() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('horoscope-result').style.display = 'none';
+            const overlay = document.getElementById('overlay');
+            const modal = document.getElementById('horoscope-result');
+            
+            overlay.classList.remove('show-overlay');
+            modal.classList.remove('show-modal');
+            
+            // Wait for transition to finish before hiding display
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                modal.style.display = 'none';
+            }, 400);
         }
+
+        /* --- NEW: SCROLL MOTION OBSERVER --- */
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show-motion');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.hidden-motion').forEach(el => observer.observe(el));
+
+        /* --- NEW: LIVE FLOW STARFIELD CANVAS --- */
+        const canvas = document.getElementById("space-flow");
+        const ctx = canvas.getContext("2d");
+        
+        let width, height, stars = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        for (let i = 0; i < 150; i++) {
+            stars.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 1.5,
+                speed: Math.random() * 0.5 + 0.1,
+                alpha: Math.random()
+            });
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, width, height);
+            
+            let bgGradient = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, width);
+            bgGradient.addColorStop(0, "#0a1428");
+            bgGradient.addColorStop(1, "#040a18");
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.fillStyle = "#f1d38e"; 
+            for (let i = 0; i < stars.length; i++) {
+                let s = stars[i];
+                ctx.globalAlpha = s.alpha;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                s.y -= s.speed;
+                s.alpha += (Math.random() - 0.5) * 0.05; 
+
+                if (s.alpha < 0.1) s.alpha = 0.1;
+                if (s.alpha > 1) s.alpha = 1;
+
+                if (s.y < 0) {
+                    s.y = height;
+                    s.x = Math.random() * width;
+                }
+            }
+            requestAnimationFrame(drawStars);
+        }
+        drawStars();
     </script>
-
-    <footer>
-        <p class="royal-title">ASTRO SANJOG | JAIPUR</p>
-        <p class="hindi" style="margin-top: 10px;">© सर्वाधिकार सुरक्षित | आचार्य पंडित संजय जी</p>
-    </footer>
-
 </body>
 </html>
