@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>हमारे बारे में | ज्योतिषाचार्य प. संजय जी</title>
+    <title>हमारे बारे में | ज्योतिषाचार्य प. संजय जी | Astro Sanjog</title>
     
+    <!-- SEO & Social Media Meta Tags -->
+    <meta name="description" content="ज्योतिषाचार्य पंडित संजय जी - 25 वर्षों के अनुभव के साथ वैदिक ज्योतिष, तंत्र-मंत्र बाधा निवारण और सिद्ध यंत्र परामर्श।">
+    <meta name="keywords" content="Astro Sanjog, Pandit Sanjay Ji, Astrology Jaipur, Tantra Mantra Solutions, Kundli Specialist, Jyotish Jaipur">
+    <meta property="og:title" content="हमारे बारे में | ज्योतिषाचार्य प. संजय जी">
+    <meta property="og:description" content="प्राचीन तांत्रिक विद्या एवं वैदिक ज्योतिष के माध्यम से समस्याओं का 100% सटीक व गुप्त समाधान।">
+    <meta property="og:image" content="images/sanjay-ji.jpg">
+    <meta property="og:type" content="website">
+
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -48,13 +56,12 @@
         .logo { font-size: 1.8rem; font-weight: bold; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
         nav a { color: var(--white); text-decoration: none; margin-left: 30px; font-weight: 500; text-transform: uppercase; transition: 0.4s; position: relative;}
         nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; background: var(--gold-bright); transition: 0.4s; transform: translateX(-50%); }
-        nav a:hover::after { width: 100%; }
-        nav a:hover { color: var(--gold-bright); text-shadow: 0 0 15px var(--gold); }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        nav a:hover, nav a.active { color: var(--gold-bright); text-shadow: 0 0 15px var(--gold); }
 
         /* Hero Section */
         .hero { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 60px 10% 40px; position: relative; z-index: 1; }
         
-        /* Aura Image */
         .hero-img { position: relative; display: inline-block; margin-bottom: 20px; }
         .hero-img::before { content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border-radius: 50%; background: radial-gradient(circle, rgba(197,160,89,0.3) 0%, rgba(139,0,0,0.4) 50%, transparent 100%); z-index: -1; animation: auraPulse 4s infinite alternate; }
         @keyframes auraPulse { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.15); opacity: 1; } }
@@ -67,20 +74,18 @@
         @keyframes divineFlicker { 0% { transform: scale(1) rotate(-1deg); opacity: 0.9; } 50% { transform: scale(1.05) rotate(1deg); opacity: 1; } 100% { transform: scale(1.1) rotate(0deg); box-shadow: 0 0 25px #ffdf00, 0 0 60px #ff4500; } }
         .diya-base { width: 60px; height: 25px; background: linear-gradient(to bottom, #8b4513, #3e1b04); border-radius: 0 0 60px 60px; position: absolute; bottom: 0; border-top: 3px solid #ffdf00; box-shadow: 0 10px 20px rgba(0,0,0,0.8); }
 
-        /* Content Sections - Obsidian Tablets */
+        /* Content Sections */
         .about-section { padding: 40px 10%; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
         .content-card {
             background: var(--royal-box); padding: 50px; border-radius: 20px; 
             border: 1px solid rgba(197, 160, 89, 0.2); border-top: 3px solid var(--mystic-red);
             box-shadow: var(--shadow-deep), var(--glow-red); backdrop-filter: blur(20px);
-            max-width: 950px; margin-bottom: 50px; position: relative; text-align: center;
+            max-width: 950px; width: 100%; margin-bottom: 50px; position: relative; text-align: center;
         }
         .content-card::before { content: "卍"; position: absolute; top: 15px; left: 25px; font-size: 50px; color: rgba(197, 160, 89, 0.08); }
         .content-card::after { content: 'ॐ'; position: absolute; bottom: 10px; right: 25px; font-size: 80px; color: rgba(197, 160, 89, 0.05); z-index: -1; }
         
         .about-section p { font-size: 1.15rem; line-height: 2; color: #cbd5e1; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-        
-        /* Highlighted Text */
         .highlight-text { color: var(--gold-bright); font-weight: bold; letter-spacing: 0.5px; }
 
         /* Expertise Grid */
@@ -100,13 +105,27 @@
         }
         .speciality-tag:hover { background: var(--mystic-red); color: #fff; border-color: var(--gold); transform: scale(1.05); }
 
+        /* Booking Form Style */
+        .booking-form input, .booking-form select, .booking-form textarea {
+            width: 100%; padding: 14px; margin-bottom: 15px; background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 8px; color: #fff; font-size: 1rem;
+        }
+        .booking-form input:focus, .booking-form select:focus, .booking-form textarea:focus {
+            outline: none; border-color: var(--gold-bright); box-shadow: 0 0 10px rgba(197, 160, 89, 0.4);
+        }
+        .booking-btn {
+            background: var(--gold-gradient); color: #000; border: none; padding: 15px 30px;
+            font-size: 1.1rem; font-weight: bold; border-radius: 50px; cursor: pointer; transition: 0.4s; width: 100%;
+        }
+        .booking-btn:hover { transform: scale(1.02); box-shadow: 0 5px 20px rgba(197, 160, 89, 0.6); }
+
         /* Trust Stats */
         .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; width: 100%; max-width: 900px; margin-top: 20px; }
         .trust-stat { background: linear-gradient(180deg, rgba(8,14,25,0.8) 0%, rgba(2,5,10,0.9) 100%); padding: 30px; border-radius: 15px; border: 1px solid rgba(197,160,89,0.2); text-align: center; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
         .trust-stat:hover { border-color: var(--gold); transform: translateY(-5px); }
         .trust-stat i { font-size: 2.5rem; color: var(--gold-bright); margin-bottom: 15px; filter: drop-shadow(0 0 5px var(--gold)); }
 
-        /* Contact Box - Shahi Final Call to Action */
+        /* Contact Box */
         .contact-box {
             background: linear-gradient(135deg, rgba(8,14,25,0.9), rgba(74,4,4,0.4)); padding: 60px; 
             border-radius: 30px; margin-top: 60px; text-align: center; border: 1px solid var(--gold); 
@@ -159,7 +178,7 @@
         <a href="index.html" class="logo royal-title">🔮 ASTRO SANJOG</a>
         <nav>
             <a href="index.html">Home</a>
-            <a href="about.html" style="color: var(--gold-bright); text-shadow: 0 0 8px var(--gold);">About</a>
+            <a href="about.html" class="active">About</a>
             <a href="horoscope.html">Horoscope</a>
             <a href="contact.html">Contact</a>
         </nav>
@@ -182,7 +201,7 @@
 
     <div class="about-section">
         
-        <!-- Engaging Introductory Card -->
+        <!-- Introductory Card -->
         <div class="content-card hidden-motion">
             <h2 class="hindi royal-title" style="margin-bottom: 25px; font-size: 2.2rem;">अंधकार से प्रकाश की ओर एक सिद्ध मार्ग</h2>
             <p class="hindi">
@@ -194,16 +213,24 @@
             <div style="font-size: 3rem; color: var(--mystic-red); opacity: 0.6; margin-top: 20px;">ॐ</div>
         </div>
 
+        <!-- NEW: Guru Parampara & Authenticity Section -->
+        <div class="content-card hidden-motion">
+            <h2 class="hindi royal-title" style="margin-bottom: 20px; font-size: 2rem;">गुरु परंपरा एवं सिद्ध तंत्र साधना</h2>
+            <p class="hindi">
+                काशी एवं उज्जैन की पावन पीठों से प्राप्त तंत्र दीक्षा और 25 वर्षों के कठिन अनुष्ठानों के बल पर आचार्य जी ने प्राचीन महाविद्याओं में निपुणता हासिल की है। हमारे यहाँ केवल शास्त्रीय मर्यादाओं, शुद्ध वैदिक मंत्रोच्चार और सात्विक-तांत्रिक विधि से ही अनुष्ठान संपन्न किए जाते हैं।
+            </p>
+        </div>
+
         <!-- Expertise Grid -->
         <div class="services-grid">
-            <div class="info-card hidden-motion" style="transition-delay: 0.1s;">
+            <div class="info-card hidden-motion">
                 <h3 class="hindi"><i class="fas fa-eye" style="margin-right: 10px;"></i> रहस्यमयी विश्लेषण</h3>
                 <p class="hindi" style="color: #cbd5e1; line-height: 1.8;">
                     हम <b>हस्त रेखा</b>, <b>मस्तक रेखा (Face Reading)</b>, और आपकी <b>जन्म कुंडली</b> के गहन व सूक्ष्म अध्ययन से आपके अतीत, वर्तमान और भविष्य का बिल्कुल सटीक चित्रण करते हैं। ग्रहों की चाल और उनके अशुभ प्रभाव को शांत करने हेतु अचूक उपाय प्रदान किए जाते हैं।
                 </p>
             </div>
 
-            <div class="info-card hidden-motion" style="transition-delay: 0.2s;">
+            <div class="info-card hidden-motion" style="transition-delay: 0.1s;">
                 <h3 class="hindi"><i class="fas fa-fire" style="margin-right: 10px;"></i> अचूक समाधान</h3>
                 <div style="margin-top: 15px; line-height: 2;">
                     <span class="speciality-tag">भयंकर नजर दोष</span>
@@ -218,7 +245,7 @@
         </div>
 
         <!-- Powerful Solution Card -->
-        <div class="content-card hidden-motion" style="margin-top: 30px; text-align: left; padding: 40px;">
+        <div class="content-card hidden-motion" style="text-align: left; padding: 40px;">
             <h2 class="hindi royal-title" style="font-size: 2rem; border-left: 5px solid var(--mystic-red); padding-left: 20px;">सिद्ध यंत्र एवं तांत्रिक अनुष्ठान</h2>
             <p class="hindi" style="margin-top: 20px;">
                 यदि आप मानसिक अशांति, भय, गृह क्लेश या किसी ऐसी बाधा से परेशान हैं जिसका कारण आपको समझ नहीं आ रहा है, तो हमारे यहाँ विशेष मुहूर्तों (जैसे अमावस्या, ग्रहण काल) में <span class="highlight-text">सिद्ध किए गए यंत्र, कवच और ताबीज</span> तैयार किए जाते हैं। 
@@ -226,6 +253,63 @@
             <p class="hindi">
                 प्राचीन तंत्र शास्त्रों के अनुसार किए गए हमारे विशेष अनुष्ठान और साधनाएं आपके जीवन में एक अभेद्य सुरक्षा चक्र का निर्माण करती हैं, जिससे साक्षात् लक्ष्मी कृपा और सुख-शांति का आगमन होता है।
             </p>
+        </div>
+
+        <!-- NEW: Client Testimonials Grid -->
+        <h2 class="hindi royal-title hidden-motion" style="font-size: 2.2rem; margin: 20px 0 30px;">यजमानों के अनुभव</h2>
+        <div class="services-grid">
+            <div class="info-card hidden-motion">
+                <div style="color: var(--gold-bright); margin-bottom: 10px;">⭐⭐⭐⭐⭐</div>
+                <p class="hindi" style="font-size: 0.95rem; color: #cbd5e1;">"व्यापार में लगातार घाटा हो रहा था। पंडित जी से मार्गदर्शन लिया और व्यापार वृद्धि यंत्र स्थापित किया, केवल 2 महीने में व्यापार में अभूतपूर्व सुधार आया।"</p>
+                <h4 class="hindi" style="color: var(--gold-bright); margin-top: 15px; font-size: 1.1rem;">— राजेश शर्मा, जयपुर</h4>
+            </div>
+            <div class="info-card hidden-motion" style="transition-delay: 0.1s;">
+                <div style="color: var(--gold-bright); margin-bottom: 10px;">⭐⭐⭐⭐⭐</div>
+                <p class="hindi" style="font-size: 0.95rem; color: #cbd5e1;">"घर में बिना कारण कलह और नकारात्मक ऊर्जा महसूस होती थी। गुरुजी के तांत्रिक सुरक्षा कवच और अनुष्ठान से अब घर में पूर्ण शांति है।"</p>
+                <h4 class="hindi" style="color: var(--gold-bright); margin-top: 15px; font-size: 1.1rem;">— सुनीता वर्मा, दिल्ली</h4>
+            </div>
+        </div>
+
+        <!-- NEW: Quick Consultation Form Card -->
+        <div class="content-card hidden-motion" style="max-width: 700px;">
+            <h2 class="hindi royal-title" style="margin-bottom: 15px; font-size: 2rem;">व्यक्तिगत परामर्श बुक करें</h2>
+            <p class="hindi" style="font-size: 0.95rem; margin-bottom: 25px; color: var(--text-muted);">
+                अपनी समस्या दर्ज करें, हमारी टीम अतिशीघ्र आपसे संपर्क करेगी।
+            </p>
+            <form class="booking-form" onsubmit="alert('आपकी जानकारी दर्ज कर ली गई है। पंडित जी की टीम आपसे जल्द संपर्क करेगी।'); return false;">
+                <input type="text" placeholder="आपका पूरा नाम" required>
+                <input type="tel" placeholder="फ़ोन / व्हाट्सएप नंबर" required>
+                <select required>
+                    <option value="" disabled selected>समस्या का प्रकार चुनें</option>
+                    <option value="kundli">कुंडली व हस्तरेखा विश्लेषण</option>
+                    <option value="business">व्यापार व धन हानि</option>
+                    <option value="marriage">विवाह व पारिवारिक क्लेश</option>
+                    <option value="nazar">नज़र व तंत्र बाधा निवारण</option>
+                    <option value="other">अन्य समस्या</option>
+                </select>
+                <textarea rows="3" placeholder="अपनी समस्या के बारे में संक्षेप में लिखें (वैकल्पिक)"></textarea>
+                <button type="submit" class="booking-btn hindi">अपॉइंटमेंट बुक करें 🔮</button>
+            </form>
+        </div>
+
+        <!-- NEW: FAQ Section -->
+        <div class="content-card hidden-motion" style="text-align: left; padding: 40px;">
+            <h2 class="hindi royal-title" style="text-align: center; margin-bottom: 30px; font-size: 2rem;">अक्सर पूछे जाने वाले प्रश्न (FAQ)</h2>
+            
+            <div style="margin-bottom: 20px; border-bottom: 1px solid rgba(197,160,89,0.2); padding-bottom: 15px;">
+                <h3 class="hindi" style="color: var(--gold-bright); font-size: 1.2rem;">Q1. क्या मेरी पहचान और जानकारी गुप्त रखी जाएगी?</h3>
+                <p class="hindi" style="color: #cbd5e1; font-size: 0.95rem; margin-top: 8px;">जी हाँ, 100% गोपनीयता रखी जाती है। आपकी कोई भी व्यक्तिगत जानकारी किसी तीसरे व्यक्ति से साझा नहीं की जाती।</p>
+            </div>
+
+            <div style="margin-bottom: 20px; border-bottom: 1px solid rgba(197,160,89,0.2); padding-bottom: 15px;">
+                <h3 class="hindi" style="color: var(--gold-bright); font-size: 1.2rem;">Q2. क्या मैं फोन या व्हाट्सएप के माध्यम से दूर से परामर्श ले सकता हूँ?</h3>
+                <p class="hindi" style="color: #cbd5e1; font-size: 0.95rem; margin-top: 8px;">हाँ, यदि आप जयपुर से बाहर हैं या विदेश में हैं, तो आप व्हाट्सएप पर जन्म तिथि/हस्तरेखा भेजकर फोन पर सीधा परामर्श ले सकते हैं।</p>
+            </div>
+
+            <div>
+                <h3 class="hindi" style="color: var(--gold-bright); font-size: 1.2rem;">Q3. अनुष्ठान या सिद्ध यंत्रों का प्रभाव कितने समय में दिखाई देता है?</h3>
+                <p class="hindi" style="color: #cbd5e1; font-size: 0.95rem; margin-top: 8px;">समस्या की गंभीरता और ग्रहों की स्थिति के आधार पर प्रभाव तुरंत या कुछ दिनों में महसूस होने लगता है।</p>
+            </div>
         </div>
 
         <!-- Trust Stats -->
