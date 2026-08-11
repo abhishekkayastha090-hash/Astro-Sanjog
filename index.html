@@ -8,21 +8,101 @@
     <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Poppins:wght@300;400;600;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Linking Custom CSS Folder Path -->
     <link rel="stylesheet" href="css/style.css">
     
     <style>
-        /* Navgraha Icon Styling Improvements */
+        /* Extra custom styling to match Premium Spiritual Theme */
+        :root {
+            --bg-dark: #0a0812;
+            --gold-bright: #ffd700;
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Poppins', 'Tiro Devanagari Hindi', sans-serif;
+        }
+
+        .gold-text {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Profile Photo Glow Effect */
+        .hero-img-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .hero-img-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 105%;
+            height: 105%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, rgba(255, 215, 0, 0) 70%);
+            z-index: 1;
+        }
+        .hero-img-wrapper img {
+            position: relative;
+            z-index: 2;
+            border: 3px solid #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+            object-fit: cover;
+            width: 320px;
+            height: 320px;
+        }
+
+        /* Quick Contact Action Bar */
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .btn-call {
+            background: #e67e22;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
+        }
+        .btn-wa {
+            background: #25d366;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Navgraha Bar Icons */
         .graha-item i {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
+            font-size: 2rem;
+            margin-bottom: 8px;
             display: block;
         }
         .graha-item {
             text-align: center;
+            padding: 10px;
         }
     </style>
 </head>
@@ -37,7 +117,7 @@
 
     <!-- Navigation Header -->
     <header class="navbar">
-        <a href="index.html" class="logo royal-title">🔮 ASTRO SANJOG</a>
+        <a href="index.html" class="logo royal-title gold-text">🔮 ASTRO SANJOG</a>
         <nav>
             <a href="index.html" class="active">HOME</a>
             <a href="about.html">ABOUT</a>
@@ -46,30 +126,44 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1 class="royal-title">आचार्य पंडित संजय जी</h1>
-            <p class="sub hindi">वैदिक ज्योतिष, गुप्त तंत्र एवं साधना मार्गदर्शन</p>
-            <p class="desc hindi">
-                तंत्र-मंत्र बाधा निवारण • जन्म कुंडली विश्लेषण • सर्व मनोकामना सिद्ध यन्त्र • महादशा एवं ग्रह शांति निवारण
+    <!-- Hero Section (Premium Spiritual Banner) -->
+    <section class="hero" style="padding: 50px 8%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
+        <div class="hero-text" style="max-width: 600px;">
+            <h1 class="royal-title gold-text" style="font-size: 2.8rem; margin-bottom: 10px;">आचार्य पंडित संजय जी</h1>
+            <p class="sub hindi" style="font-size: 1.3rem; color: #f39c12; margin-bottom: 15px; font-weight: 600;">
+                ★ भारत के प्रसिद्ध वैदिक ज्योतिषाचार्य एवं तंत्र विशेषज्ञ ★
             </p>
-            <a href="#kundli-engine" class="btn-royal hindi" style="display:inline-block; width:auto; padding:12px 30px; text-decoration:none;">
-                अपनी कुंडली देखें <i class="fas fa-magic" style="margin-left: 8px;"></i>
-            </a>
+            <p class="desc hindi" style="line-height: 1.8; color: #e0e0e0; font-size: 1.05rem;">
+                तंत्र-मंत्र बाधा निवारण • जन्म कुंडली विश्लेषण • सर्व मनोकामना सिद्ध यन्त्र • महादशा एवं ग्रह शांति निवारण • प्रेम व विवाह समाधान
+            </p>
+            
+            <!-- Direct Action Buttons (Call & WhatsApp) -->
+            <div class="cta-buttons">
+                <a href="tel:+919929806534" class="btn-call">
+                    <i class="fas fa-phone-alt"></i> अभी कॉल करें
+                </a>
+                <a href="https://wa.me/919929806534?text=प्रणाम%20पंडित%20जी,%20मुझे%20परामर्श%20चाहिए।" class="btn-wa" target="_blank">
+                    <i class="fab fa-whatsapp"></i> व्हाट्सएप परामर्श
+                </a>
+                <a href="#kundli-engine" class="btn-royal hindi" style="padding: 12px 25px; text-decoration: none;">
+                    कुंडली देखें <i class="fas fa-magic" style="margin-left: 5px;"></i>
+                </a>
+            </div>
         </div>
+
         <div class="hero-img">
-            <!-- Updated Image Tag with Placeholder Fallback -->
-            <img src="images/AcharyaPanditSanjayji.jpg" 
-                 alt="Acharya Pandit Sanjay Ji" 
-                 onerror="this.onerror=null; this.src='https://via.placeholder.com/350/0d1117/ffdf8c?text=Acharya+Pandit+Sanjay+Ji';">
+            <div class="hero-img-wrapper">
+                <img src="images/AcharyaPanditSanjayji.jpg" 
+                     alt="Acharya Pandit Sanjay Ji" 
+                     onerror="this.onerror=null; this.src='https://via.placeholder.com/320/0d1117/ffdf8c?text=Acharya+Pandit+Sanjay+Ji';">
+            </div>
         </div>
     </section>
 
-    <!-- Navgraha Showcase (Replaced missing SVGs with FontAwesome Icons) -->
-    <div class="navgraha-bar">
-        <h4 class="hindi royal-title" style="font-size: 1.1rem; color: var(--gold-bright);">🔱 नवग्रह ऊर्जा चक्र (Navgraha Energy) 🔱</h4>
-        <div class="navgraha-grid">
+    <!-- Navgraha Showcase (FontAwesome Icons) -->
+    <div class="navgraha-bar" style="background: rgba(255,255,255,0.03); padding: 25px 5%; margin: 20px 0; border-top: 1px solid rgba(255,215,0,0.2); border-bottom: 1px solid rgba(255,215,0,0.2);">
+        <h4 class="hindi royal-title text-center" style="font-size: 1.3rem; color: var(--gold-bright); text-align: center; margin-bottom: 20px;">🔱 नवग्रह ऊर्जा चक्र (Navgraha Energy) 🔱</h4>
+        <div class="navgraha-grid" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
             <div class="graha-item"><i class="fas fa-sun" style="color: #ffaa00;"></i><span>सूर्य</span></div>
             <div class="graha-item"><i class="fas fa-moon" style="color: #f1f2f6;"></i><span>चंद्र</span></div>
             <div class="graha-item"><i class="fas fa-meteor" style="color: #ff4757;"></i><span>मंगल</span></div>
@@ -82,15 +176,15 @@
         </div>
     </div>
 
-    <!-- Core Services Grid (Astrology + Tantra) -->
+    <!-- Core Services Grid -->
     <section class="services-section">
-        <h2 class="hindi royal-title section-title">विशिष्ट वैदिक एवं तार्किक सेवाएं</h2>
+        <h2 class="hindi royal-title section-title text-center gold-text" style="text-align: center; font-size: 2rem; margin-bottom: 30px;">विशिष्ट वैदिक एवं तंत्र सेवाएं</h2>
         <div class="services-grid">
             <div class="service-card">
                 <i class="fas fa-dharmachakra"></i>
                 <h3 class="hindi" style="color:var(--gold-bright); margin-bottom:10px;">सटीक कुंडली विश्लेषण</h3>
                 <p class="hindi" style="color:#cbd5e1; font-size:0.95rem;">
-                    ग्रह दोष, कालसर्प, मांगलिक दोष एवं कैरियर/व्यापार की सटीक गणना।
+                    ग्रह दोष, कालसर्प, मांगलिक दोष एवं करियर/व्यापार की सटीक गणना।
                 </p>
             </div>
             <div class="service-card">
@@ -121,7 +215,7 @@
     <section class="engine-section" id="kundli-engine">
         <div class="form-box">
             <h2 class="hindi royal-title" style="text-align: center; margin-bottom: 20px; font-size: 1.7rem;">
-                🔮 लग्न कुंडली एवं महादशा चक्र गणना
+                🔮 मुफ़्त लग्न कुंडली एवं महादशा चक्र गणना
             </h2>
             
             <input type="text" id="name" placeholder="जातक का पूरा नाम" required>
