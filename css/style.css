@@ -1,60 +1,102 @@
-/* --- Astro Sanjog Royal & Mystical Premium CSS --- */
+/* ==========================================================================
+   Astro Sanjog | Modern 2026 Royal & Mystical Premium Stylesheet
+   ========================================================================== */
 
 :root {
-    /* Deep Cosmic & Tantrik Palette */
-    --royal-bg: #02050a; /* Darker void black */
-    --royal-box: rgba(8, 14, 25, 0.75); /* Darker glassmorphism */
+    /* Deep Cosmic & Mystical Palette */
+    --royal-bg: #02050a;
+    --royal-box: rgba(8, 14, 25, 0.75);
     --gold: #c5a059;
     --gold-bright: #ffdf8c;
     --gold-gradient: linear-gradient(135deg, #8a6d3b 0%, #ffeaa7 50%, #8a6d3b 100%);
-    --mystic-red: #4a0404; /* Tantrik energy accent */
+    --mystic-red: #4a0404;
     --white: #f8f9fa;
     --text-muted: #a0aec0;
     
-    /* Mystical Shadows */
+    /* Advanced Shadows & Glows */
     --shadow-deep: 0 20px 50px rgba(0, 0, 0, 0.9);
-    --glow-gold: 0 0 25px rgba(197, 160, 89, 0.3), inset 0 0 15px rgba(197, 160, 89, 0.1);
-    --glow-red: 0 0 40px rgba(220, 20, 60, 0.15);
+    --glow-gold: 0 0 25px rgba(197, 160, 89, 0.35), inset 0 0 15px rgba(197, 160, 89, 0.1);
+    --glow-red: 0 0 40px rgba(220, 20, 60, 0.2);
     
-    --glass: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(197, 160, 89, 0.25);
 }
 
-/* Global Styles */
+/* Base Resets & Smooth Scroll */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--royal-bg);
-    background-image: radial-gradient(circle at 50% 0%, #0d1222 0%, var(--royal-bg) 70%);
+    background-image: radial-gradient(circle at 50% 0%, #0d1222 0%, var(--royal-bg) 75%);
     color: var(--white);
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
 }
 
+/* Typography Enhancements (Clamp Scaling) */
 .hindi {
     font-family: 'Tiro Devanagari Hindi', serif;
 }
 
 .royal-title {
     font-family: 'Cinzel', serif;
-    color: var(--gold-bright);
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
     text-transform: uppercase;
-    letter-spacing: 3px;
-    text-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
+    letter-spacing: 2px;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 15px rgba(197, 160, 89, 0.4));
 }
 
-/* Navbar - Obsidian Glass */
+/* 2026 Interactive Panchang Ticker (Pause on Hover) */
+.panchang-ticker {
+    background: linear-gradient(90deg, #8a6d3b, var(--gold), #8a6d3b);
+    color: #1a1a1a;
+    padding: 10px 0;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-bottom: 2px solid var(--gold-bright);
+    box-shadow: 0 4px 20px rgba(197, 160, 89, 0.4);
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.ticker-content {
+    display: inline-block;
+    animation: scroll 30s linear infinite;
+    padding-left: 100%;
+    white-space: nowrap;
+}
+
+.panchang-ticker:hover .ticker-content {
+    animation-play-state: paused;
+    cursor: pointer;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Navigation Bar - Glassmorphism Layer */
 header.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 8%;
+    padding: 18px 8%;
     background: rgba(2, 5, 10, 0.85);
-    border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+    border-bottom: 1px solid var(--glass-border);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -63,7 +105,7 @@ header.navbar {
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
     font-weight: 800;
     background: var(--gold-gradient);
     -webkit-background-clip: text;
@@ -75,25 +117,24 @@ header.navbar {
 nav a {
     color: var(--white);
     text-decoration: none;
-    margin-left: 30px;
+    margin-left: 25px;
     font-weight: 500;
-    transition: 0.4s ease;
+    transition: all 0.3s ease;
     font-size: 0.95rem;
     letter-spacing: 1px;
     text-transform: uppercase;
     position: relative;
 }
 
-/* Nav Hover Line Effect */
 nav a::after {
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: -5px;
+    bottom: -6px;
     left: 50%;
     background: var(--gold-bright);
-    transition: 0.4s ease;
+    transition: all 0.3s ease;
     transform: translateX(-50%);
     box-shadow: 0 0 10px var(--gold-bright);
 }
@@ -104,242 +145,388 @@ nav a:hover::after {
 
 nav a:hover {
     color: var(--gold-bright);
-    text-shadow: 0 0 15px var(--gold);
+    text-shadow: 0 0 12px var(--gold);
 }
 
-/* Hero Image with Tantrik Aura */
+/* Hero Section Styles */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 60px 8%;
+    min-height: 70vh;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    margin-bottom: 15px;
+}
+
+.hero-text .sub {
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
+    color: #e2e8f0;
+    margin-bottom: 25px;
+    border-left: 4px solid var(--gold);
+    padding-left: 15px;
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 8px 18px;
+    border-radius: 0 10px 10px 0;
+}
+
 .hero-img {
     position: relative;
     display: inline-block;
+    margin-top: 30px;
 }
 
 .hero-img::before {
     content: '';
     position: absolute;
-    top: -10px; left: -10px; right: -10px; bottom: -10px;
+    top: -12px; left: -12px; right: -12px; bottom: -12px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(197,160,89,0.3) 0%, rgba(139,0,0,0.3) 50%, transparent 100%);
+    background: radial-gradient(circle, rgba(197,160,89,0.35) 0%, rgba(139,0,0,0.25) 55%, transparent 100%);
     z-index: -1;
-    animation: auraPulse 4s infinite alternate;
+    animation: auraPulse 4s infinite alternate ease-in-out;
 }
 
 @keyframes auraPulse {
     0% { transform: scale(1); opacity: 0.5; }
-    100% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1.12); opacity: 1; }
 }
 
 .hero-img img {
-    width: 350px;
-    height: 350px;
+    width: clamp(260px, 30vw, 380px);
+    height: clamp(260px, 30vw, 380px);
     border-radius: 50%;
     border: 4px solid var(--gold);
-    padding: 10px;
-    background: rgba(0,0,0,0.5);
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.6);
     object-fit: cover;
     box-shadow: var(--glow-gold), var(--shadow-deep);
-    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .hero-img img:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
     border-color: var(--gold-bright);
 }
 
-/* Form Container - Obsidian Tablet */
+/* Modern Glassmorphic Form Container */
+.section-box {
+    padding: 60px 5%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
 .form-container {
+    max-width: 800px;
+    margin: 0 auto;
     background: var(--royal-box);
-    padding: 50px 40px;
-    border-radius: 20px;
-    border: 1px solid rgba(197, 160, 89, 0.2);
+    padding: clamp(25px, 5vw, 50px);
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
     border-top: 2px solid var(--gold);
     box-shadow: var(--shadow-deep), var(--glow-gold);
     backdrop-filter: blur(20px);
-    transition: 0.4s ease;
     position: relative;
+    overflow: hidden;
 }
 
-/* Mystical Form Background Details */
 .form-container::after {
     content: 'ॐ';
     position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 150px;
+    bottom: -20px;
+    right: 10px;
+    font-size: clamp(100px, 15vw, 180px);
     color: rgba(197, 160, 89, 0.03);
-    z-index: -1;
+    z-index: 0;
     pointer-events: none;
 }
 
-/* Custom Inputs - Ancient Scroll Look */
+/* Custom Input Controls */
 input, select, textarea {
     width: 100%;
-    padding: 16px 15px;
-    margin: 15px 0;
-    background: rgba(0, 0, 0, 0.4);
-    border: none;
-    border-bottom: 2px solid rgba(197, 160, 89, 0.3);
+    padding: 16px 18px;
+    margin: 12px 0;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    border-bottom: 2px solid var(--gold);
     color: var(--gold-bright);
-    border-radius: 8px 8px 0 0;
+    border-radius: 12px;
     font-family: inherit;
-    font-size: 1.05rem;
-    transition: 0.4s ease;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 input::placeholder {
-    color: #6a7c9c;
+    color: var(--text-muted);
 }
 
 input:focus, select:focus {
-    border-bottom-color: var(--gold-bright);
-    background: rgba(197, 160, 89, 0.05);
     outline: none;
-    box-shadow: 0 10px 15px -10px rgba(197, 160, 89, 0.4);
+    border-color: var(--gold-bright);
+    background: rgba(197, 160, 89, 0.08);
+    box-shadow: 0 5px 20px rgba(197, 160, 89, 0.25);
 }
 
-/* Premium Buttons - Polished Metal */
+/* Premium Metallic Button */
 button.btn-royal {
     background: var(--gold-gradient);
-    color: #000;
-    border: 1px solid #ffd700;
+    color: #040a18;
+    border: 1px solid var(--gold-bright);
     padding: 18px 45px;
     font-weight: 800;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     cursor: pointer;
     border-radius: 50px;
     box-shadow: 0 8px 25px rgba(197, 160, 89, 0.3);
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     text-transform: uppercase;
     letter-spacing: 1px;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 15px;
+    position: relative;
+    z-index: 1;
 }
 
 button.btn-royal:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 35px rgba(197, 160, 89, 0.5), 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(197, 160, 89, 0.5);
     filter: brightness(1.15);
 }
 
-/* Kundli Chart Premium Styling */
+button.btn-royal:active {
+    transform: scale(0.98);
+}
+
+/* Kundli Chart Container Styling */
+.chart-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
 .chart-container {
-    border: 2px solid var(--gold);
-    background: rgba(4, 10, 24, 0.9);
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.9), 0 0 20px rgba(197,160,89,0.2);
     position: relative;
+    width: 320px;
+    height: 320px;
+    border: 2px solid var(--gold);
+    background: rgba(4, 10, 24, 0.95);
+    flex-shrink: 0;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9), 0 0 20px rgba(197, 160, 89, 0.2);
 }
 
 .chart-line {
+    position: absolute;
     background: rgba(197, 160, 89, 0.6);
 }
 
-.rect {
-    border: 2px solid rgba(197, 160, 89, 0.6);
-}
+.diag1 { width: 452px; height: 2px; top: 159px; left: -66px; transform: rotate(45deg); }
+.diag2 { width: 452px; height: 2px; top: 159px; left: -66px; transform: rotate(-45deg); }
+.rect { width: 226px; height: 226px; border: 2px solid rgba(197, 160, 89, 0.6); top: 47px; left: 47px; transform: rotate(45deg); position: absolute; }
 
 .house {
+    position: absolute;
+    font-size: 0.85rem;
     color: var(--gold-bright);
-    text-shadow: 0 0 8px #000, 0 0 15px rgba(197, 160, 89, 0.8);
-    font-family: 'Tiro Devanagari Hindi', serif;
+    font-weight: bold;
+    width: 85px;
+    text-align: center;
+    text-shadow: 0 2px 4px #000;
 }
+.h1 { top: 125px; left: 118px; font-size: 1.1rem; color: #fff; }
 
-/* Result Box - Intense Energy */
+/* Result Box */
 .result-box {
+    margin-top: 30px;
+    padding: clamp(20px, 4vw, 35px);
     background: rgba(6, 11, 20, 0.95);
     border: 1px solid var(--gold);
-    border-top: 5px solid var(--mystic-red); /* Tantrik red top border */
-    box-shadow: var(--shadow-deep), var(--glow-red);
+    border-top: 5px solid var(--mystic-red);
+    border-radius: 20px;
+    text-align: left;
+    display: none;
     backdrop-filter: blur(25px);
-    border-radius: 15px;
-    padding: 35px;
+    box-shadow: var(--shadow-deep), var(--glow-red);
 }
 
-.faladesh-text {
-    border-left: 4px solid var(--mystic-red);
-    background: linear-gradient(90deg, rgba(74,4,4,0.3) 0%, transparent 100%);
-    color: #e2e8f0;
-    padding: 15px;
-    border-radius: 0 10px 10px 0;
+/* WhatsApp Floating & Inline Button Styling */
+.whatsapp {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25d366;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 1001;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    animation: pulseWa 2s infinite;
 }
 
-/* WhatsApp Button Modernized */
+.whatsapp:hover {
+    transform: scale(1.1);
+}
+
+@keyframes pulseWa {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
 .whatsapp-link {
+    display: block;
+    text-align: center;
     background: linear-gradient(135deg, #128c7e, #075e54);
     border: 1px solid #25d366;
-    box-shadow: 0 10px 25px rgba(18, 140, 126, 0.4);
-    transition: 0.4s;
-    display: inline-block;
-    padding: 16px 30px;
-    border-radius: 50px;
     color: white;
+    padding: 16px;
+    border-radius: 15px;
     text-decoration: none;
     font-weight: bold;
-    letter-spacing: 1px;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(18, 140, 126, 0.4);
 }
 
 .whatsapp-link:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(18, 140, 126, 0.6), 0 0 15px rgba(37, 211, 102, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(18, 140, 126, 0.6);
 }
 
-/* Footer Decoration */
-footer {
-    background: #010307;
-    border-top: 1px solid rgba(197,160,89,0.1);
-    color: var(--text-muted);
-    position: relative;
+/* Divine Diya & Sun Animations */
+.shining-sun {
+    color: var(--gold-bright);
+    font-size: 40px;
+    text-shadow: 0 0 20px var(--gold), 0 0 40px var(--gold-bright);
+    animation: sunPulse 3s ease-in-out infinite;
+    margin-bottom: 15px;
 }
 
-footer::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+@keyframes sunPulse {
+    0%, 100% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.12); filter: brightness(1.3); }
 }
 
-/* Realistic Divine Flame Animation */
-.diya-container {
-    position: relative;
-    width: 60px;
-    height: 60px;
+.diya-wrapper {
     margin: 25px auto;
+    width: 60px;
+    position: relative;
 }
 
 .flame {
-    width: 18px;
+    width: 20px;
     height: 32px;
-    background: radial-gradient(ellipse at bottom, #fff 10%, #ffdf00 40%, #ff4500 80%, transparent 100%);
+    background: linear-gradient(to bottom, #fff, #ff9d00, #ff5e00);
     border-radius: 50% 50% 20% 20%;
     position: absolute;
-    top: -15px;
-    left: 21px;
-    animation: divineFlicker 0.12s infinite alternate;
-    box-shadow: 0 0 15px #ffdf00, 0 0 40px #ff4500;
-    transform-origin: bottom center;
+    top: -25px;
+    left: 20px;
+    animation: flicker 0.15s infinite alternate ease-in-out;
+    box-shadow: 0 0 20px #ff9d00, 0 0 40px #ff5e00;
 }
 
-@keyframes divineFlicker {
+@keyframes flicker {
     0% { transform: scale(1) rotate(-1deg); opacity: 0.9; }
-    50% { transform: scale(1.05) rotate(1deg); opacity: 1; }
-    100% { transform: scale(1.1) rotate(0deg); box-shadow: 0 0 25px #ffdf00, 0 0 60px #ff4500; }
+    100% { transform: scale(1.1) rotate(1deg); opacity: 1; }
 }
 
 .diya-base {
     width: 60px;
-    height: 25px;
-    background: linear-gradient(to bottom, #8b4513, #3e1b04);
+    height: 28px;
+    background: #8b4513;
     border-radius: 0 0 60px 60px;
-    position: absolute;
-    bottom: 0;
-    border-top: 3px solid #ffdf00; /* Gold rim */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+    border-top: 3px solid #5d2e0d;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    header.navbar { padding: 15px 5%; flex-direction: column; gap: 15px; }
+/* Trust Section & Grid */
+.trust {
+    padding: 80px 8%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(197, 160, 89, 0.1);
+    margin-top: 40px;
+}
+
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.trust-card {
+    background: var(--royal-box);
+    padding: 35px 25px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    border-left: 4px solid var(--gold);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.trust-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold-bright);
+    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.2);
+}
+
+.trust-card i {
+    font-size: 2.5rem;
+    color: var(--gold-bright);
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 8px var(--gold));
+}
+
+/* Footer Section */
+footer {
+    padding: 50px 5%;
+    text-align: center;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+    background: rgba(2, 5, 10, 0.95);
+    position: relative;
+    z-index: 1;
+}
+
+/* Motion Reveal Classes */
+.hidden-motion {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.show-motion {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Desktop View Layout Enhancements */
+@media (min-width: 768px) {
+    header.navbar { padding: 20px 8%; }
+    .hero { flex-direction: row; text-align: left; justify-content: space-between; }
+    .hero-img img { margin-top: 0; }
+    button.btn-royal { width: auto; }
+}
+
+@media (max-width: 767px) {
+    header.navbar { flex-direction: column; gap: 15px; text-align: center; }
     nav a { margin: 0 10px; font-size: 0.85rem; }
-    .hero-img img { width: 280px; height: 280px; }
-    .form-container { padding: 30px 20px; }
-    .royal-title { font-size: 1.8rem; }
 }
