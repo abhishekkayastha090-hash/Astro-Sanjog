@@ -13,6 +13,18 @@
 
     <!-- Linking Custom CSS Folder Path -->
     <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Navgraha Icon Styling Improvements */
+        .graha-item i {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .graha-item {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -47,24 +59,26 @@
             </a>
         </div>
         <div class="hero-img">
-            <!-- Automatically uses your folder image -->
-            <img src="images/AcharyaPanditSanjayji.jpg" alt="Acharya Pandit Sanjay Ji" onerror="this.src='sanjay-ji.jpg'">
+            <!-- Updated Image Tag with Placeholder Fallback -->
+            <img src="images/AcharyaPanditSanjayji.jpg" 
+                 alt="Acharya Pandit Sanjay Ji" 
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/350/0d1117/ffdf8c?text=Acharya+Pandit+Sanjay+Ji';">
         </div>
     </section>
 
-    <!-- Navgraha SVG Showcase (Loaded directly from your images folder) -->
+    <!-- Navgraha Showcase (Replaced missing SVGs with FontAwesome Icons) -->
     <div class="navgraha-bar">
         <h4 class="hindi royal-title" style="font-size: 1.1rem; color: var(--gold-bright);">🔱 नवग्रह ऊर्जा चक्र (Navgraha Energy) 🔱</h4>
         <div class="navgraha-grid">
-            <div class="graha-item"><img src="images/sun.svg" alt="Sun"><span>सूर्य</span></div>
-            <div class="graha-item"><img src="images/moon.svg" alt="Moon"><span>चंद्र</span></div>
-            <div class="graha-item"><img src="images/mars.svg" alt="Mars"><span>मंगल</span></div>
-            <div class="graha-item"><img src="images/mercury.svg" alt="Mercury"><span>बुध</span></div>
-            <div class="graha-item"><img src="images/jupiter.svg" alt="Jupiter"><span>गुरु</span></div>
-            <div class="graha-item"><img src="images/venus.svg" alt="Venus"><span>शुक्र</span></div>
-            <div class="graha-item"><img src="images/saturn.svg" alt="Saturn"><span>शनि</span></div>
-            <div class="graha-item"><img src="images/rahu.svg" alt="Rahu"><span>राहु</span></div>
-            <div class="graha-item"><img src="images/ketu.svg" alt="Ketu"><span>केतु</span></div>
+            <div class="graha-item"><i class="fas fa-sun" style="color: #ffaa00;"></i><span>सूर्य</span></div>
+            <div class="graha-item"><i class="fas fa-moon" style="color: #f1f2f6;"></i><span>चंद्र</span></div>
+            <div class="graha-item"><i class="fas fa-meteor" style="color: #ff4757;"></i><span>मंगल</span></div>
+            <div class="graha-item"><i class="fas fa-circle" style="color: #2ed573;"></i><span>बुध</span></div>
+            <div class="graha-item"><i class="fas fa-dharmachakra" style="color: #eccc68;"></i><span>गुरु</span></div>
+            <div class="graha-item"><i class="fas fa-gem" style="color: #ff78ae;"></i><span>शुक्र</span></div>
+            <div class="graha-item"><i class="fas fa-ring" style="color: #a4b0be;"></i><span>शनि</span></div>
+            <div class="graha-item"><i class="fas fa-cloud-moon" style="color: #747d8c;"></i><span>राहु</span></div>
+            <div class="graha-item"><i class="fas fa-adjust" style="color: #57606f;"></i><span>केतु</span></div>
         </div>
     </div>
 
