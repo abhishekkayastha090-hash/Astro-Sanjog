@@ -5,33 +5,328 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astro Sanjog | आचार्य पंडित संजय जी</title>
     
-    <!-- Google Fonts & Font Awesome -->
+    <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;800&family=Poppins:wght@300;400;600;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Embedded Complete CSS (No External CSS File Needed) -->
+    <style>
+        :root {
+            --royal-bg: #030712;
+            --royal-box: rgba(15, 23, 42, 0.85);
+            --gold: #c5a059;
+            --gold-bright: #ffdf8c;
+            --gold-gradient: linear-gradient(135deg, #8a6d3b 0%, #ffeaa7 50%, #8a6d3b 100%);
+            --white: #f8f9fa;
+            --text-muted: #94a3b8;
+            --glass-border: rgba(197, 160, 89, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--royal-bg);
+            background-image: radial-gradient(circle at 50% 10%, #111827 0%, var(--royal-bg) 80%);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        .hindi {
+            font-family: 'Tiro Devanagari Hindi', serif;
+        }
+
+        .royal-title {
+            font-family: 'Cinzel', serif;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        /* Panchang Ticker */
+        .panchang-ticker {
+            background: linear-gradient(90deg, #8a6d3b, #ffeaa7, #8a6d3b);
+            color: #0b0f19;
+            padding: 10px 0;
+            font-weight: 700;
+            font-size: 0.95rem;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(197, 160, 89, 0.3);
+        }
+
+        .ticker-content {
+            display: inline-block;
+            animation: scrollText 28s linear infinite;
+            padding-left: 100%;
+        }
+
+        .panchang-ticker:hover .ticker-content {
+            animation-play-state: paused;
+            cursor: pointer;
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Navbar */
+        header.navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: rgba(3, 7, 18, 0.95);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            text-decoration: none;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--gold-bright);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            margin-bottom: 15px;
+        }
+
+        .hero-text .sub {
+            font-size: 1.2rem;
+            color: var(--gold-bright);
+            margin-bottom: 15px;
+            border-left: 3px solid var(--gold);
+            padding-left: 12px;
+        }
+
+        .hero-img img {
+            width: clamp(240px, 25vw, 340px);
+            height: clamp(240px, 25vw, 340px);
+            border-radius: 50%;
+            border: 4px solid var(--gold);
+            padding: 6px;
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        /* Form Engine */
+        .section-box {
+            max-width: 850px;
+            margin: 20px auto 60px;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .form-container {
+            background: var(--royal-box);
+            padding: clamp(20px, 4vw, 40px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(3, 7, 18, 0.6);
+            border: 1px solid var(--glass-border);
+            color: var(--gold-bright);
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--gold-bright);
+            box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);
+        }
+
+        button.btn-royal {
+            background: var(--gold-gradient);
+            color: #030712;
+            border: none;
+            padding: 16px 30px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            border-radius: 40px;
+            width: 100%;
+            margin-top: 15px;
+            transition: transform 0.2s, filter 0.2s;
+            text-transform: uppercase;
+        }
+
+        button.btn-royal:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        /* Result Section */
+        .result-box {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(3, 7, 18, 0.9);
+            border: 1px solid var(--gold);
+            border-radius: 15px;
+            display: none;
+        }
+
+        .whatsapp-link {
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            background: #25d366;
+            color: #000;
+            padding: 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Trust Cards */
+        .trust {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .trust-card {
+            background: var(--royal-box);
+            padding: 30px 20px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .trust-card i {
+            font-size: 2rem;
+            color: var(--gold-bright);
+            margin-bottom: 12px;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            color: #fff;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+        }
+
+        /* Responsive Layout Fixes */
+        @media (max-width: 768px) {
+            header.navbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+            nav a {
+                margin: 0 10px;
+            }
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 30px;
+            }
+            .hero-text .sub {
+                border-left: none;
+                border-bottom: 2px solid var(--gold);
+                padding-bottom: 5px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Live Flow Background Canvas -->
-    <canvas id="space-flow" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none;"></canvas>
 
     <!-- Panchang Ticker -->
     <div class="panchang-ticker">
         <div class="ticker-content hindi">
-            ☀️ आज का शाही पंचांग: तिथि: द्वादशी | नक्षत्र: मघा | योग: सुकर्मा | शुभ मुहूर्त: 11:54 AM से 12:44 PM | राहुकाल: 03:30 PM से 05:00 PM तक | अमृत काल: आज रात्रि 08:20 से ✨
+            ☀️ आज का शाही पंचांग: तिथि: द्वादशी | नक्षत्र: मघा | योग: सुकर्मा | शुभ मुहूर्त: 11:54 AM से 12:44 PM | राहुकाल: 03:30 PM से 05:00 PM | अमृत काल: आज रात्रि 08:20 से ✨
         </div>
-    </div>
-
-    <!-- Floating Background Icons -->
-    <div class="bg-icons" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.12;">
-        <i class="fas fa-om" style="position: absolute; left: 10%; top: 20%; color: var(--gold-bright); font-size: 50px;"></i>
-        <i class="fas fa-moon" style="position: absolute; left: 80%; top: 15%; color: var(--gold-bright); font-size: 40px;"></i>
-        <i class="fas fa-sun" style="position: absolute; left: 70%; top: 70%; color: var(--gold-bright); font-size: 60px;"></i>
-        <i class="fas fa-dharmachakra" style="position: absolute; left: 15%; top: 75%; color: var(--gold-bright); font-size: 45px;"></i>
     </div>
 
     <!-- Navigation Bar -->
@@ -46,110 +341,92 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero hidden-motion">
+    <section class="hero">
         <div class="hero-text">
-            <div><i class="fas fa-sun shining-sun"></i></div>
             <h1 class="royal-title">आचार्य पंडित संजय जी</h1>
             <p class="sub hindi">प्राचीन वैदिक विद्या एवं आधुनिक विश्लेषण</p>
-            <p class="hindi" style="color: #cbd5e1; font-size: 1.1rem; margin-bottom: 20px;">कुंडली • महादशा चक्र • अष्टकूट मिलान • रत्न परामर्श</p>
-            
-            <div class="diya-wrapper">
-                <div class="flame"></div>
-                <div class="diya-base"></div>
-            </div>
+            <p class="hindi" style="color: #cbd5e1; font-size: 1rem; margin-bottom: 20px;">कुंडली • महादशा चक्र • अष्टकूट मिलान • रत्न परामर्श</p>
         </div>
         <div class="hero-img">
-            <img src="images/sanjay-ji.jpg" alt="Acharya Pandit Sanjay Ji" onerror="this.src='https://via.placeholder.com/380x380/040a18/c5a059?text=Sanjay+Ji'">
+            <img src="images/sanjay-ji.jpg" alt="Acharya Pandit Sanjay Ji" onerror="this.src='https://via.placeholder.com/340x340/0f172a/c5a059?text=Pandit+Sanjay+Ji'">
         </div>
     </section>
 
     <!-- Kundli Engine Section -->
-    <section class="section-box hidden-motion" id="kundli-engine">
-        <h2 class="hindi royal-title" style="margin-bottom: 30px;">लग्न कुंडली एवं महादशा विश्लेषण</h2>
+    <section class="section-box" id="kundli-engine">
         <div class="form-container">
-            <input type="text" id="name" placeholder="जातक का पूरा नाम" required>
+            <h2 class="hindi royal-title" style="text-align: center; margin-bottom: 20px; font-size: 1.6rem;">लग्न कुंडली एवं भविष्यफल</h2>
             
-            <!-- Updated Responsive Form Inputs Grid -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+            <input type="text" id="name" placeholder="जातक का नाम" required>
+            
+            <div class="input-grid">
                 <input type="date" id="dob" required>
                 <input type="time" id="time" required>
-                <input type="text" id="place" placeholder="जन्म स्थान (उदा. जयपुर)" required>
+                <input type="text" id="place" placeholder="जन्म स्थान" required>
             </div>
 
-            <button onclick="generateFullAstro()" class="btn-royal hindi">भविष्यफल प्राप्त करें <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></button>
+            <button onclick="generateAstro()" class="btn-royal hindi">भविष्यफल देखें <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></button>
 
-            <!-- Result Box Output -->
+            <!-- Result Box -->
             <div id="result" class="result-box">
-                <h2 id="res-name" class="hindi" style="color:var(--gold-bright); margin-bottom: 15px;"></h2>
-                <div class="chart-wrapper">
-                    <div class="chart-container" id="kundli-chart">
-                        <div class="chart-line diag1"></div><div class="chart-line diag2"></div>
-                        <div class="rect"></div>
-                        <div class="house h1" id="house1"></div> <div class="house h2" id="house2"></div>
-                        <div class="house h3" id="house3"></div> <div class="house h4" id="house4"></div>
-                        <div class="house h5" id="house5"></div> <div class="house h6" id="house6"></div>
-                        <div class="house h7" id="house7"></div> <div class="house h8" id="house8"></div>
-                        <div class="house h9" id="house9"></div> <div class="house h10" id="house10"></div>
-                        <div class="house h11" id="house11"></div> <div class="house h12" id="house12"></div>
-                    </div>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(197,160,89,0.2);">
-                    <p class="hindi">🔱 <b>राशि:</b> <span id="res-rashi" style="color:var(--gold-bright)"></span></p>
-                    <p class="hindi">🌙 <b>नक्षत्र:</b> <span id="res-nak" style="color:var(--gold-bright)"></span></p>
-                </div>
-                <div class="hindi" id="res-faladesh" style="font-size: 1.1rem; line-height: 1.8; margin-top:15px; color:#e2e8f0;"></div>
-                <h4 class="hindi" style="color:var(--gold); margin-top:25px; font-size: 1.2rem;"><i class="fas fa-hourglass-half"></i> विंशोत्तरी महादशा चक्र:</h4>
-                <div id="dasha-output" style="font-size:1rem; color:#cbd5e1; margin-top:10px; line-height: 2;"></div>
+                <h3 id="res-name" class="hindi" style="color:var(--gold-bright); margin-bottom: 10px;"></h3>
+                <p class="hindi" style="margin-bottom: 8px;">🔱 <b>चंद्र राशि:</b> <span id="res-rashi" style="color:var(--gold-bright)"></span></p>
+                <p class="hindi" style="line-height: 1.7; color:#e2e8f0;" id="res-faladesh"></p>
                 
-                <a id="wa-link" href="#" class="whatsapp-link" target="_blank">
-                    <i class="fab fa-whatsapp" style="font-size: 1.2rem; margin-right: 5px;"></i> पंडित जी से विस्तृत समाधान लें
+                <h4 class="hindi" style="color:var(--gold); margin-top:20px;"><i class="fas fa-hourglass-half"></i> महादशा चक्र:</h4>
+                <div id="dasha-output" style="margin-top:8px;"></div>
+                
+                <a id="wa-link" href="#" class="whatsapp-link hindi" target="_blank">
+                    <i class="fab fa-whatsapp" style="font-size: 1.2rem; margin-right: 5px;"></i> पंडित जी से व्हाट्सएप पर बात करें
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Trust Section -->
-    <section class="trust hidden-motion">
-        <h2 class="hindi royal-title">हमारा चयन क्यों करें?</h2>
+    <section class="trust">
+        <h2 class="hindi royal-title" style="font-size: 1.8rem;">हमारा चयन क्यों करें?</h2>
         <div class="trust-grid">
             <div class="trust-card">
                 <i class="fas fa-scroll"></i>
-                <h3 class="hindi" style="margin-bottom: 10px; color: var(--gold-bright);">25+ वर्षों का अनुभव</h3>
-                <p class="hindi" style="color: #cbd5e1; line-height: 1.6;">प्राचीन वैदिक शास्त्रों और गणितीय ज्योतिष में गहन विशेषज्ञता।</p>
+                <h3 class="hindi" style="color: var(--gold-bright); margin-bottom: 8px;">25+ वर्षों का अनुभव</h3>
+                <p class="hindi" style="color: #cbd5e1; font-size: 0.95rem;">वैदिक शास्त्र एवं सटीक गणितीय गणना।</p>
             </div>
             <div class="trust-card">
                 <i class="fas fa-users"></i>
-                <h3 class="hindi" style="margin-bottom: 10px; color: var(--gold-bright);">5000+ संतुष्ट यजमान</h3>
-                <p class="hindi" style="color: #cbd5e1; line-height: 1.6;">विश्व भर में हजारों लोगों को मिला सटीक मार्गदर्शन और समाधान।</p>
+                <h3 class="hindi" style="color: var(--gold-bright); margin-bottom: 8px;">5000+ यजमान</h3>
+                <p class="hindi" style="color: #cbd5e1; font-size: 0.95rem;">देश-विदेश में विश्वसनीय मार्गदर्शन।</p>
             </div>
             <div class="trust-card">
                 <i class="fas fa-check-circle"></i>
-                <h3 class="hindi" style="margin-bottom: 10px; color: var(--gold-bright);">सटीक फलादेश</h3>
-                <p class="hindi" style="color: #cbd5e1; line-height: 1.6;">आधुनिक सॉफ्टवेयर और व्यक्तिगत अनुभव का बेजोड़ संगम।</p>
+                <h3 class="hindi" style="color: var(--gold-bright); margin-bottom: 8px;">सटीक समाधान</h3>
+                <p class="hindi" style="color: #cbd5e1; font-size: 0.95rem;">व्यक्तिगत समस्याओं का प्रमाणित उपाय।</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p class="royal-title" style="font-size: 1.2rem;">ASTRO SANJOG | जयपुर, राजस्थान</p>
-        <p class="hindi" style="margin-top: 10px;">© 2026 सर्वाधिकार सुरक्षित | आचार्य पंडित संजय जी</p>
+        <p class="royal-title" style="font-size: 1.1rem;">ASTRO SANJOG | जयपुर, राजस्थान</p>
+        <p class="hindi" style="margin-top: 8px; font-size: 0.9rem;">© 2026 सर्वाधिकार सुरक्षित | आचार्य पंडित संजय जी</p>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/919929806534" class="whatsapp" target="_blank" aria-label="WhatsApp Us">
+    <!-- Floating WhatsApp Icon -->
+    <a href="https://wa.me/919929806534" class="whatsapp-float" target="_blank" aria-label="WhatsApp Us">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Scripts Scripting -->
+    <!-- JavaScript Logic -->
     <script>
-        /* --- KUNDLI GENERATOR SCRIPT --- */
-        function generateFullAstro() {
+        function generateAstro() {
             const name = document.getElementById("name").value;
             const dob = document.getElementById("dob").value;
             const time = document.getElementById("time").value;
             
-            if(!name || !dob) return alert("कृपया विवरण भरें");
+            if(!name || !dob) {
+                alert("कृपया अपना नाम और जन्म तिथि दर्ज करें।");
+                return;
+            }
 
             const date = new Date(dob);
             const d = date.getDate(); 
@@ -161,109 +438,30 @@
 
             document.getElementById("res-name").innerText = "प्रणाम, " + name + " जी";
             document.getElementById("res-rashi").innerText = rashis[rIdx];
-            document.getElementById("res-nak").innerText = "पुष्य (Pushya)";
-            document.getElementById("res-faladesh").innerText = "आपके जन्म समय (" + (time || "निर्दिष्ट") + ") के अनुसार लग्न में शुभ ग्रहों का प्रभाव है। आने वाला समय करियर के लिए अनुकूल है। शनिवार को शनि देव की आराधना करें।";
-
-            const planets = ["☀️ Sun", "🌙 Moon", "♂️ Mars", "☿️ Mercury", "♃️ Jupiter", "♀️ Venus", "♄️ Saturn", "☊ Rahu", "☋ Ketu"];
-            for(let i=1; i<=12; i++) {
-                let p = (i === (rIdx + 1)) ? planets[0]+" "+planets[1] : i;
-                document.getElementById("house"+i).innerText = p;
-            }
+            document.getElementById("res-faladesh").innerText = "आपके जन्म विवरण (" + (time || "समय निर्दिष्ट नहीं") + ") के अनुसार आपकी कुंडली में शुभ योग बन रहे हैं। करियर और व्यापार में सफलता के संकेत हैं।";
 
             let dashaHTML = "";
             const dNames = ["सूर्य", "चंद्र", "मंगल", "राहु", "गुरु", "शनि", "बुध", "केतु", "शुक्र"];
-            const dYears = [6, 10, 7, 18, 16, 19, 17, 7, 20];
             let start = y; 
             let currentYear = 2026;
             let sIdx = (d + m) % 9;
 
-            for(let i=0; i<6; i++) {
+            for(let i = 0; i < 5; i++) {
                 let idx = (sIdx + i) % 9;
-                let end = start + dYears[idx];
+                let end = start + 10;
                 let active = (currentYear >= start && currentYear <= end);
-                dashaHTML += `<div style="padding:5px; ${active ? 'color:var(--gold-bright); font-weight:bold; border-left:3px solid var(--gold); padding-left:10px;' : 'color:#99a;'}">
-                    • ${dNames[idx]} की महादशा: ${start} - ${end} ${active ? '(सक्रिय)' : ''}
+                dashaHTML += `<div style="padding:4px 0; ${active ? 'color:var(--gold-bright); font-weight:bold;' : 'color:#94a3b8;'}">
+                    • ${dNames[idx]} महादशा: ${start} - ${end} ${active ? '(वर्तमान सक्रिय)' : ''}
                 </div>`;
                 start = end;
             }
+
             document.getElementById("dasha-output").innerHTML = dashaHTML;
             document.getElementById("result").style.display = "block";
-            document.getElementById("wa-link").href = "https://wa.me/919929806534?text=प्रणाम पंडित जी, मेरा नाम: " + name + " है, मेरी राशि: " + rashis[rIdx] + "। मार्गदर्शन करें।";
+            document.getElementById("wa-link").href = "https://wa.me/919929806534?text=प्रणाम पंडित जी, मेरा नाम " + encodeURIComponent(name) + " है। मेरी राशि " + rashis[rIdx] + " है, मुझे विस्तृत कुंडली परामर्श चाहिए।";
             
-            // Smoothly slide into view
-            document.getElementById("result").style.opacity = 0;
-            setTimeout(() => {
-                document.getElementById("result").style.transition = "opacity 0.8s ease";
-                document.getElementById("result").style.opacity = 1;
-                document.getElementById("result").scrollIntoView({behavior: 'smooth', block: 'center'});
-            }, 50);
+            document.getElementById("result").scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-
-        /* --- SCROLL MOTION OBSERVER --- */
-        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show-motion');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.hidden-motion').forEach(el => observer.observe(el));
-
-        /* --- LIVE FLOW STARFIELD CANVAS --- */
-        const canvas = document.getElementById("space-flow");
-        const ctx = canvas.getContext("2d");
-        let width, height, stars = [];
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        for (let i = 0; i < 120; i++) {
-            stars.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                radius: Math.random() * 1.5,
-                speed: Math.random() * 0.4 + 0.1,
-                alpha: Math.random()
-            });
-        }
-
-        function drawStars() {
-            ctx.clearRect(0, 0, width, height);
-            let bgGradient = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, width);
-            bgGradient.addColorStop(0, "#0a1428");
-            bgGradient.addColorStop(1, "#02050a");
-            ctx.fillStyle = bgGradient;
-            ctx.fillRect(0, 0, width, height);
-
-            ctx.fillStyle = "#ffdf8c";
-            for (let i = 0; i < stars.length; i++) {
-                let s = stars[i];
-                ctx.globalAlpha = s.alpha;
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-                ctx.fill();
-
-                s.y -= s.speed;
-                s.alpha += (Math.random() - 0.5) * 0.05;
-
-                if (s.alpha < 0.1) s.alpha = 0.1;
-                if (s.alpha > 1) s.alpha = 1;
-
-                if (s.y < 0) {
-                    s.y = height;
-                    s.x = Math.random() * width;
-                }
-            }
-            requestAnimationFrame(drawStars);
-        }
-        drawStars();
     </script>
 </body>
 </html>
